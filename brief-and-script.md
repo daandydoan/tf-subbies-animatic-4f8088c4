@@ -14,7 +14,7 @@ attention." Three consequences, all acted on below:
    tracking and profile capabilities out to chapters as "admin, not communication." The feedback
    asks for them by name — insurances, certificates and capability statements visible from the
    subbie's profile *without asking*, and pulled into the tender in one request — so they return as
-   scenes 7–8. That reverses a v0.3 decision deliberately.
+   scenes 8–9. That reverses a v0.3 decision deliberately.
 
 **Thesis, adjusted.** v0.3: *neither side can see the other.* v0.4 keeps that as the opening pain
 but resolves it toward the contractor's outcome: **you stop chasing — the request, the compliance
@@ -41,7 +41,7 @@ reflected. Each frame renders the page at a true 1440×900 and is scaled to the 
 (`--pfz = wrapWidth / 1440`), so type stays proportionally correct at any viewport.
 
 ⚠️ **Consequences of showing the whole screen — read before capture:**
-- **Anything below 900px is off-frame.** On scene 7 the Capability/Insurance columns sit at the
+- **Anything below 900px is off-frame.** On scene 8 the Capability/Insurance columns sit at the
   bottom edge of the fold; the recording needs to scroll to feature them.
 - **Legibility.** §3's original advice (crop to the panel, hide the sidebar) was written for exactly
   this reason — a full screen scaled into a half-frame window renders body text small. The client has
@@ -131,7 +131,7 @@ supporting sentence → optional 2–3 item micro-list. Nothing else goes in tha
 Because there is no subtitle bar, **the supporting sentence carries anything the VO would otherwise
 have added**. Keep it to roughly 15–33 words — long enough to stand alone muted, short enough to read
 in the scene's runtime. Two scenes needed topping up when the subtitles came out: scene 2 gained
-"He sent it to fourteen subcontractors and four came back", and scene 4 gained "Tenderfy puts the
+"He sent it to fourteen subcontractors and four came back", and scene 10 gained "Tenderfy puts the
 conversation on the job itself". Every other scene's copy already said what its VO said.
 
 **Rules of the format.**
@@ -163,7 +163,8 @@ to ask for*, which does serve the thesis: it removes another reason to pick up t
 Structure (v0.4): **a human opens on the pain, one beat of mutual blindness, then a three-step
 contractor spine — review → request → automate — followed by the four payoffs the client named
 (compliance without asking, documents in one request, the subbie's side made effortless, every quote
-totalled).** The film still crosses desks, but it resolves on the contractor.
+totalled).** The contractor stays the protagonist, but from v0.4b the film **shows both desks in the
+same frame** on scenes 5, 8, 10 and 11 rather than only cutting between them.
 
 **The three-step spine is signposted on screen.** Scenes 4, 5 and 6 carry a `STEP 1 / 2 / 3 of 3`
 marker in the eyebrow. The client asked for "a simple three-step review process" — if a viewer
@@ -175,28 +176,36 @@ remembers one structural thing, it should be that.
 | 2 | 0:08–0:16 | Sub | "On the other end, it's buried in a thread. He can't tell if the job's still live either." | No reply. No status. **No idea.** | Greyed-out clutter: dead thread, unread "any update on that price mate?", missed calls. Still no teal. Last frame before the product appears. |
 | 3 | 0:16–0:24 | Con · **the turn** | "Here's what changes. You pick your subbies and send one request — same scope, same questions, same deadline, to all of them at once." | Request quotes from your subbies **in one go.** | **No UI.** Motion graphics: an amber *One request* chip fans out along five drawn lines to five subbie avatars (concrete, electrical, plumbing, steel, glazing). First teal in the film — this is where the problem act turns into the product. |
 | 4 | 0:24–0:35 | Con · **Step 1** | "It starts where the work does. Open the tender pack, and Ray pulls out the packages that need pricing — you're reviewing scope, not hunting through a PDF." | **Step 1.** Review the pack. | `contractor/build-tender.html` — pack opens, Ray highlights trade packages down the left. Eyebrow reads STEP 1 OF 3. |
-| 5 | 0:35–0:47 | Con · **Step 2** | "Pick your subbies and send one request. Same scope, same questions, same deadline — to all of them at once." | **Step 2.** Request the quote. | `contractor/new-request.html` → `subbies.html`. Multi-select subbies, one Send. Toast: *Request sent · 8 subcontractors*. This is the beat the client said was missing. |
+| 5 | 0:35–0:47 | **Both** · Step 2 | "Pick your subbies and send one request. Same scope, same questions, same deadline — and it lands on their screen while you're still on the page." | **Step 2.** Request the quote. | **The split send.** Contractor window left, subbie window right and lower, amber *Request* token flying the arc between them. Toast *Request sent · 8 subcontractors*. ⚠️ Needs TWO recordings cut to the same action — `contractor/new-request.html` and the subbie inbox. The film's first two-sided frame. |
 | 6 | 0:47–0:58 | Con · **Step 3** | "Then it chases them for you. Follow-ups on your schedule, in your words, capped — so you're not the one ringing at seven at night." | **Step 3.** It chases, **not you.** | Nudge delay / max / window fields, then the nudge message. Toast *Nudge sent · 1 of 2*. Cap is the point. |
-| 7 | 0:58–1:09 | Con | "And you never ask for an insurance certificate again. Their profile shows what's current and what's about to lapse — before you send anything." | Compliance **without asking.** | `contractor/subbies.html` — profile panel: public liability, workers comp, licence, capability statement. Currency chips: *Current* ×3, one amber *Expires in 21 days*. ⚠️ Expiry state is a capture-time override (see §4). |
-| 8 | 1:09–1:18 | Con | "When you need those documents on the job, one request pulls them straight through into the tender." | One request. **Documents attached.** | `contractor/build-tender.html` — request documents, the four files land into the tender attachments list in sequence. |
-| 9 | 1:18–1:30 | Sub | "His side is just as easy. The drawings and the scope open in the browser — nothing to download — and inclusions, exclusions and assumptions answer the three things you'd otherwise email him about." | Priced online. **Scope stated up front.** | `subbies/view-request.html` → `document-detail.html`. Doc opens inline, then line items stagger and I/E/A tags pop column by column. |
-| 10 | 1:30–1:39 | Sub | "Anything unclear, he asks you on the job itself — one thread, one record, answered in minutes." | Ask direct. **Answered fast.** | Messages tab: question, reply, acknowledgement land in sequence. Frame as *the compliant record*, not chat. |
-| 11 | 1:39–1:49 | Con | "Then every price lands in one place and totals itself. One subcontractor figure for the job — no spreadsheet, no transcription, no pricing mistakes." | Every quote. **One total.** | `contractor/compare.html` — quotes reveal row by row, then the **total counts up** and holds. The total is the hero frame of the film, not the table. |
+| 7 | 0:58–1:10 | Sub | "His side is just as easy. No account to create, nothing to download — the drawings and the scope open in the browser, and inclusions, exclusions and assumptions are already stated, so he prices the right job first time." | Priced online. **Nothing to download.** | **Moved up from 9** to break the contractor run. `subbies/view-request.html` → `document-detail.html`. Doc opens inline, line items stagger, I/E/A tags pop. Three-item list — *no account · nothing to download · scope answered* — is the subbie's reason to say yes. |
+| 8 | 1:10–1:21 | **Both** | "And you never ask for an insurance certificate again. Their profile shows what's current and what's about to lapse — because he uploaded it once, and it stays current for every tender he prices." | Compliance **without asking.** | `contractor/subbies.html` — four document rows, three *Current*, one amber *Expires in 21 days*. **Mirror card** bottom-right gives the subbie's half of the same fact: *uploaded once, current on every tender*. |
+| 9 | 1:21–1:30 | Con | "When you need those documents on the job, one request pulls them straight through into the tender." | One request. **Documents attached.** | `contractor/build-tender.html` — request documents, the four files land into the tender attachments list in sequence. |
+| 10 | 1:30–1:39 | **Both** | "Anything unclear, he asks you on the job itself — and you answer from the same thread. One record, answered in minutes." | He asks. **You answer.** | **The exchange in one frame.** His question card enters top-left (teal WB avatar), your answer card enters lower-right (blue AW avatar), then *Answered in 6 minutes*. Both POV badges lit. Frame as *the compliant record*, not chat. |
+| 11 | 1:39–1:49 | **Both** | "Then every price lands in one place and totals itself. One subcontractor figure for the job — and he priced it in twenty minutes without a phone call." | Every quote. **One total.** | `contractor/compare.html` — quotes reveal row by row, then the **total counts up** and holds. **Payoff mirror** lands after it — *priced in 20 minutes, no phone calls* — so the film resolves on both desks, not just the contractor's. |
 | 12 | 1:49–1:55 | End card | "Tenderfy Subbies. Request once — everything comes back to you." | Everything **comes back to you.** | Brand ramp end card, wordmark, one line. Wipes over at 6.4s. |
+
+**POV balance (v0.4b).** Contractor on screen 95s, subcontractor 62s of 115s — up from 29s, and the
+longest stretch with no subbie in frame is now **19s, down from 62s**. Four scenes are two-sided.
+The fix was deliberately not 50/50: the contractor buys the seat, so he stays the protagonist.
 
 **Why this order.** Scene 1 puts a face and a phone on the pain before a single pixel of product —
 the client's note. Scene 2 keeps the mutual-blindness idea alive in one beat instead of two, so the
 problem costs 16s rather than 19s and the features start sooner. Scene 3 states the promise in plain words before any UI appears — the client asked to hear
 what Tenderfy does for them before being walked through it. Scenes 4–6 are the spine the
 feedback asked for, signposted 1/2/3, and they run consecutively in one POV so the workflow reads as
-one movement rather than a tour. Scenes 7–8 remove the two remaining reasons to phone a subbie
-(paperwork chasing and document collection). Scene 9 shows the subbie's side is effortless — which is
-what makes the contractor's list actually move onto Tenderfy — and 10 keeps the direct-chat beat the
-client called out. Scene 11 is the commercial payoff and deliberately ends on a **number**, because
-"reduces mistakes in their pricing" is the line most likely to sell a seat.
+one movement rather than a tour. Scene 5 is now the **split send** — one action shown on two desks, which is what makes "request with
+ease" a two-sided fact rather than a contractor claim. Scene 7 (the subbie's side) moves up to break
+what had become a 62s unbroken contractor run, and now states his reason to say yes rather than only
+the mechanics. Scenes 8–9 remove the two remaining reasons to phone a subbie (paperwork chasing and
+document collection), with 8 mirrored so compliance reads from both ends. Scene 10 is the one beat
+that is inherently an exchange, so it now shows the question and the answer together. Scene 11 is the
+commercial payoff and still ends on a **number**, because "reduces mistakes in their pricing" is the
+line most likely to sell a seat — with the subbie's outcome landing beside it so the film resolves on
+both desks.
 
 **What changed from v0.3, scene for scene.** Old 1+2 (matched pain pair) compress into new 1+2, with
-live action replacing the subbie's clutter as the opener. Old 3 (messages) survives as new 9. Old 4
+live action replacing the subbie's clutter as the opener. Old 3 (messages) survives as new 10. Old 4
 (quick respond) and old 8 (notification feed) are **cut from the master** — good beats, but they are
 subbie-convenience, and the runtime went to the contractor spine; both move to chapters. Old 5
 (status stepper) is absorbed into new 4's send toast. Old 6 (nudges) becomes new 5 / Step 3. Old 7
@@ -209,7 +218,7 @@ subbie-convenience, and the runtime went to the contractor spine; both move to c
   which will look more honest than stock and is on-brand for a trades audience; (c) drop back to a
   UI-only opener. ⚠️ Note this reverses the landing film's "no stock-footage people" rule — that rule
   was written for `showcase.html`, and the client has explicitly asked for a human here.
-- ✅ **Compliance currency state (scene 7) — RESOLVED, no override needed.** An earlier note here
+- ✅ **Compliance currency state (scene 8) — RESOLVED, no override needed.** An earlier note here
   claimed the prototype had no "current / about to lapse" indicator. That was wrong: it was based on
   a text search for *expiry/expires*, but the real UI expresses it as **icons**.
   `contractor/subbies.html` carries **Capability** and **Insurance** columns with three live states —
@@ -217,9 +226,9 @@ subbie-convenience, and the runtime went to the contractor spine; both move to c
   across the directory. That is exactly the beat, in real product UI. **Film it as-is.** The only
   thing the real screen lacks is an explicit date ("expires in 21 days"); the amber warning carries
   the meaning without it, so don't fake the date.
-- **Scenes 3–8 are six consecutive contractor scenes (59s).** That is the deliberate consequence of
-  the contractor-led pivot, but it's the longest single-POV run either version has had. Watch it in
-  the animatic — if it drags, scene 9 (subbie) moves up between 6 and 7.
+- ✅ **The long single-POV run — RESOLVED in v0.4b.** It had grown to 62s of unbroken contractor
+  (scenes 3–8). Priced online moved up to slot 7 and scenes 5, 8, 10 and 11 became two-sided, so the
+  longest stretch with no subbie in frame is now 19s and subbie screen time went 29s → 62s.
 - The pricing line ("free for subcontractors") is still **out** — load-bearing and unconfirmed.
 - **Old scenes 4 and 8 are now unbuilt chapters** (quick-respond; notification feed). They were cut
   for runtime, not quality — keep the animatic scenes on file for the chapter cuts.

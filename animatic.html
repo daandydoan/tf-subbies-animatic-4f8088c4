@@ -430,11 +430,70 @@ body{font-family:'Outfit',system-ui,-apple-system,'Segoe UI',sans-serif;backgrou
     linear-gradient(158deg,#E4E9E7 0%,#CFD8D5 58%,#BFCAC7 100%);
   box-shadow:inset 0 0 0 1px rgba(20,32,29,.06),inset 0 22px 60px -30px rgba(20,32,29,.35)}
 .mockplate:before{content:'';position:absolute;inset:0;margin:auto;
-  width:116px;height:116px;border-radius:50%;background:rgba(255,255,255,.52);
+  width:11%;aspect-ratio:1;border-radius:50%;background:rgba(255,255,255,.52);
   box-shadow:0 22px 46px -18px rgba(20,32,29,.4),inset 0 0 0 1px rgba(255,255,255,.75)}
 .mockplate:after{content:'';position:absolute;inset:0;margin:auto;
-  width:38px;height:44px;background:rgba(46,60,59,.42);
-  clip-path:polygon(0 0,100% 50%,0 100%);transform:translateX(7px)}
+  width:3.5%;aspect-ratio:38/44;background:rgba(46,60,59,.42);
+  clip-path:polygon(0 0,100% 50%,0 100%);transform:translateX(18%)}
+
+/* ---- scene 5 · the split send — one action, two desks ---- */
+.sendsplit{position:relative;display:grid;grid-template-columns:1fr 168px 1fr;align-items:center}
+.ss-side{position:relative;min-width:0}
+.ss-side .win{max-height:none}
+/* the subbie half sits lower and slightly smaller — he receives, the contractor acts */
+.ss-sub{transform:translateY(46px) scale(.94);transform-origin:left center}
+.ss-tag{position:absolute;top:-32px;left:2px;font-size:15px;font-weight:700;letter-spacing:1.5px;
+  text-transform:uppercase;display:inline-flex;align-items:center;gap:9px;color:#3E6C93;white-space:nowrap}
+.ss-tag:before{content:'';width:9px;height:9px;border-radius:50%;background:currentColor}
+.ss-tag.sub{color:var(--teal-dark)}
+.ss-mid{position:relative;height:120px}
+.ss-arc{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+.ss-arc path{fill:none;stroke:var(--amber);stroke-width:3;stroke-linecap:round;
+  stroke-dasharray:1;stroke-dashoffset:1}
+.scene.active .ss-arc path{animation:fanDraw .75s var(--ease-out) forwards 1.3s}
+.ss-token{position:absolute;left:50%;top:50%;z-index:5;padding:9px 19px;border-radius:999px;
+  background:var(--amber);color:#0F1917;font-size:15px;font-weight:700;letter-spacing:.3px;
+  white-space:nowrap;opacity:0;box-shadow:0 16px 34px -12px rgba(255,188,74,.65)}
+.scene.active .ss-token{animation:tokenFly 1.6s var(--ease-out) forwards 1.45s}
+@keyframes tokenFly{
+  0%{opacity:0;transform:translate(-168%,4%) scale(.85)}
+  24%{opacity:1;transform:translate(-96%,-64%) scale(1)}
+  74%{opacity:1;transform:translate(-4%,-64%) scale(1)}
+  100%{opacity:0;transform:translate(68%,4%) scale(.9)}}
+
+/* ---- the other side's card — pairs a contractor beat with the subbie's version ---- */
+.mirror{position:absolute;right:-34px;bottom:-36px;z-index:6;width:310px;padding:17px 19px;
+  border-radius:15px;background:#0F1B18;color:#fff;border:1px solid rgba(255,255,255,.1);
+  box-shadow:0 36px 70px -22px rgba(9,17,15,.6);opacity:0}
+.scene.active .mirror{animation:blockIn .85s var(--ease-out) forwards var(--d,3.2s)}
+.mirror .mk{font-size:12px;letter-spacing:1.5px;text-transform:uppercase;font-weight:700;
+  color:#6ADDB5;display:inline-flex;align-items:center;gap:8px;margin-bottom:9px}
+.mirror .mk:before{content:'';width:8px;height:8px;border-radius:50%;background:currentColor}
+.mirror .mv{font-size:21px;font-weight:700;line-height:1.24;letter-spacing:-.01em}
+.mirror .msub{margin-top:7px;font-size:14px;line-height:1.45;color:rgba(255,255,255,.66)}
+/* on the dark scenes the card inverts so it still reads as "the other desk" */
+.scene-dark .mirror,.scene-deep .mirror{background:#fff;color:var(--ink);border-color:var(--line-ink)}
+.scene-dark .mirror .mk,.scene-deep .mirror .mk{color:var(--teal-dark)}
+.scene-dark .mirror .msub,.scene-deep .mirror .msub{color:var(--ink-dim)}
+
+/* ---- scene 10 · the exchange, both parties in one frame ---- */
+.exch{position:absolute;inset:0;z-index:6;pointer-events:none}
+.exch-msg{position:absolute;display:flex;gap:13px;align-items:flex-start;width:400px;
+  padding:15px 17px;border-radius:15px;font-size:15px;line-height:1.45;opacity:0;
+  box-shadow:0 32px 62px -20px rgba(9,17,15,.45)}
+.scene.active .exch-msg{animation:blockIn .8s var(--ease-out) forwards var(--d,0s)}
+.exch-q{left:-58px;top:14%;background:#0F1B18;color:#fff;border:1px solid rgba(255,255,255,.12)}
+.exch-a{right:-58px;top:50%;background:#fff;color:var(--ink);border:1px solid var(--line-ink)}
+.exch-av{width:36px;height:36px;border-radius:50%;flex:none;display:grid;place-items:center;
+  font-style:normal;font-size:12.5px;font-weight:700;letter-spacing:.4px}
+.exch-q .exch-av{background:#6ADDB5;color:#062018}
+.exch-a .exch-av{background:#3E6C93;color:#fff}
+.exch-who{display:block;font-size:11px;letter-spacing:1.3px;text-transform:uppercase;
+  font-weight:700;opacity:.6;margin-bottom:5px}
+.exch-tick{position:absolute;right:-30px;bottom:6%;padding:9px 17px;border-radius:999px;
+  background:var(--teal);color:#fff;font-size:13.5px;font-weight:700;letter-spacing:.3px;opacity:0;
+  box-shadow:0 18px 36px -14px rgba(29,158,117,.6)}
+.scene.active .exch-tick{animation:blockIn .75s var(--ease-out) forwards 3.6s}
 </style>
 </head>
 <body>
@@ -578,19 +637,37 @@ body{font-family:'Outfit',system-ui,-apple-system,'Segoe UI',sans-serif;backgrou
   </div>
 </section>
 
-<!-- ========== 5. STEP 2 REQUEST THE QUOTE — screen L / copy R (contractor) ========== -->
+<!-- ========== 5. STEP 2 REQUEST THE QUOTE — the split send (both) ========== -->
 <section class="scene scene-offwhite" data-s="5">
   <div class="deco"><span class="orb orb-blue" style="width:34vw;height:34vw;left:-9vw;bottom:-13vh"></span><span class="dots" style="width:14vw;height:18vh;right:5%;top:12%"></span></div>
   <div class="pov con">Head contractor</div>
+  <div class="pov sub">Subcontractor</div>
   <div class="split flip">
     <div class="copy">
       <div class="eyebrow fx">Step 2 of 3 · Request the quote</div>
       <h2 class="hl fx" style="--d:.16s"><em>Step 2.</em><br>Request the quote.</h2>
-      <p class="supp fx" style="--d:.34s">Pick your subbies and send one request. Same scope, same questions, same deadline — to all of them at once.</p>
+      <p class="supp fx" style="--d:.34s">Pick your subbies and send one request — same scope, same questions, same deadline.
+        It lands on their screen while you are still on the page.</p>
     </div>
-    <div class="screen"><div class="stagebox" style="width:1120px">
-      <div class="win" style="--d:.4s;max-height:560px"><div class="win-bar"><span></span><span></span><span></span><u></u></div>
-        <div class="pfwrap mockplate" data-hold="n4" role="img" aria-label="UI recording placeholder"></div></div><div class="toast" style="right:-20px;bottom:-30px;--d:3.2s"><span class="tick"></span> Request sent · 8 subcontractors</div>
+    <div class="screen"><div class="stagebox" style="width:1180px">
+      <div class="sendsplit">
+        <div class="ss-side">
+          <span class="ss-tag fx" style="--d:.55s">You send once</span>
+          <div class="win" style="--d:.4s"><div class="win-bar"><span></span><span></span><span></span><u></u></div>
+            <div class="pfwrap mockplate" data-hold="n4" role="img" aria-label="UI recording placeholder"></div></div>
+        </div>
+        <div class="ss-mid" aria-hidden="true">
+          <svg class="ss-arc" viewBox="0 0 168 84" preserveAspectRatio="none">
+            <path pathLength="1" d="M4 66 C46 4 122 4 164 66"/></svg>
+          <span class="ss-token">Request</span>
+        </div>
+        <div class="ss-side ss-sub">
+          <span class="ss-tag sub fx" style="--d:2.5s">It lands with them</span>
+          <div class="win" style="--d:2.35s"><div class="win-bar"><span></span><span></span><span></span><u></u></div>
+            <div class="pfwrap mockplate" data-hold="s-inbox" role="img" aria-label="UI recording placeholder"></div></div>
+        </div>
+      </div>
+      <div class="toast" style="left:-24px;bottom:-52px;--d:3.5s"><span class="tick"></span> Request sent · 8 subcontractors</div>
     </div></div>
   </div>
 </section>
@@ -612,26 +689,52 @@ body{font-family:'Outfit',system-ui,-apple-system,'Segoe UI',sans-serif;backgrou
   </div>
 </section>
 
-<!-- ========== 7. COMPLIANCE WITHOUT ASKING — screen L / copy R (contractor) ========== -->
+<!-- ========== 7. PRICED ONLINE — copy L / screen R (subbie) — moved up to break the contractor run ========== -->
 <section class="scene scene-light" data-s="7">
   <div class="deco"><span class="orb orb-teal" style="width:36vw;height:36vw;right:-9vw;top:-16vh"></span><span class="dots" style="width:15vw;height:19vh;left:4%;bottom:10%"></span></div>
-  <div class="pov con">Head contractor</div>
-  <div class="split flip">
+  <div class="pov sub">Subcontractor</div>
+  <div class="split">
     <div class="copy">
-      <div class="eyebrow fx">Compliance</div>
-      <h2 class="hl fx" style="--d:.16s">Compliance <em>without asking.</em></h2>
-      <p class="supp fx" style="--d:.34s">Their profile shows what is current and what is about to lapse — before you send anything. You never chase an insurance certificate again.</p>
+      <div class="eyebrow fx">Why he says yes</div>
+      <h2 class="hl fx" style="--d:.16s">Priced online.<br><em>Nothing to download.</em></h2>
+      <p class="supp fx" style="--d:.34s">Drawings and scope open in the browser, and the inclusions, exclusions and assumptions
+        are already stated — so he prices the right job, first time.</p>
+      <ul class="mlist">
+        <li class="fx" style="--d:.62s">No account to create</li>
+        <li class="fx" style="--d:.74s">Nothing to download or save</li>
+        <li class="fx" style="--d:.86s">Scope answered before he starts</li>
+      </ul>
     </div>
     <div class="screen"><div class="stagebox" style="width:1120px">
       <div class="win" style="--d:.4s;max-height:560px"><div class="win-bar"><span></span><span></span><span></span><u></u></div>
-        <div class="pfwrap mockplate" data-hold="n6" role="img" aria-label="UI recording placeholder"></div></div><div class="pill amber" style="left:-54px;top:-22px;--d:3s">expires in 21 days</div>
+        <div class="pfwrap mockplate" data-hold="s7" role="img" aria-label="UI recording placeholder"></div></div>
     </div></div>
   </div>
 </section>
 
-<!-- ========== 8. ONE REQUEST, DOCUMENTS ATTACHED — screen L / copy R (contractor) ========== -->
+<!-- ========== 8. COMPLIANCE — mirrored from both sides ========== -->
 <section class="scene scene-offwhite" data-s="8">
   <div class="deco"><span class="orb orb-blue" style="width:34vw;height:34vw;left:-9vw;bottom:-13vh"></span><span class="dots" style="width:14vw;height:18vh;right:5%;top:12%"></span></div>
+  <div class="pov con">Head contractor</div>
+  <div class="pov sub">Subcontractor</div>
+  <div class="split flip">
+    <div class="copy">
+      <div class="eyebrow fx">Compliance</div>
+      <h2 class="hl fx" style="--d:.16s">Compliance <em>without asking.</em></h2>
+      <p class="supp fx" style="--d:.34s">Their profile shows what is current and what is about to lapse, before you send anything.
+        He uploaded it once — it stays current for every tender he prices.</p>
+    </div>
+    <div class="screen"><div class="stagebox" style="width:1120px">
+      <div class="win" style="--d:.4s;max-height:560px"><div class="win-bar"><span></span><span></span><span></span><u></u></div>
+        <div class="pfwrap mockplate" data-hold="n6" role="img" aria-label="UI recording placeholder"></div></div><div class="pill amber" style="left:-54px;top:-22px;--d:3s">expires in 21 days</div>
+      <div class="mirror" style="--d:3.4s"><div class="mk">His side</div><div class="mv">Uploaded once.</div><div class="msub">Current on every tender he prices — no re-sending, no reminders.</div></div>
+    </div></div>
+  </div>
+</section>
+
+<!-- ========== 9. ONE REQUEST, DOCUMENTS ATTACHED — screen L / copy R (contractor) ========== -->
+<section class="scene scene-deep" data-s="9">
+  <div class="deco"><span class="orb orb-teal" style="width:40vw;height:40vw;left:-10vw;bottom:-16vh;--od:17s"></span><span class="dots" style="width:16vw;height:20vh;right:6%;top:14%"></span></div>
   <div class="pov con">Head contractor</div>
   <div class="split flip">
     <div class="copy">
@@ -646,53 +749,46 @@ body{font-family:'Outfit',system-ui,-apple-system,'Segoe UI',sans-serif;backgrou
   </div>
 </section>
 
-<!-- ========== 9. PRICED ONLINE — copy L / screen R (subbie) ========== -->
-<section class="scene scene-deep" data-s="9">
-  <div class="deco"><span class="orb orb-teal" style="width:40vw;height:40vw;left:-10vw;bottom:-16vh;--od:17s"></span><span class="dots" style="width:16vw;height:20vh;right:6%;top:14%"></span></div>
-  <div class="pov sub">Subcontractor</div>
-  <div class="split">
-    <div class="copy">
-      <div class="eyebrow fx">His side of it</div>
-      <h2 class="hl fx" style="--d:.16s">Priced online.<br><em>Scope stated up front.</em></h2>
-      <p class="supp fx" style="--d:.34s">Drawings and scope open in the browser — nothing to download — and inclusions, exclusions and assumptions answer the three things you would otherwise email about.</p>
-    </div>
-    <div class="screen"><div class="stagebox" style="width:1120px">
-      <div class="win" style="--d:.4s;max-height:560px"><div class="win-bar"><span></span><span></span><span></span><u></u></div>
-        <div class="pfwrap mockplate" data-hold="s7" role="img" aria-label="UI recording placeholder"></div></div>
-    </div></div>
-  </div>
-</section>
-
-<!-- ========== 10. ASK DIRECT — copy L / screen R (subbie) ========== -->
+<!-- ========== 10. ASK DIRECT — the exchange, both sides in frame ========== -->
 <section class="scene scene-light" data-s="10">
   <div class="deco"><span class="orb orb-teal" style="width:36vw;height:36vw;right:-9vw;top:-16vh"></span><span class="dots" style="width:15vw;height:19vh;left:4%;bottom:10%"></span></div>
+  <div class="pov con">Head contractor</div>
   <div class="pov sub">Subcontractor</div>
   <div class="split">
     <div class="copy">
       <div class="eyebrow fx">One record</div>
-      <h2 class="hl fx" style="--d:.16s">Ask direct.<br><em>Answered fast.</em></h2>
-      <p class="supp fx" style="--d:.34s">Anything unclear gets asked on the job itself — one thread, one compliant record, answered in minutes instead of days.</p>
+      <h2 class="hl fx" style="--d:.16s">He asks.<br><em>You answer.</em></h2>
+      <p class="supp fx" style="--d:.34s">On the job itself, in one thread — no side email, nothing lost.
+        One compliant record of what was asked and what you said.</p>
     </div>
     <div class="screen"><div class="stagebox" style="width:1120px">
       <div class="win" style="--d:.4s;max-height:560px"><div class="win-bar"><span></span><span></span><span></span><u></u></div>
         <div class="pfwrap mockplate" data-hold="s3" role="img" aria-label="UI recording placeholder"></div></div>
+      <div class="exch" aria-hidden="true">
+        <div class="exch-msg exch-q" style="--d:1.5s"><i class="exch-av">WB</i><span><b class="exch-who">Subcontractor</b>Does your rate include the compliance costs?</span></div>
+        <div class="exch-msg exch-a" style="--d:2.6s"><i class="exch-av">AW</i><span><b class="exch-who">Head contractor</b>Yes — traffic control and permits are in the package.</span></div>
+        <span class="exch-tick">Answered in 6 minutes</span>
+      </div>
     </div></div>
   </div>
 </section>
 
-<!-- ========== 11. EVERY QUOTE, ONE TOTAL — screen L / copy R (contractor) ========== -->
+<!-- ========== 11. EVERY QUOTE, ONE TOTAL — the payoff, two-up ========== -->
 <section class="scene scene-dark" data-s="11">
   <div class="deco"><span class="orb orb-blue" style="width:44vw;height:44vw;left:-12vw;top:-18vh"></span><span class="orb orb-amber" style="width:24vw;height:24vw;right:-7vw;bottom:-14vh;--od:18s"></span><svg class="clip-mark" viewBox="0 0 32 65"><use href="#clipSym"/></svg></div>
   <div class="pov con">Head contractor</div>
+  <div class="pov sub">Subcontractor</div>
   <div class="split flip">
     <div class="copy">
       <div class="eyebrow fx">The number</div>
       <h2 class="hl fx" style="--d:.16s">Every quote.<br><em>One total.</em></h2>
-      <p class="supp fx" style="--d:.34s">Every price lands in one place and totals itself — one subcontractor figure for the job. No spreadsheet, no transcription, no pricing mistakes.</p>
+      <p class="supp fx" style="--d:.34s">Every price lands in one place and totals itself — one figure, no spreadsheet, no transcription,
+        no pricing mistakes. He priced it in twenty minutes without a phone call.</p>
     </div>
     <div class="screen"><div class="stagebox" style="width:1120px">
       <div class="win" style="--d:.4s;max-height:560px"><div class="win-bar"><span></span><span></span><span></span><u></u></div>
         <div class="pfwrap"><iframe class="pf" data-screen="s9" scrolling="no" title="Tenderfy prototype"></iframe></div></div><div class="mini" style="left:-54px;bottom:-26px;--d:3.4s"><div class="k">Subcontractor total</div><div class="v">$34,540</div><div class="s">3 quotes · like for like</div></div>
+      <div class="mirror" style="--d:3.9s;right:-38px;top:-30px;bottom:auto"><div class="mk">His side</div><div class="mv">Priced in 20 minutes.</div><div class="msub">No phone calls, no downloads, no chasing.</div></div>
     </div></div>
   </div>
 </section>
@@ -4023,33 +4119,33 @@ const SCENES=[
   vo:"It starts where the work does. Open the tender pack, and Ray pulls out the packages that need pricing — you're reviewing scope, not hunting through a PDF.",
   shot:'Pack opens; Ray surfaces five trade packages down the right. Eyebrow reads STEP 1 OF 3.',
   cap:'C11 · contractor/build-tender.html'},
- {n:5,dur:12,label:'Step 2 · Request the quote',pov:'con',lay:'screen LEFT / copy RIGHT',
-  vo:"Pick your subbies and send one request. Same scope, same questions, same deadline — to all of them at once.",
-  shot:'Multi-select subcontractors, single Send, toast resolves. The beat the client said was missing — give it screen time.',
-  cap:'C12 · contractor/new-request.html → subbies.html ⚠️ verify multi-select exists before capture'},
+ {n:5,dur:12,label:'Step 2 · Request the quote',pov:'both',lay:'split send — two desks in one frame',
+  vo:"Pick your subbies and send one request. Same scope, same questions, same deadline — and it lands on their screen while you're still on the page.",
+  shot:'The split send. Contractor window left, subbie window right and lower; an amber Request token flies the arc between them. The film\'s first two-sided frame.',
+  cap:'C12 · contractor/new-request.html + subbies inbox ⚠️ needs TWO recordings, cut to the same action'},
  {n:6,dur:11,label:'Step 3 · It chases',pov:'con',lay:'screen LEFT / copy RIGHT',
   vo:"Then it chases them for you. Follow-ups on your schedule, in your words, capped — so you're not the one ringing at seven at night.",
   shot:'Delay / max / window fields, then the follow-up message. The cap is the point.',
   cap:'C5 · contractor/settings.html'},
- {n:7,dur:11,label:'Compliance',pov:'con',lay:'screen LEFT / copy RIGHT',
-  vo:"And you never ask for an insurance certificate again. Their profile shows what's current and what's about to lapse — before you send anything.",
-  shot:'Four document rows, three Current, one amber Expires in 21 days.',
-  cap:'C13 · contractor/subbies.html ⚠️ currency chips are a capture-time override — prototype has no expiry state'},
- {n:8,dur:9,label:'Documents attached',pov:'con',lay:'screen LEFT / copy RIGHT',
+ {n:7,dur:12,label:'Priced online',pov:'sub',lay:'copy LEFT / screen RIGHT',
+  vo:"His side is just as easy. No account to create, nothing to download — the drawings and the scope open in the browser, and inclusions, exclusions and assumptions are already stated, so he prices the right job first time.",
+  shot:'Moved up from 9 to break the contractor run. Document opens inline, then line items stagger and I/E/A tags pop. The three-item list is the subbie\'s reason to say yes.',
+  cap:'C6 + C15 · subbies/view-request.html, document-detail.html, prepare-quote.html'},
+ {n:8,dur:11,label:'Compliance',pov:'both',lay:'screen LEFT / copy RIGHT + mirror card',
+  vo:"And you never ask for an insurance certificate again. Their profile shows what's current and what's about to lapse — because he uploaded it once, and it stays current for every tender he prices.",
+  shot:'Four document rows, three Current, one amber Expires in 21 days. The mirror card gives the subbie\'s half of the same fact.',
+  cap:'C13 · contractor/subbies.html'},
+ {n:9,dur:9,label:'Documents attached',pov:'con',lay:'screen LEFT / copy RIGHT',
   vo:"When you need those documents on the job, one request pulls them straight through into the tender.",
   shot:'Request documents → four files land in the attachments list in sequence.',
   cap:'C14 · contractor/build-tender.html'},
- {n:9,dur:12,label:'Priced online',pov:'sub',lay:'copy LEFT / screen RIGHT',
-  vo:"His side is just as easy. The drawings and the scope open in the browser — nothing to download — and inclusions, exclusions and assumptions answer the three things you'd otherwise email him about.",
-  shot:'Document opens inline, then line items stagger and I/E/A tags pop column by column.',
-  cap:'C6 + C15 · subbies/view-request.html, document-detail.html, prepare-quote.html'},
- {n:10,dur:9,label:'Ask direct',pov:'sub',lay:'copy LEFT / screen RIGHT',
-  vo:"Anything unclear, he asks you on the job itself — one thread, one record, answered in minutes.",
-  shot:'Question, reply, acknowledgement land in sequence. Frame as the compliant record, not chat.',
-  cap:'C1 · subbies/view-request.html → Messages tab'},
- {n:11,dur:10,label:'One total',pov:'con',lay:'screen LEFT / copy RIGHT',
-  vo:"Then every price lands in one place and totals itself. One subcontractor figure for the job — no spreadsheet, no transcription, no pricing mistakes.",
-  shot:'Quotes reveal row by row, then the total counts up and HOLDS. This is the payoff frame of the film.',
+ {n:10,dur:9,label:'Ask direct',pov:'both',lay:'copy LEFT / screen RIGHT + both-party thread',
+  vo:"Anything unclear, he asks you on the job itself — and you answer from the same thread. One record, answered in minutes.",
+  shot:'The exchange in one frame: his question card enters top-left, your answer card enters lower-right, then Answered in 6 minutes. Both POV badges lit.',
+  cap:'C1 · subbies/view-request.html → Messages tab, plus the contractor-side reply'},
+ {n:11,dur:10,label:'One total',pov:'both',lay:'screen LEFT / copy RIGHT + payoff mirror',
+  vo:"Then every price lands in one place and totals itself. One subcontractor figure for the job — and he priced it in twenty minutes without a phone call.",
+  shot:'Quotes reveal row by row, then the total counts up and HOLDS. The mirror card lands after it so the payoff resolves on both desks.',
   cap:'C8 · contractor/compare.html'},
  {n:12,dur:6,label:'End card',pov:'con',lay:'full bleed — brand ramp',
   vo:"Tenderfy Subbies. Request once — everything comes back to you.",
@@ -4109,7 +4205,7 @@ function paint(n){
   chromeEl.classList.toggle('on-light',/scene-light|scene-offwhite/.test(el.className));
   sceneLabel.textContent=s.label;
   hudCount.textContent=pad2(s.n)+' / '+pad2(SCENES.length);
-  povNote.textContent=(s.pov==='sub'?'SUBCONTRACTOR':'HEAD CONTRACTOR')+' · '+s.lay;
+  povNote.textContent=({sub:'SUBCONTRACTOR',both:'BOTH SIDES'}[s.pov]||'HEAD CONTRACTOR')+' · '+s.lay;
   shotNote.innerHTML=s.shot.replace(/(THE thesis scene|needs an all-grey seed state)/g,'<b>$1</b>');
   capNote.innerHTML=s.cap.replace(/(must be real UI)/g,'<b>$1</b>');
   el.querySelectorAll('.pf').forEach(f=>{ f.dataset.mounted ? animateFrame(f) : mountScreen(f); });
