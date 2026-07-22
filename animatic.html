@@ -370,22 +370,30 @@ body{font-family:'Outfit',system-ui,-apple-system,'Segoe UI',sans-serif;backgrou
 .notes dt:first-child{margin-top:0}
 .notes b{color:var(--amber)}
 
-/* ---- scene 1 live-action opener (v0.4b — full-bleed hero + inset) ---- */
+/* ---- scene 1 live-action opener (v0.4c — flipped, copy-led) ---- */
 .liveaction .la-wrap{position:absolute;inset:0;overflow:hidden}
+/* mirrored so the foreman sits under the copy column, and framed left-of-centre */
 .la-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
-  filter:saturate(.42) contrast(1.08) brightness(.82)}
-/* scrim keeps the lower-third copy legible over moving footage */
+  object-position:11% center;transform:scaleX(-1);
+  filter:saturate(.34) contrast(1.06) brightness(.62)}
+/* heavy scrim over the left two-thirds — the face sits under the headline, not beside it */
 .la-scrim{position:absolute;inset:0;
-  background:linear-gradient(90deg,rgba(9,13,12,.9) 0%,rgba(9,13,12,.72) 42%,rgba(9,13,12,.25) 78%),
-             linear-gradient(0deg,rgba(9,13,12,.75) 0%,transparent 46%)}
-.la-copy{position:absolute;left:clamp(40px,7vw,120px);bottom:clamp(70px,13vh,150px);
-  max-width:min(46ch,44vw);z-index:3}
-.la-inset{position:absolute;right:clamp(40px,6vw,96px);bottom:clamp(70px,13vh,150px);
-  width:clamp(190px,24vw,360px);aspect-ratio:16/9;border-radius:12px;overflow:hidden;z-index:3;
-  box-shadow:0 40px 80px -22px rgba(0,0,0,.75);border:1px solid rgba(255,255,255,.16)}
+  background:linear-gradient(90deg,rgba(9,13,12,.96) 0%,rgba(9,13,12,.93) 34%,rgba(9,13,12,.7) 58%,rgba(9,13,12,.24) 100%),
+             linear-gradient(0deg,rgba(9,13,12,.72) 0%,transparent 52%)}
+/* copy is the hero now: bigger, vertically centred, over the subject */
+.la-copy{position:absolute;left:clamp(40px,7vw,120px);top:50%;transform:translateY(-50%);
+  max-width:min(34ch,48vw);z-index:3}
+.liveaction .la-copy .hl{font-size:clamp(46px,6.6vw,104px);line-height:1.02;letter-spacing:-.02em;max-width:9ch}
+.liveaction .la-copy .supp{font-size:clamp(15px,1.5vw,21px);line-height:1.6;margin-top:18px;
+  max-width:42ch;color:rgba(255,255,255,.88)}
+.liveaction .la-copy .eyebrow{margin-bottom:14px}
+/* second clip promoted — larger, still clearly secondary */
+.la-inset{position:absolute;right:clamp(36px,4.4vw,80px);bottom:clamp(64px,11vh,130px);
+  width:clamp(300px,39vw,640px);aspect-ratio:16/9;border-radius:14px;overflow:hidden;z-index:3;
+  box-shadow:0 48px 92px -20px rgba(0,0,0,.8);border:1px solid rgba(255,255,255,.18)}
 .la-inset-vid{width:100%;height:100%;object-fit:cover;display:block;
-  filter:saturate(.38) contrast(1.05) brightness(.86)}
-@media (max-width:900px){.la-inset{display:none}.la-copy{max-width:none;right:clamp(24px,6vw,60px)}}
+  filter:saturate(.4) contrast(1.05) brightness(.9)}
+@media (max-width:900px){.la-inset{display:none}.la-copy{max-width:none}}
 </style>
 </head>
 <body>
