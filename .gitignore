@@ -1,0 +1,7 @@
+# raw takes and exports never belong in git — see tenderfy-video/README.md
+footage/
+exports/
+*.mp4
+*.mov
+*.webm
+animatic.v03.backup.html
