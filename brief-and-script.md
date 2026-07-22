@@ -114,11 +114,17 @@ UI alone. Full-bleed is allowed in exactly two places: the **live-action opener 
 
 **The side is not decorative — it tells you whose screen you're looking at:**
 
-| Side | Whose | Scenes (v0.4) |
+| Side | Whose | Scenes (v0.4c) |
 |---|---|---|
-| screen RIGHT, copy left | **Subcontractor** | 2, 8, 9 |
-| screen LEFT, copy right | **Head contractor** | 3, 4, 5, 6, 7, 10 |
-| full bleed, no split | **Live action / end card** | 1, 11 |
+| screen RIGHT, copy left | **Subcontractor** | 2, 7, 10 |
+| screen LEFT, copy right | **Head contractor** | 4, 5, 6, 8, 9, 11 |
+| two windows in one frame | **Both** | 5 (split send) |
+| centred, no split | **The turn** | 3 |
+| full bleed, no split | **Live action / end card** | 1, 12 |
+
+Scenes 5, 8, 10 and 11 are two-sided: 5 puts both windows in frame, while 8, 10 and 11 keep the
+contractor's layout and bring the other desk in as a mirror card or a message pair. All four light
+**both** POV labels.
 
 The film physically moves side to side as the conversation does — which is the thesis, expressed as
 layout rather than stated. A small POV label sits in the top corner on the same side as the screen,
@@ -172,22 +178,28 @@ remembers one structural thing, it should be that.
 
 | # | t | POV | VO | Headline | Screen |
 |---|---|---|---|---|---|
-| 1 | 0:00–0:08 | **Live action** | "Half your week goes on the phone. Chasing prices, chasing certificates, chasing people who never saw the email." | Still **chasing prices.** | **No UI.** Site office: contractor on the phone, hold music face, sticky notes, a printed pack gone cold. Grade slightly desaturated. Headline lower-third over footage. |
-| 2 | 0:08–0:16 | Sub | "On the other end, it's buried in a thread. He can't tell if the job's still live either." | No reply. No status. **No idea.** | Greyed-out clutter: dead thread, unread "any update on that price mate?", missed calls. Still no teal. Last frame before the product appears. |
-| 3 | 0:16–0:24 | Con · **the turn** | "Here's what changes. You pick your subbies and send one request — same scope, same questions, same deadline, to all of them at once." | Request quotes from your subbies **in one go.** | **No UI.** Motion graphics: an amber *One request* chip fans out along five drawn lines to five subbie avatars (concrete, electrical, plumbing, steel, glazing). First teal in the film — this is where the problem act turns into the product. |
-| 4 | 0:24–0:35 | Con · **Step 1** | "It starts where the work does. Open the tender pack, and Ray pulls out the packages that need pricing — you're reviewing scope, not hunting through a PDF." | **Step 1.** Review the pack. | `contractor/build-tender.html` — pack opens, Ray highlights trade packages down the left. Eyebrow reads STEP 1 OF 3. |
-| 5 | 0:35–0:47 | **Both** · Step 2 | "Pick your subbies and send one request. Same scope, same questions, same deadline — and it lands on their screen while you're still on the page." | **Step 2.** Request the quote. | **The split send.** Contractor window left, subbie window right and lower, amber *Request* token flying the arc between them. Toast *Request sent · 8 subcontractors*. ⚠️ Needs TWO recordings cut to the same action — `contractor/new-request.html` and the subbie inbox. The film's first two-sided frame. |
-| 6 | 0:47–0:58 | Con · **Step 3** | "Then it chases them for you. Follow-ups on your schedule, in your words, capped — so you're not the one ringing at seven at night." | **Step 3.** It chases, **not you.** | Nudge delay / max / window fields, then the nudge message. Toast *Nudge sent · 1 of 2*. Cap is the point. |
-| 7 | 0:58–1:10 | Sub | "His side is just as easy. No account to create, nothing to download — the drawings and the scope open in the browser, and inclusions, exclusions and assumptions are already stated, so he prices the right job first time." | Priced online. **Nothing to download.** | **Moved up from 9** to break the contractor run. `subbies/view-request.html` → `document-detail.html`. Doc opens inline, line items stagger, I/E/A tags pop. Three-item list — *no account · nothing to download · scope answered* — is the subbie's reason to say yes. |
-| 8 | 1:10–1:21 | **Both** | "And you never ask for an insurance certificate again. Their profile shows what's current and what's about to lapse — because he uploaded it once, and it stays current for every tender he prices." | Compliance **without asking.** | `contractor/subbies.html` — four document rows, three *Current*, one amber *Expires in 21 days*. **Mirror card** bottom-right gives the subbie's half of the same fact: *uploaded once, current on every tender*. |
-| 9 | 1:21–1:30 | Con | "When you need those documents on the job, one request pulls them straight through into the tender." | One request. **Documents attached.** | `contractor/build-tender.html` — request documents, the four files land into the tender attachments list in sequence. |
-| 10 | 1:30–1:39 | **Both** | "Anything unclear, he asks you on the job itself — and you answer from the same thread. One record, answered in minutes." | He asks. **You answer.** | **The exchange in one frame.** His question card enters top-left (teal WB avatar), your answer card enters lower-right (blue AW avatar), then *Answered in 6 minutes*. Both POV badges lit. Frame as *the compliant record*, not chat. |
-| 11 | 1:39–1:49 | **Both** | "Then every price lands in one place and totals itself. One subcontractor figure for the job — and he priced it in twenty minutes without a phone call." | Every quote. **One total.** | `contractor/compare.html` — quotes reveal row by row, then the **total counts up** and holds. **Payoff mirror** lands after it — *priced in 20 minutes, no phone calls* — so the film resolves on both desks, not just the contractor's. |
-| 12 | 1:49–1:55 | End card | "Tenderfy Subbies. Request once — everything comes back to you." | Everything **comes back to you.** | Brand ramp end card, wordmark, one line. Wipes over at 6.4s. |
+| 1 | 0:00–0:08 | **Live action** | "Half the contractor's week goes on the phone. Chasing prices, chasing certificates, chasing people who never saw the email." | Still **chasing prices.** | **No UI.** Site office: contractor on the phone, hold music face, sticky notes, a printed pack gone cold. Grade slightly desaturated. Headline lower-third over footage. |
+| 2 | 0:08–0:16 | Sub | "At the other end, the request sits buried in a thread. The subcontractor cannot tell whether the job is still live either." | No reply. No status. **No idea.** | Greyed-out clutter: dead thread, unread "any update on that price mate?", missed calls. Still no teal. Last frame before the product appears. |
+| 3 | 0:16–0:24 | Con · **the turn** | "Here is what changes. The contractor selects the subcontractors and sends one request — same scope, same questions, same deadline, to all of them at once." | Request quotes from every subcontractor **in one go.** | **No UI.** Motion graphics: an amber *One request* chip fans out along five drawn lines to five subbie avatars (concrete, electrical, plumbing, steel, glazing). First teal in the film — this is where the problem act turns into the product. |
+| 4 | 0:24–0:35 | Con · **Step 1** | "It starts where the work does. The contractor opens the tender pack, and Ray pulls out the packages that need pricing — reviewing scope, not hunting through a PDF." | **Step 1.** Review the pack. | `contractor/build-tender.html` — pack opens, Ray highlights trade packages down the left. Eyebrow reads STEP 1 OF 3. |
+| 5 | 0:35–0:47 | **Both** · Step 2 | "The contractor sends one request. Same scope, same questions, same deadline — and Tenderfy delivers it to every subcontractor while the page is still open." | **Step 2.** Request the quote. | **The split send.** Contractor window left, subbie window right and lower, amber *Request* token flying the arc between them. Toast *Request sent · 8 subcontractors*. ⚠️ Needs TWO recordings cut to the same action — `contractor/new-request.html` and the subbie inbox. The film's first two-sided frame. |
+| 6 | 0:47–0:58 | Con · **Step 3** | "Then Tenderfy does the chasing. Follow-ups on a schedule the contractor sets, in the contractor's own words, and capped — so nobody is ringing subcontractors at seven at night." | **Step 3.** Tenderfy **does the chasing.** | Nudge delay / max / window fields, then the nudge message. Toast *Nudge sent · 1 of 2*. Cap is the point. |
+| 7 | 0:58–1:10 | Sub | "The subcontractor side is just as easy. Nothing to download — the drawings and the scope open in the browser, and inclusions, exclusions and assumptions are already stated, so the subcontractor prices the right job first time." | Priced online. **Nothing to download.** | **Moved up from 9** to break the contractor run. `subbies/view-request.html` → `document-detail.html`. Doc opens inline, line items stagger, I/E/A tags pop. Two-item list — *nothing to download · scope answered before pricing starts* — is the subbie's reason to say yes. |
+| 8 | 1:10–1:21 | **Both** | "And the contractor never asks for an insurance certificate again. The subcontractor profile shows what is current and what is about to lapse — uploaded once, and current for every tender they price." | Compliance **without asking.** | `contractor/subbies.html` — four document rows, three *Current*, one amber *Expires in 21 days*. **Mirror card** bottom-right gives the subbie's half of the same fact: *uploaded once, current on every tender*. |
+| 9 | 1:21–1:30 | Con | "When those documents are needed on the job, one request pulls them straight through into the tender." | One request. **Documents attached.** | `contractor/build-tender.html` — request documents, the four files land into the tender attachments list in sequence. |
+| 10 | 1:30–1:39 | **Both** | "Anything unclear, the subcontractor asks on the job itself — and the contractor answers from the same thread. One record, answered in minutes." | Subcontractor asks. **Contractor answers.** | **The exchange in one frame.** His question card enters top-left (teal WB avatar), your answer card enters lower-right (blue AW avatar), then *Answered in 6 minutes*. Both POV badges lit. Frame as *the compliant record*, not chat. |
+| 11 | 1:39–1:49 | **Both** | "Then every price lands in one place and totals itself. One subcontractor figure for the job — priced in twenty minutes without a phone call." | Every quote. **One total.** | `contractor/compare.html` — quotes reveal row by row, then the **total counts up** and holds. **Payoff mirror** lands after it — *priced in 20 minutes, no phone calls* — so the film resolves on both desks, not just the contractor's. |
+| 12 | 1:49–1:55 | End card | "Tenderfy Subbies. Request once — every price comes back in one place." | Everything **comes back in one place.** | Brand ramp end card, wordmark, one line. Wipes over at 6.4s. |
 
 **POV balance (v0.4b).** Contractor on screen 95s, subcontractor 62s of 115s — up from 29s, and the
 longest stretch with no subbie in frame is now **19s, down from 62s**. Four scenes are two-sided.
 The fix was deliberately not 50/50: the contractor buys the seat, so he stays the protagonist.
+
+**Voice (v0.4c).** The narration is **third person throughout** — *the contractor* and *the
+subcontractor*, never "you" and "he". Tenderfy is named as the actor rather than referred to as
+"it": scene 6 reads *Tenderfy does the chasing*, not *it chases, not you*. Second person survives in
+exactly one place — inside the in-fiction messages, where one party is writing to the other ("Do your
+rates include the compliance costs?"). That is dialogue, not narration, and should stay as it is.
 
 **Why this order.** Scene 1 puts a face and a phone on the pain before a single pixel of product —
 the client's note. Scene 2 keeps the mutual-blindness idea alive in one beat instead of two, so the
