@@ -375,21 +375,22 @@ body{font-family:'Outfit',system-ui,-apple-system,'Segoe UI',sans-serif;backgrou
 /* mirrored so the foreman sits under the copy column, and framed left-of-centre */
 .la-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
   object-position:11% center;transform:scaleX(-1);
-  filter:saturate(.34) contrast(1.06) brightness(.62)}
+  filter:saturate(.42) contrast(1.05) brightness(.8)}
 /* heavy scrim over the left two-thirds — the face sits under the headline, not beside it */
 .la-scrim{position:absolute;inset:0;
-  background:linear-gradient(90deg,rgba(9,13,12,.96) 0%,rgba(9,13,12,.93) 34%,rgba(9,13,12,.7) 58%,rgba(9,13,12,.24) 100%),
-             linear-gradient(0deg,rgba(9,13,12,.72) 0%,transparent 52%)}
+  background:linear-gradient(90deg,rgba(9,13,12,.7) 0%,rgba(9,13,12,.55) 38%,rgba(9,13,12,.3) 66%,rgba(9,13,12,.12) 100%),
+             linear-gradient(0deg,rgba(9,13,12,.78) 0%,transparent 58%)}
 /* copy is the hero now: bigger, vertically centred, over the subject */
-.la-copy{position:absolute;left:clamp(40px,7vw,120px);top:50%;transform:translateY(-50%);
-  max-width:min(34ch,48vw);z-index:3}
-.liveaction .la-copy .hl{font-size:clamp(46px,6.6vw,104px);line-height:1.02;letter-spacing:-.02em;max-width:9ch}
-.liveaction .la-copy .supp{font-size:clamp(15px,1.5vw,21px);line-height:1.6;margin-top:18px;
-  max-width:42ch;color:rgba(255,255,255,.88)}
+.la-copy{position:absolute;left:clamp(28px,4.4vw,80px);right:clamp(28px,4.4vw,80px);top:46%;
+  transform:translateY(-50%);z-index:3}
+.liveaction .la-copy .hl{font-size:clamp(26px,10.8vw,190px);line-height:1.04;letter-spacing:-.035em;
+  white-space:nowrap}
+.liveaction .la-copy .supp{font-size:clamp(15px,1.5vw,21px);line-height:1.6;margin-top:20px;
+  max-width:38ch;color:rgba(255,255,255,.9);text-shadow:0 2px 18px rgba(9,13,12,.85)}
 .liveaction .la-copy .eyebrow{margin-bottom:14px}
 /* second clip promoted — larger, still clearly secondary */
-.la-inset{position:absolute;right:clamp(36px,4.4vw,80px);bottom:clamp(64px,11vh,130px);
-  width:clamp(300px,39vw,640px);aspect-ratio:16/9;border-radius:14px;overflow:hidden;z-index:3;
+.la-inset{position:absolute;right:clamp(36px,4.4vw,80px);bottom:clamp(76px,12.5vh,140px);
+  width:clamp(260px,32vw,520px);aspect-ratio:16/9;border-radius:14px;overflow:hidden;z-index:3;
   box-shadow:0 48px 92px -20px rgba(0,0,0,.8);border:1px solid rgba(255,255,255,.18)}
 .la-inset-vid{width:100%;height:100%;object-fit:cover;display:block;transform:scaleX(-1);
   filter:saturate(.4) contrast(1.05) brightness(.9)}
@@ -414,7 +415,7 @@ body{font-family:'Outfit',system-ui,-apple-system,'Segoe UI',sans-serif;backgrou
     </div>
     <div class="la-copy">
       <div class="eyebrow fx">The way it works now</div>
-      <h2 class="hl fx" style="--d:.16s">Still <em>chasing prices.</em></h2>
+      <h2 class="hl fx" style="--d:.16s">Still <em>chasing prices?</em></h2>
       <p class="supp fx" style="--d:.34s">Half the week goes on the phone — chasing prices, chasing
         certificates, chasing people who never saw the email.</p>
     </div>
