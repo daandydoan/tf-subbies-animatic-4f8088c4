@@ -394,6 +394,35 @@ body{font-family:'Outfit',system-ui,-apple-system,'Segoe UI',sans-serif;backgrou
 .la-inset-vid{width:100%;height:100%;object-fit:cover;display:block;transform:scaleX(-1);
   filter:saturate(.4) contrast(1.05) brightness(.9)}
 @media (max-width:900px){.la-inset{display:none}.la-copy{max-width:none}}
+
+/* ---- scene 3 the turn — one request fans out to every subbie ---- */
+.turn .turnwrap{position:relative;z-index:2;height:100%;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;text-align:center;padding:0 clamp(20px,6vw,120px)}
+.turn .hl{max-width:19ch;font-size:clamp(30px,4.4vw,74px)}
+.turn .supp{max-width:54ch}
+.fanout{position:relative;width:min(100%,760px);margin-top:clamp(20px,3.2vw,46px)}
+.fan-src{display:inline-flex;align-items:center;gap:10px;padding:9px 21px;border-radius:999px;
+  font-size:clamp(11px,1.02vw,15px);font-weight:600;letter-spacing:.2px;color:#0F1917;
+  background:var(--amber);box-shadow:0 18px 40px -14px rgba(255,188,74,.55)}
+.fan-dot{width:7px;height:7px;border-radius:50%;background:#0F1917;opacity:.65;flex:none}
+.fan-lines{display:block;width:100%;height:clamp(50px,7vh,96px);margin-top:12px;overflow:visible}
+.fan-lines path{fill:none;stroke:#6ADDB5;stroke-width:1.6;opacity:.7;
+  stroke-dasharray:1;stroke-dashoffset:1}
+.turn.active .fan-lines path{animation:fanDraw .8s var(--ease-out) forwards;animation-delay:var(--d,0s)}
+@keyframes fanDraw{to{stroke-dashoffset:0}}
+.fan-outs{display:grid;grid-template-columns:repeat(5,1fr);gap:clamp(6px,1vw,16px)}
+.fan-out{display:flex;flex-direction:column;align-items:center;gap:9px;
+  opacity:0;transform:translateY(14px)}
+.turn.active .fan-out{animation:blockIn .7s var(--ease-out) forwards;animation-delay:var(--d,0s)}
+.fan-av{width:clamp(30px,3.2vw,46px);height:clamp(30px,3.2vw,46px);border-radius:50%;
+  display:grid;place-items:center;font-style:normal;font-size:clamp(10px,.92vw,14px);
+  font-weight:700;letter-spacing:.4px;color:#062018;background:#6ADDB5;
+  box-shadow:0 12px 26px -10px rgba(106,221,181,.6)}
+.fan-lb{font-size:clamp(9px,.82vw,13px);font-weight:500;letter-spacing:.3px;
+  color:rgba(255,255,255,.7)}
+.fan-note{margin-top:clamp(16px,2.2vw,32px);font-size:clamp(9px,.86vw,13px);letter-spacing:1.5px;
+  text-transform:uppercase;font-weight:600;color:rgba(255,255,255,.5)}
+@media (max-width:900px){.fan-lb{display:none}}
 </style>
 </head>
 <body>
@@ -486,8 +515,42 @@ body{font-family:'Outfit',system-ui,-apple-system,'Segoe UI',sans-serif;backgrou
   </div>
 </section>
 
-<!-- ========== 3. STEP 1 REVIEW THE PACK — screen L / copy R (contractor) ========== -->
-<section class="scene scene-light" data-s="3">
+<!-- ========== 3. HOW TENDERFY HELPS — the turn, centred ========== -->
+<section class="scene scene-deep turn" data-s="3">
+  <div class="deco">
+    <span class="orb orb-teal" style="width:44vw;height:44vw;left:-13vw;top:-19vh;--od:19s"></span>
+    <span class="orb orb-blue" style="width:34vw;height:34vw;right:-10vw;bottom:-16vh;--od:23s"></span>
+    <span class="dots" style="width:15vw;height:19vh;right:7%;top:15%"></span>
+  </div>
+  <div class="pov con">Head contractor</div>
+  <div class="turnwrap">
+    <div class="eyebrow fx">How Tenderfy helps</div>
+    <h2 class="hl fx" style="--d:.16s">Request quotes from your subbies <em>in one go.</em></h2>
+    <p class="supp fx" style="--d:.34s">Pick the subcontractors you want and send a single request. Same scope,
+      same questions, same deadline — to every one of them at once.</p>
+    <div class="fanout" aria-hidden="true">
+      <span class="fan-src fx" style="--d:.62s"><i class="fan-dot"></i>One request</span>
+      <svg class="fan-lines" viewBox="0 0 720 120" preserveAspectRatio="none">
+        <path pathLength="1" style="--d:.95s" d="M360 2 C360 70 72 46 72 118"/>
+        <path pathLength="1" style="--d:1.05s" d="M360 2 C360 70 216 52 216 118"/>
+        <path pathLength="1" style="--d:1.15s" d="M360 2 L360 118"/>
+        <path pathLength="1" style="--d:1.25s" d="M360 2 C360 70 504 52 504 118"/>
+        <path pathLength="1" style="--d:1.35s" d="M360 2 C360 70 648 46 648 118"/>
+      </svg>
+      <div class="fan-outs">
+        <span class="fan-out" style="--d:1.5s"><i class="fan-av">CO</i><b class="fan-lb">Concrete</b></span>
+        <span class="fan-out" style="--d:1.6s"><i class="fan-av">EL</i><b class="fan-lb">Electrical</b></span>
+        <span class="fan-out" style="--d:1.7s"><i class="fan-av">PL</i><b class="fan-lb">Plumbing</b></span>
+        <span class="fan-out" style="--d:1.8s"><i class="fan-av">ST</i><b class="fan-lb">Steel</b></span>
+        <span class="fan-out" style="--d:1.9s"><i class="fan-av">GL</i><b class="fan-lb">Glazing</b></span>
+      </div>
+    </div>
+    <div class="fan-note fx" style="--d:2.15s">No phone calls · no chasing · no re-typing</div>
+  </div>
+</section>
+
+<!-- ========== 4. STEP 1 REVIEW THE PACK — screen L / copy R (contractor) ========== -->
+<section class="scene scene-light" data-s="4">
   <div class="deco"><span class="orb orb-teal" style="width:36vw;height:36vw;right:-9vw;top:-16vh"></span><span class="dots" style="width:15vw;height:19vh;left:4%;bottom:10%"></span></div>
   <div class="pov con">Head contractor</div>
   <div class="split flip">
@@ -503,8 +566,8 @@ body{font-family:'Outfit',system-ui,-apple-system,'Segoe UI',sans-serif;backgrou
   </div>
 </section>
 
-<!-- ========== 4. STEP 2 REQUEST THE QUOTE — screen L / copy R (contractor) ========== -->
-<section class="scene scene-offwhite" data-s="4">
+<!-- ========== 5. STEP 2 REQUEST THE QUOTE — screen L / copy R (contractor) ========== -->
+<section class="scene scene-offwhite" data-s="5">
   <div class="deco"><span class="orb orb-blue" style="width:34vw;height:34vw;left:-9vw;bottom:-13vh"></span><span class="dots" style="width:14vw;height:18vh;right:5%;top:12%"></span></div>
   <div class="pov con">Head contractor</div>
   <div class="split flip">
@@ -520,8 +583,8 @@ body{font-family:'Outfit',system-ui,-apple-system,'Segoe UI',sans-serif;backgrou
   </div>
 </section>
 
-<!-- ========== 5. STEP 3 IT CHASES — screen L / copy R (contractor) ========== -->
-<section class="scene scene-deep" data-s="5">
+<!-- ========== 6. STEP 3 IT CHASES — screen L / copy R (contractor) ========== -->
+<section class="scene scene-deep" data-s="6">
   <div class="deco"><span class="orb orb-teal" style="width:40vw;height:40vw;left:-10vw;bottom:-16vh;--od:17s"></span><span class="dots" style="width:16vw;height:20vh;right:6%;top:14%"></span></div>
   <div class="pov con">Head contractor</div>
   <div class="split flip">
@@ -537,8 +600,8 @@ body{font-family:'Outfit',system-ui,-apple-system,'Segoe UI',sans-serif;backgrou
   </div>
 </section>
 
-<!-- ========== 6. COMPLIANCE WITHOUT ASKING — screen L / copy R (contractor) ========== -->
-<section class="scene scene-light" data-s="6">
+<!-- ========== 7. COMPLIANCE WITHOUT ASKING — screen L / copy R (contractor) ========== -->
+<section class="scene scene-light" data-s="7">
   <div class="deco"><span class="orb orb-teal" style="width:36vw;height:36vw;right:-9vw;top:-16vh"></span><span class="dots" style="width:15vw;height:19vh;left:4%;bottom:10%"></span></div>
   <div class="pov con">Head contractor</div>
   <div class="split flip">
@@ -554,8 +617,8 @@ body{font-family:'Outfit',system-ui,-apple-system,'Segoe UI',sans-serif;backgrou
   </div>
 </section>
 
-<!-- ========== 7. ONE REQUEST, DOCUMENTS ATTACHED — screen L / copy R (contractor) ========== -->
-<section class="scene scene-offwhite" data-s="7">
+<!-- ========== 8. ONE REQUEST, DOCUMENTS ATTACHED — screen L / copy R (contractor) ========== -->
+<section class="scene scene-offwhite" data-s="8">
   <div class="deco"><span class="orb orb-blue" style="width:34vw;height:34vw;left:-9vw;bottom:-13vh"></span><span class="dots" style="width:14vw;height:18vh;right:5%;top:12%"></span></div>
   <div class="pov con">Head contractor</div>
   <div class="split flip">
@@ -571,8 +634,8 @@ body{font-family:'Outfit',system-ui,-apple-system,'Segoe UI',sans-serif;backgrou
   </div>
 </section>
 
-<!-- ========== 8. PRICED ONLINE — copy L / screen R (subbie) ========== -->
-<section class="scene scene-deep" data-s="8">
+<!-- ========== 9. PRICED ONLINE — copy L / screen R (subbie) ========== -->
+<section class="scene scene-deep" data-s="9">
   <div class="deco"><span class="orb orb-teal" style="width:40vw;height:40vw;left:-10vw;bottom:-16vh;--od:17s"></span><span class="dots" style="width:16vw;height:20vh;right:6%;top:14%"></span></div>
   <div class="pov sub">Subcontractor</div>
   <div class="split">
@@ -588,8 +651,8 @@ body{font-family:'Outfit',system-ui,-apple-system,'Segoe UI',sans-serif;backgrou
   </div>
 </section>
 
-<!-- ========== 9. ASK DIRECT — copy L / screen R (subbie) ========== -->
-<section class="scene scene-light" data-s="9">
+<!-- ========== 10. ASK DIRECT — copy L / screen R (subbie) ========== -->
+<section class="scene scene-light" data-s="10">
   <div class="deco"><span class="orb orb-teal" style="width:36vw;height:36vw;right:-9vw;top:-16vh"></span><span class="dots" style="width:15vw;height:19vh;left:4%;bottom:10%"></span></div>
   <div class="pov sub">Subcontractor</div>
   <div class="split">
@@ -605,8 +668,8 @@ body{font-family:'Outfit',system-ui,-apple-system,'Segoe UI',sans-serif;backgrou
   </div>
 </section>
 
-<!-- ========== 10. EVERY QUOTE, ONE TOTAL — screen L / copy R (contractor) ========== -->
-<section class="scene scene-dark" data-s="10">
+<!-- ========== 11. EVERY QUOTE, ONE TOTAL — screen L / copy R (contractor) ========== -->
+<section class="scene scene-dark" data-s="11">
   <div class="deco"><span class="orb orb-blue" style="width:44vw;height:44vw;left:-12vw;top:-18vh"></span><span class="orb orb-amber" style="width:24vw;height:24vw;right:-7vw;bottom:-14vh;--od:18s"></span><svg class="clip-mark" viewBox="0 0 32 65"><use href="#clipSym"/></svg></div>
   <div class="pov con">Head contractor</div>
   <div class="split flip">
@@ -622,8 +685,8 @@ body{font-family:'Outfit',system-ui,-apple-system,'Segoe UI',sans-serif;backgrou
   </div>
 </section>
 
-<!-- ========== 11. END CARD ========== -->
-<section class="scene scene-end" data-s="11">
+<!-- ========== 12. END CARD ========== -->
+<section class="scene scene-end" data-s="12">
   <svg class="wm" role="img" aria-label="Tenderfy"><use href="#tfWordmark"/></svg>
   <span class="rule"></span>
   <div class="tl"><b>Helping Good Businesses</b> / <i>Win Great Work</i></div>
@@ -3940,39 +4003,43 @@ const SCENES=[
   vo:"On the other end, it's buried in a thread. He can't tell if the job's still live either.",
   shot:'Dead thread, unread chase message, missed calls. Nothing is teal yet.',
   cap:'P1 · motion graphics, nothing to record'},
- {n:3,dur:11,label:'Step 1 · Review the pack',pov:'con',lay:'screen LEFT / copy RIGHT',
+ {n:3,dur:8,label:'How Tenderfy helps',pov:'con',lay:'centred — the turn',
+  vo:"Here's what changes. You pick your subbies and send one request — same scope, same questions, same deadline, to all of them at once.",
+  shot:'The turn from problem to product. One amber request chip fans out along five drawn lines to five subbie avatars. First teal in the film.',
+  cap:'C16 · motion graphics, nothing to record'},
+ {n:4,dur:11,label:'Step 1 · Review the pack',pov:'con',lay:'screen LEFT / copy RIGHT',
   vo:"It starts where the work does. Open the tender pack, and Ray pulls out the packages that need pricing — you're reviewing scope, not hunting through a PDF.",
   shot:'Pack opens; Ray surfaces five trade packages down the right. Eyebrow reads STEP 1 OF 3.',
   cap:'C11 · contractor/build-tender.html'},
- {n:4,dur:12,label:'Step 2 · Request the quote',pov:'con',lay:'screen LEFT / copy RIGHT',
+ {n:5,dur:12,label:'Step 2 · Request the quote',pov:'con',lay:'screen LEFT / copy RIGHT',
   vo:"Pick your subbies and send one request. Same scope, same questions, same deadline — to all of them at once.",
   shot:'Multi-select subcontractors, single Send, toast resolves. The beat the client said was missing — give it screen time.',
   cap:'C12 · contractor/new-request.html → subbies.html ⚠️ verify multi-select exists before capture'},
- {n:5,dur:11,label:'Step 3 · It chases',pov:'con',lay:'screen LEFT / copy RIGHT',
+ {n:6,dur:11,label:'Step 3 · It chases',pov:'con',lay:'screen LEFT / copy RIGHT',
   vo:"Then it chases them for you. Follow-ups on your schedule, in your words, capped — so you're not the one ringing at seven at night.",
   shot:'Delay / max / window fields, then the follow-up message. The cap is the point.',
   cap:'C5 · contractor/settings.html'},
- {n:6,dur:11,label:'Compliance',pov:'con',lay:'screen LEFT / copy RIGHT',
+ {n:7,dur:11,label:'Compliance',pov:'con',lay:'screen LEFT / copy RIGHT',
   vo:"And you never ask for an insurance certificate again. Their profile shows what's current and what's about to lapse — before you send anything.",
   shot:'Four document rows, three Current, one amber Expires in 21 days.',
   cap:'C13 · contractor/subbies.html ⚠️ currency chips are a capture-time override — prototype has no expiry state'},
- {n:7,dur:9,label:'Documents attached',pov:'con',lay:'screen LEFT / copy RIGHT',
+ {n:8,dur:9,label:'Documents attached',pov:'con',lay:'screen LEFT / copy RIGHT',
   vo:"When you need those documents on the job, one request pulls them straight through into the tender.",
   shot:'Request documents → four files land in the attachments list in sequence.',
   cap:'C14 · contractor/build-tender.html'},
- {n:8,dur:12,label:'Priced online',pov:'sub',lay:'copy LEFT / screen RIGHT',
+ {n:9,dur:12,label:'Priced online',pov:'sub',lay:'copy LEFT / screen RIGHT',
   vo:"His side is just as easy. The drawings and the scope open in the browser — nothing to download — and inclusions, exclusions and assumptions answer the three things you'd otherwise email him about.",
   shot:'Document opens inline, then line items stagger and I/E/A tags pop column by column.',
   cap:'C6 + C15 · subbies/view-request.html, document-detail.html, prepare-quote.html'},
- {n:9,dur:9,label:'Ask direct',pov:'sub',lay:'copy LEFT / screen RIGHT',
+ {n:10,dur:9,label:'Ask direct',pov:'sub',lay:'copy LEFT / screen RIGHT',
   vo:"Anything unclear, he asks you on the job itself — one thread, one record, answered in minutes.",
   shot:'Question, reply, acknowledgement land in sequence. Frame as the compliant record, not chat.',
   cap:'C1 · subbies/view-request.html → Messages tab'},
- {n:10,dur:10,label:'One total',pov:'con',lay:'screen LEFT / copy RIGHT',
+ {n:11,dur:10,label:'One total',pov:'con',lay:'screen LEFT / copy RIGHT',
   vo:"Then every price lands in one place and totals itself. One subcontractor figure for the job — no spreadsheet, no transcription, no pricing mistakes.",
   shot:'Quotes reveal row by row, then the total counts up and HOLDS. This is the payoff frame of the film.',
   cap:'C8 · contractor/compare.html'},
- {n:11,dur:6,label:'End card',pov:'con',lay:'full bleed — brand ramp',
+ {n:12,dur:6,label:'End card',pov:'con',lay:'full bleed — brand ramp',
   vo:"Tenderfy Subbies. Request once — everything comes back to you.",
   shot:'Brand ramp end card, wordmark, one line.',
   cap:'C10 · motion graphics'}
