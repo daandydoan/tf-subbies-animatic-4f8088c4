@@ -5,6 +5,7 @@ exports/
 # ...except the one clip the film actually needs at runtime
 !scene1-office.mp4
 !scene1-foreman.mp4
+!step1-review-the-pack.mp4
 *.mov
 *.webm
 animatic.v03.backup.html

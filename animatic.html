@@ -162,6 +162,7 @@ body{font-family:'Outfit',system-ui,-apple-system,'Segoe UI',sans-serif;backgrou
 /* real prototype panels render inside an isolated frame */
 .pf{display:block;width:1440px;height:900px;border:0;background:#fff;transform:scale(var(--pfz,.39));transform-origin:top left}
 .pfwrap{width:100%;aspect-ratio:1440/900;overflow:hidden;position:relative}
+.uivid{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center top;display:block;background:#fff}
 .win.back{position:absolute;right:-34px;top:-46px;width:74%;z-index:-1;opacity:0;
   transform:translateY(40px) scale(.94)}
 .split.flip .win.back{right:auto;left:-34px}
@@ -494,6 +495,151 @@ body{font-family:'Outfit',system-ui,-apple-system,'Segoe UI',sans-serif;backgrou
   background:var(--teal);color:#fff;font-size:13.5px;font-weight:700;letter-spacing:.3px;opacity:0;
   box-shadow:0 18px 36px -14px rgba(29,158,117,.6)}
 .scene.active .exch-tick{animation:blockIn .75s var(--ease-out) forwards 3.6s}
+
+/* ---- scene 10 · the real Subbies "Messages" card, played live ----
+   Sized as a message panel (not a full-frame card) so it sits in proportion
+   to the clamp-capped copy at the 1920 design width. */
+.s10chat{display:flex;align-items:center;justify-content:center;width:660px}
+.s10chat .msg-card{width:660px;background:#fff;border:1px solid #E7EBEA;border-radius:14px;overflow:hidden;box-shadow:0 26px 66px rgba(24,42,38,.15)}
+.s10chat .msg-head{display:flex;align-items:center;gap:9px;padding:15px 18px;border-bottom:1px solid #EEF1F0}
+.s10chat .msg-head .tl{width:22px;height:22px;flex:none}
+.s10chat .msg-head .ttl{font-weight:600;font-size:16px;color:#1D9E75;flex:1}
+.s10chat .msg-unread{background:#F95246;color:#fff;font-size:12px;font-weight:700;padding:3px 8px;border-radius:6px}
+.s10chat .msg-head .ch{width:19px;height:19px;flex:none}
+.s10chat .msg-body{padding:16px 18px;background:#E9ECEB;min-height:320px;display:flex;flex-direction:column;justify-content:flex-end}
+.s10chat .msg-from{display:flex;align-items:center;gap:9px;font-size:12px;color:#A1ADAB;margin:11px 0 7px}
+.s10chat .msg-from .ava{width:30px;height:30px;border-radius:50%;color:#fff;font-size:11px;font-weight:600;display:flex;align-items:center;justify-content:center;flex:none}
+.s10chat .msg-from .nm{font-size:14px;font-weight:700;color:#2E3C3B}
+.s10chat .bub{padding:11px 15px;font-size:14px;line-height:1.5;max-width:76%;width:fit-content;border-radius:12px}
+.s10chat .bub.them{background:#F6F7F7;color:#2E3C3B;border-bottom-left-radius:3px}
+.s10chat .bub.me{background:#2E343C;color:#fff;margin-left:auto;border-bottom-right-radius:3px}
+.s10chat .bub + .bub{margin-top:9px}
+.s10chat .msg-meta{text-align:right;font-size:12px;color:#A1ADAB;margin-top:7px}
+.s10chat .msg-input{display:flex;align-items:center;gap:10px;padding:14px 17px;border-top:1px solid #EEF1F0}
+.s10chat .msg-input .plus{width:40px;height:40px;border:1px solid #E3E7E6;border-radius:9px;display:flex;align-items:center;justify-content:center;flex:none}
+.s10chat .msg-input .plus svg{width:19px;height:19px;display:block}
+.s10chat .msg-input .box{flex:1;border:1px solid #E3E7E6;border-radius:9px;padding:12px 14px;font-size:13px;color:#A1ADAB}
+.s10chat .msg-input .send{background:#1D9E75;color:#fff;border-radius:9px;padding:12px 18px;font-size:13px;font-weight:600;display:flex;align-items:center;gap:7px}
+.s10chat .msg-input .send svg{width:16px;height:16px;display:block}
+/* turns stagger in — subbie slides from the right, contractor from the left */
+.s10chat .turn{opacity:0}
+.s10chat .turn + .turn{margin-top:5px}
+.scene.active .s10chat .turn.me-turn{animation:s10me .52s var(--ease-out) forwards var(--d,0s)}
+.scene.active .s10chat .turn.them-turn{animation:s10them .52s var(--ease-out) forwards var(--d,0s)}
+@keyframes s10me{from{opacity:0;transform:translateY(10px) translateX(12px) scale(.985)}to{opacity:1;transform:none}}
+@keyframes s10them{from{opacity:0;transform:translateY(10px) translateX(-12px) scale(.985)}to{opacity:1;transform:none}}
+/* floating chips AROUND the card — outer drifts, inner pops in */
+.s10f{position:absolute;z-index:6;pointer-events:none}
+.s10f-in{opacity:0;display:flex;align-items:center;gap:9px;background:#fff;border:1px solid #E7EBEA;border-radius:12px;padding:9px 13px;box-shadow:0 16px 34px -12px rgba(24,42,38,.42);font-size:12px;color:#596262;white-space:nowrap}
+.s10f-in .tx{display:flex;flex-direction:column;line-height:1.35}
+.s10f-in .tx b{font-size:12.5px;font-weight:700;color:#2E3C3B}
+.s10f-in .tx span{font-size:11px;color:#A1ADAB}
+.s10f-in .fav{position:relative;width:32px;height:32px;border-radius:50%;color:#fff;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;flex:none}
+.s10f-in .fav .dot{position:absolute;right:-1px;bottom:-1px;width:9px;height:9px;border-radius:50%;background:#34C759;border:2px solid #fff}
+.s10f-in svg{width:22px;height:22px;flex:none}
+.f-notif{top:-30px;left:-98px;--dd:0s}
+.f-seen{top:46px;right:-90px;--dd:.6s}
+.f-file{top:172px;right:-108px;--dd:1.2s}
+.f-react{bottom:158px;left:-46px;--dd:2.4s}
+.f-quote{bottom:-26px;right:-52px;--dd:1.8s}
+.f-seen .s10f-in{gap:6px;font-weight:600;color:#2E3C3B}
+.f-seen .s10f-in svg{width:16px;height:16px}
+.f-react .s10f-in{gap:5px;padding:7px 13px;border-radius:20px;font-size:15px}
+.f-react .s10f-in b{font-size:12px;color:#596262}
+.f-quote .s10f-in .q-ic{width:30px;height:30px;border-radius:8px;background:#E1F5EE;color:#085041;font-weight:700;display:flex;align-items:center;justify-content:center;flex:none;font-size:15px}
+.scene.active .s10f{animation:s10drift 8s ease-in-out infinite var(--dd,0s)}
+.scene.active .s10f-in{animation:s10pop .6s var(--ease-out) forwards var(--d,0s)}
+@keyframes s10pop{from{opacity:0;transform:translateY(10px) scale(.86)}to{opacity:1;transform:none}}
+@keyframes s10drift{0%,100%{transform:translate(0,0)}50%{transform:translate(0,-9px)}}
+
+/* ---- scene 11 · compare table, real .cmp-* styling, spotlight + comment cards ---- */
+.s11cmp{position:relative;width:840px}
+.s11cmp .cmp-wrap{position:relative;background:#fff;border:1px solid #E7EBEA;border-radius:14px;overflow:hidden;box-shadow:0 26px 66px rgba(24,42,38,.15)}
+.s11cmp table.cmp-table{border-collapse:collapse;width:100%;table-layout:fixed}
+.s11cmp .cmp-table th,.s11cmp .cmp-table td{border:1px solid #F0F2F1;padding:10px 13px;vertical-align:top;font-size:12px;text-align:left;line-height:1.4}
+.s11cmp .cmp-table thead th{background:#FAFBFB}
+.s11cmp .cmp-table .rlab{font-weight:600;color:#596262;background:#fff;font-size:12px}
+.s11cmp .cmp-qh{font-weight:700;font-size:12.5px;display:flex;align-items:center;gap:7px;color:#2E3C3B}
+.s11cmp .cmp-qh .av{width:24px;height:24px;border-radius:50%;color:#fff;font-size:8px;font-weight:700;display:flex;align-items:center;justify-content:center;flex:none}
+.s11cmp .cmp-amt{color:#2E3C3B;font-weight:700;font-size:15px;margin-top:5px}
+.s11cmp .cmp-best{background:#E1F5EE!important}
+.s11cmp .cmp-best .cmp-amt,.s11cmp td.cmp-best b{color:#085041}
+.s11cmp .cmp-badge{display:inline-block;background:#CDEEE1;color:#085041;font-size:9px;font-weight:700;border-radius:5px;padding:1px 6px;margin-top:5px;letter-spacing:.3px}
+.s11cmp .cmp-chip{display:inline-block;border-radius:100px;padding:2px 8px;font-size:10.5px;font-weight:500;margin:0 3px 4px 0}
+.s11cmp .cmp-chip.inc{background:#E1F5EE;color:#085041}
+.s11cmp .cmp-chip.exc{background:#FDEFD9;color:#7A5410}
+.s11cmp .cmp-chip.asm{background:#E8EEF5;color:#3B5A77}
+.s11cmp .acc{display:inline-block;background:#1D9E75;color:#fff;font-size:11px;font-weight:600;padding:7px 15px;border-radius:8px}
+/* spotlight that sweeps the three data columns left → right, holding on each */
+.s11cmp .col-hl{position:absolute;top:0;bottom:0;left:150px;width:230px;border:2px solid #1D9E75;border-radius:10px;
+  background:rgba(29,158,117,.06);box-shadow:0 0 0 4px rgba(29,158,117,.10);opacity:0;z-index:4;pointer-events:none}
+.scene.active .s11cmp .col-hl{animation:s11sweep 7.2s var(--ease-curve) forwards 1s}
+@keyframes s11sweep{
+  0%{left:150px;opacity:0}
+  5%{opacity:1}
+  27%{left:150px}
+  35%{left:380px}
+  59%{left:380px}
+  67%{left:610px}
+  95%{left:610px}
+  100%{left:610px;opacity:1}
+}
+/* floating contractor comment / question cards */
+.s11q{position:absolute;z-index:6;pointer-events:none;width:214px}
+.s11q .in{position:relative;opacity:0;background:#fff;border:1px solid #E7EBEA;border-radius:12px;padding:11px 13px;box-shadow:0 18px 38px -12px rgba(24,42,38,.42)}
+.s11q .hd{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.s11q .hd .av{width:26px;height:26px;border-radius:50%;background:#52708A;color:#fff;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;flex:none}
+.s11q .hd .nm{font-size:11.5px;font-weight:700;color:#2E3C3B}
+.s11q .hd .rl{font-size:10px;color:#A1ADAB;margin-left:auto}
+.s11q .q{font-size:12px;line-height:1.45;color:#2E3C3B}
+.s11q .tip{position:absolute;width:12px;height:12px;background:#fff;border:1px solid #E7EBEA;transform:rotate(45deg)}
+.s11q .tip-b{left:26px;bottom:-7px;border-top:none;border-left:none}
+.s11q .tip-t{left:120px;top:-7px;border-bottom:none;border-right:none}
+.s11q .tip-l{left:-7px;top:26px;border-top:none;border-right:none}
+.scene.active .s11q{animation:s10drift 8s ease-in-out infinite var(--dd,0s)}
+.scene.active .s11q .in{animation:s10pop .55s var(--ease-out) forwards var(--d,0s)}
+
+/* ---- scene 5 · the split send: contractor request dialog + subbie view ---- */
+.s5doc{display:inline-flex;align-items:center;gap:6px;background:#F6F8F7;border:1px solid #E7EBEA;border-radius:7px;padding:5px 9px;font-size:11px;color:#2E3C3B;font-weight:500}
+.s5doc .ft{font-size:8px;font-weight:700;color:#fff;background:#E4574C;border-radius:3px;padding:1px 4px}
+.s5doc .ft.doc{background:#4A7196}
+.s5lab{display:flex;align-items:center;gap:7px;font-size:10.5px;font-weight:700;letter-spacing:.4px;color:#8A9694;text-transform:uppercase;margin:13px 0 8px}
+.s5lab .n{background:#EDF0EF;color:#596262;font-size:10px;padding:1px 7px;border-radius:20px;font-weight:600;letter-spacing:0}
+/* contractor request-quote popup dialog */
+.s5c .dh{display:flex;align-items:flex-start;gap:10px;padding:15px 18px;border-bottom:1px solid #EEF1F0}
+.s5c .dh .ic{width:32px;height:32px;border-radius:9px;background:rgba(29,158,117,.14);display:flex;align-items:center;justify-content:center;flex:none}
+.s5c .dh .ic svg{width:18px;height:18px}
+.s5c .dh .t{flex:1;font-size:16px;font-weight:700;color:#2E3C3B;line-height:1.2}
+.s5c .dh .t span{display:block;font-size:11.5px;font-weight:500;color:#A1ADAB;margin-top:3px}
+.s5c .dh .x{width:22px;height:22px;flex:none;color:#A1ADAB}
+.s5c .bd{padding:14px 18px 4px}
+.s5c .fld{margin-bottom:11px}
+.s5c .fld label{display:block;font-size:10.5px;font-weight:700;letter-spacing:.4px;color:#8A9694;text-transform:uppercase;margin-bottom:5px}
+.s5c .fld .inp{border:1px solid #E3E7E6;border-radius:8px;padding:9px 11px;font-size:12.5px;color:#2E3C3B}
+.s5c .frow{display:flex;gap:10px}.s5c .frow .fld{flex:1}
+.s5c .docs{display:flex;flex-wrap:wrap;gap:6px}
+.s5c .subs{display:flex;align-items:center;margin-top:2px}
+.s5c .subs .av{width:28px;height:28px;border-radius:50%;color:#fff;font-size:9px;font-weight:700;display:flex;align-items:center;justify-content:center;border:2px solid #fff;margin-left:-7px}
+.s5c .subs .av:first-child{margin-left:0}
+.s5c .subs .more{background:#EDF0EF;color:#596262;border-color:#fff}
+.s5c .foot{display:flex;justify-content:flex-end;align-items:center;gap:12px;padding:13px 18px;border-top:1px solid #EEF1F0;margin-top:12px}
+.s5c .foot .cancel{font-size:12.5px;color:#596262;font-weight:500}
+.s5c .foot .snd{background:#1D9E75;color:#fff;font-size:13px;font-weight:600;padding:10px 18px;border-radius:9px;display:flex;align-items:center;gap:7px}
+.s5c .foot .snd svg{width:15px;height:15px}
+/* subbie view quote request */
+.s5s .sh{padding:16px 18px 12px}
+.s5s .sh .bdg{display:inline-block;background:#E1F5EE;color:#085041;font-size:10px;font-weight:700;padding:3px 9px;border-radius:20px;margin-bottom:9px}
+.s5s .sh .t{font-size:16px;font-weight:700;color:#2E3C3B;line-height:1.25}
+.s5s .sh .s{font-size:11.5px;color:#A1ADAB;margin-top:4px}
+.s5s .rows{padding:0 18px}
+.s5s .r{display:flex;justify-content:space-between;gap:12px;font-size:12px;padding:8px 0;border-bottom:1px solid #F1F3F2}
+.s5s .r .k{color:#8A9694}
+.s5s .r .v{color:#2E3C3B;font-weight:500;text-align:right}
+.s5s .dwrap{padding:12px 18px 4px}
+.s5s .docs{display:flex;flex-wrap:wrap;gap:6px;margin-top:7px}
+.s5s .foot{padding:13px 18px;border-top:1px solid #EEF1F0;display:flex;flex-direction:column;gap:8px;margin-top:8px}
+.s5s .foot .pri{background:#1D9E75;color:#fff;text-align:center;padding:11px;border-radius:9px;font-size:13px;font-weight:600}
+.s5s .foot .out{border:1px solid #E0E5E4;color:#2E3C3B;text-align:center;padding:10px;border-radius:9px;font-size:12.5px;font-weight:500}
 </style>
 </head>
 <body>
@@ -632,7 +778,7 @@ body{font-family:'Outfit',system-ui,-apple-system,'Segoe UI',sans-serif;backgrou
     </div>
     <div class="screen"><div class="stagebox" style="width:1120px">
       <div class="win" style="--d:.4s;max-height:560px"><div class="win-bar"><span></span><span></span><span></span><u></u></div>
-        <div class="pfwrap mockplate" data-hold="n3" role="img" aria-label="UI recording placeholder"></div></div><div class="mini" style="left:-54px;bottom:-26px;--d:2.2s"><div class="k">Packages</div><div class="v">5</div><div class="s">to price</div></div>
+        <div class="pfwrap"><video class="uivid" id="step1Vid" src="step1-review-the-pack.mp4" muted loop playsinline preload="auto"></video></div></div><div class="mini" style="left:-54px;bottom:-26px;--d:2.2s"><div class="k">Packages</div><div class="v">5</div><div class="s">to price</div></div>
     </div></div>
   </div>
 </section>
@@ -653,8 +799,31 @@ body{font-family:'Outfit',system-ui,-apple-system,'Segoe UI',sans-serif;backgrou
       <div class="sendsplit">
         <div class="ss-side">
           <span class="ss-tag fx" style="--d:.55s">Contractor sends once</span>
-          <div class="win" style="--d:.4s"><div class="win-bar"><span></span><span></span><span></span><u></u></div>
-            <div class="pfwrap mockplate" data-hold="n4" role="img" aria-label="UI recording placeholder"></div></div>
+          <div class="win s5c" style="--d:.4s"><div class="win-bar"><span></span><span></span><span></span><u></u></div>
+            <div class="dh">
+              <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#1D9E75" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v13H9l-4 4z"/><path d="M8 10h8M8 13h5"/></svg></span>
+              <div class="t">Request a quote<span>Traffic Management &mdash; Velocity Link Hwy Ext</span></div>
+              <svg class="x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+            </div>
+            <div class="bd">
+              <div class="frow">
+                <div class="fld" style="flex:2"><label>Task title</label><div class="inp">Traffic Management &ndash; Stage 2</div></div>
+                <div class="fld"><label>Due date</label><div class="inp">20 May 2026</div></div>
+              </div>
+              <div class="s5lab">Documents <span class="n">4 files</span></div>
+              <div class="docs">
+                <span class="s5doc"><span class="ft">PDF</span> Request for Tender</span>
+                <span class="s5doc"><span class="ft">PDF</span> Traffic Mgmt Plans</span>
+                <span class="s5doc"><span class="ft doc">DOC</span> Scope of Works</span>
+                <span class="s5doc"><span class="ft">PDF</span> Site Map</span>
+              </div>
+              <div class="s5lab">Send to <span class="n">8 subcontractors</span></div>
+              <div class="subs">
+                <span class="av" style="background:#38988A">NC</span><span class="av" style="background:#795548">IT</span><span class="av" style="background:#5C6BC0">MS</span><span class="av" style="background:#00838F">AC</span><span class="av" style="background:#6D4C41">BQ</span><span class="av" style="background:#827717">ME</span><span class="av more">+2</span>
+              </div>
+            </div>
+            <div class="foot"><span class="cancel">Cancel</span><span class="snd">Send request <svg viewBox="0 0 24 24" fill="#fff"><path d="M3.4 20.6l17.6-8.6L3.4 3.4 3.4 10l11 2-11 2z"/></svg></span></div>
+          </div>
         </div>
         <div class="ss-mid" aria-hidden="true">
           <svg class="ss-arc" viewBox="0 0 168 84" preserveAspectRatio="none">
@@ -663,8 +832,31 @@ body{font-family:'Outfit',system-ui,-apple-system,'Segoe UI',sans-serif;backgrou
         </div>
         <div class="ss-side ss-sub">
           <span class="ss-tag sub fx" style="--d:2.5s">Lands with every subcontractor</span>
-          <div class="win" style="--d:2.35s"><div class="win-bar"><span></span><span></span><span></span><u></u></div>
-            <div class="pfwrap mockplate" data-hold="s-inbox" role="img" aria-label="UI recording placeholder"></div></div>
+          <div class="win s5s" style="--d:2.35s"><div class="win-bar"><span></span><span></span><span></span><u></u></div>
+            <div class="sh">
+              <span class="bdg">&#9679; New request</span>
+              <div class="t">Traffic Management</div>
+              <div class="s">Velocity Link Highway Extension &middot; from Tenderfy Civil</div>
+            </div>
+            <div class="rows">
+              <div class="r"><span class="k">Tender number</span><span class="v">TMRICT22076</span></div>
+              <div class="r"><span class="k">Organisation</span><span class="v">Dept of Transport &amp; Main Roads</span></div>
+              <div class="r"><span class="k">Sector</span><span class="v">Traffic Management</span></div>
+              <div class="r"><span class="k">Due date</span><span class="v">20 May 2026</span></div>
+            </div>
+            <div class="dwrap">
+              <div class="s5lab" style="margin-top:4px">Documents <span class="n">4 files</span></div>
+              <div class="docs">
+                <span class="s5doc"><span class="ft">PDF</span> Request for Tender</span>
+                <span class="s5doc"><span class="ft">PDF</span> Traffic Mgmt Plans</span>
+                <span class="s5doc"><span class="ft doc">DOC</span> Scope of Works</span>
+              </div>
+            </div>
+            <div class="foot">
+              <span class="pri">Respond with a quote</span>
+              <span class="out">Will respond within&hellip;</span>
+            </div>
+          </div>
         </div>
       </div>
       <div class="toast" style="left:-24px;bottom:-52px;--d:3.5s"><span class="tick"></span> Request sent · 8 subcontractors</div>
@@ -760,14 +952,46 @@ body{font-family:'Outfit',system-ui,-apple-system,'Segoe UI',sans-serif;backgrou
       <p class="supp fx" style="--d:.34s">On the job itself, in one thread — no side email, nothing lost.
         One compliant record of what was asked and what was answered.</p>
     </div>
-    <div class="screen"><div class="stagebox" style="width:1120px">
-      <div class="win" style="--d:.4s;max-height:560px"><div class="win-bar"><span></span><span></span><span></span><u></u></div>
-        <div class="pfwrap mockplate" data-hold="s3" role="img" aria-label="UI recording placeholder"></div></div>
-      <div class="exch" aria-hidden="true">
-        <div class="exch-msg exch-q" style="--d:1.5s"><i class="exch-av">WB</i><span><b class="exch-who">Subcontractor</b>Does your rate include the compliance costs?</span></div>
-        <div class="exch-msg exch-a" style="--d:2.6s"><i class="exch-av">AW</i><span><b class="exch-who">Head contractor</b>Yes — traffic control and permits are in the package.</span></div>
-        <span class="exch-tick">Answered in 6 minutes</span>
+    <div class="screen"><div class="stagebox" style="width:660px">
+      <div class="s10chat fx" style="--d:.3s" role="img" aria-label="The subcontractor and the contractor messaging in one Tenderfy thread">
+        <div class="msg-card">
+          <div class="msg-head">
+            <svg class="tl" viewBox="0 0 24 24"><path d="M4 4h16a1 1 0 011 1v10a1 1 0 01-1 1H9.5L5 20v-4H4a1 1 0 01-1-1V5a1 1 0 011-1z" fill="#1D9E75"/></svg>
+            <span class="ttl">Messages</span>
+            <span class="msg-unread">03</span>
+            <svg class="ch" viewBox="0 0 24 24" fill="none" stroke="#596262" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 15l6-6 6 6"/></svg>
+          </div>
+          <div class="msg-body">
+            <div class="turn me-turn" style="--d:.9s"><div class="bub me">Quick one before I price it &mdash; the weekend shifts, are they at the after-hours rate or quoted separately?</div><div class="msg-meta">Today &middot; 9:31am &middot; Seen</div></div>
+            <div class="turn them-turn" style="--d:2.1s"><div class="msg-from"><span class="ava" style="background:#EF6C00">AC</span><span class="nm">Acme Constructions</span> Today &middot; 9:33am &middot; Seen</div><div class="bub them">Separately. Weekday after-hours is 1.5&times;, weekends are 2.0&times;.</div></div>
+            <div class="turn me-turn" style="--d:3.3s"><div class="bub me">Got it. And ROL coordination &mdash; in scope, or excluded?</div><div class="msg-meta">Today &middot; 9:34am &middot; Seen</div></div>
+            <div class="turn them-turn" style="--d:4.5s"><div class="msg-from"><span class="ava" style="background:#EF6C00">AC</span><span class="nm">Acme Constructions</span> Today &middot; 9:36am &middot; Seen</div><div class="bub them">Excluded for now. Price it as a variation if it turns out you need it.</div></div>
+            <div class="turn me-turn" style="--d:5.7s"><div class="bub me">Perfect &mdash; that answers everything. Quote coming through today.</div><div class="msg-meta">Today &middot; 9:37am &middot; Seen</div></div>
+          </div>
+          <div class="msg-input">
+            <span class="plus"><svg viewBox="0 0 24 24" fill="none" stroke="#596262" stroke-width="2" stroke-linecap="round"><path d="M12 6v12M6 12h12"/></svg></span>
+            <span class="box">Reply to Acme Constructions&hellip;</span>
+            <span class="send">Send <svg viewBox="0 0 24 24" fill="#fff"><path d="M3.4 20.6l17.6-8.6L3.4 3.4 3.4 10l11 2-11 2z"/></svg></span>
+          </div>
+        </div>
       </div>
+      <!-- floating UI bits around the card — visual noise, not part of the chat -->
+      <div class="s10f f-notif" aria-hidden="true"><div class="s10f-in" style="--d:1.5s">
+        <span class="fav" style="background:#EF6C00">AC<i class="dot"></i></span>
+        <div class="tx"><b>Acme Constructions</b><span>replied &middot; just now</span></div>
+      </div></div>
+      <div class="s10f f-file" aria-hidden="true"><div class="s10f-in" style="--d:2.7s">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#B7791F" stroke-width="1.7"><path d="M6 3h8l4 4v14H6z"/><path d="M9 13h6M9 16h4" stroke-linecap="round"/></svg>
+        <div class="tx"><b>Rate Card 2026</b><span>PDF &middot; 240 KB</span></div>
+      </div></div>
+      <div class="s10f f-react" aria-hidden="true"><div class="s10f-in" style="--d:4.9s">&#128077; <b>1</b></div></div>
+      <div class="s10f f-seen" aria-hidden="true"><div class="s10f-in" style="--d:3.6s">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#1D9E75" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12l5 5 8-10"/><path d="M11 15l2 2 8-10"/></svg> Seen 9:37am
+      </div></div>
+      <div class="s10f f-quote" aria-hidden="true"><div class="s10f-in" style="--d:6.2s">
+        <span class="q-ic">$</span>
+        <div class="tx"><b>Quote QUO-2026-0455</b><span>$11,290 inc. GST &middot; sent</span></div>
+      </div></div>
     </div></div>
   </div>
 </section>
@@ -784,10 +1008,53 @@ body{font-family:'Outfit',system-ui,-apple-system,'Segoe UI',sans-serif;backgrou
       <p class="supp fx" style="--d:.34s">Every price lands in one place and totals itself — one figure, no spreadsheet, no transcription,
         no pricing mistakes. The subcontractor priced it in twenty minutes without a phone call.</p>
     </div>
-    <div class="screen"><div class="stagebox" style="width:1120px">
-      <div class="win" style="--d:.4s;max-height:560px"><div class="win-bar"><span></span><span></span><span></span><u></u></div>
-        <div class="pfwrap"><iframe class="pf" data-screen="s9" scrolling="no" title="Tenderfy prototype"></iframe></div></div><div class="mini" style="left:-54px;bottom:-26px;--d:3.4s"><div class="k">Subcontractor total</div><div class="v">$34,540</div><div class="s">3 quotes · like for like</div></div>
-      <div class="mirror" style="--d:3.9s;right:-38px;top:-30px;bottom:auto"><div class="mk">Subcontractor side</div><div class="mv">Priced in 20 minutes.</div><div class="msub">No phone calls, no downloads, no chasing.</div></div>
+    <div class="screen"><div class="stagebox" style="width:840px">
+      <div class="s11cmp fx" style="--d:.3s" role="img" aria-label="Three subcontractor quotes compared side by side, the lowest highlighted">
+        <div class="cmp-wrap">
+          <span class="col-hl"></span>
+          <table class="cmp-table">
+            <colgroup><col style="width:150px"><col style="width:230px"><col style="width:230px"><col style="width:230px"></colgroup>
+            <thead><tr>
+              <th class="rlab"></th>
+              <th><div class="cmp-qh"><span class="av" style="background:#38988A">NC</span>Northolt Construction</div><div class="cmp-amt">$11,290.00</div></th>
+              <th class="cmp-best"><div class="cmp-qh"><span class="av" style="background:#795548">IT</span>Ironbark Traffic</div><div class="cmp-amt">$10,850.00</div><span class="cmp-badge">LOWEST</span></th>
+              <th><div class="cmp-qh"><span class="av" style="background:#5C6BC0">MS</span>Metro Civil</div><div class="cmp-amt">$12,400.00</div></th>
+            </tr></thead>
+            <tbody>
+              <tr><td class="rlab">Trade</td><td>Traffic Management</td><td>Traffic Management</td><td>Civil Works</td></tr>
+              <tr><td class="rlab">Total inc. GST</td><td><b>$11,290.00</b></td><td class="cmp-best"><b>$10,850.00</b></td><td><b>$12,400.00</b></td></tr>
+              <tr><td class="rlab">Subtotal (ex. GST)</td><td>$10,263.64</td><td>$9,863.64</td><td>$11,272.73</td></tr>
+              <tr><td class="rlab">GST (10%)</td><td>$1,026.36</td><td>$986.36</td><td>$1,127.27</td></tr>
+              <tr><td class="rlab">Inclusions</td>
+                <td><span class="cmp-chip inc">GST (10%)</span><span class="cmp-chip inc">After-hours 1.5&times;</span><span class="cmp-chip inc">Plant in labour</span></td>
+                <td><span class="cmp-chip inc">GST (10%)</span><span class="cmp-chip inc">Weekend rates</span><span class="cmp-chip inc">Signage &amp; devices</span><span class="cmp-chip inc">Permits &amp; approvals</span></td>
+                <td><span class="cmp-chip inc">GST (10%)</span><span class="cmp-chip inc">Traffic control</span></td></tr>
+              <tr><td class="rlab">Exclusions</td>
+                <td><span class="cmp-chip exc">ROL coordination &middot; var +15%</span><span class="cmp-chip exc">Permits &amp; approvals</span></td>
+                <td><span class="cmp-chip exc">After-hours work</span></td>
+                <td><span class="cmp-chip exc">Rock excavation</span><span class="cmp-chip exc">Dewatering</span><span class="cmp-chip exc">Service relocations</span></td></tr>
+              <tr><td class="rlab">Assumptions</td>
+                <td><span class="cmp-chip asm">Rev 3 drawings</span><span class="cmp-chip asm">Clear site access</span></td>
+                <td><span class="cmp-chip asm">Single mobilisation</span><span class="cmp-chip asm">Valid 30 days</span></td>
+                <td><span class="cmp-chip asm">Standard hours</span><span class="cmp-chip asm">Market rates</span></td></tr>
+              <tr><td class="rlab"></td><td><span class="acc">Accept quote</span></td><td><span class="acc">Accept quote</span></td><td><span class="acc">Accept quote</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <!-- floating contractor comment / question cards around the comparison -->
+      <div class="s11q" style="top:-54px;left:78px;--dd:0s" aria-hidden="true"><div class="in" style="--d:2.2s">
+        <div class="hd"><span class="av">AW</span><span class="nm">Andrew Williams</span><span class="rl">2m</span></div>
+        <div class="q">Does everyone&rsquo;s price include after-hours?</div><span class="tip tip-b"></span>
+      </div></div>
+      <div class="s11q" style="bottom:-42px;left:120px;--dd:1.4s" aria-hidden="true"><div class="in" style="--d:4.2s">
+        <div class="hd"><span class="av">AW</span><span class="nm">Andrew Williams</span><span class="rl">1m</span></div>
+        <div class="q">Lowest total &mdash; but does it cover permits? &#10003;</div><span class="tip tip-t"></span>
+      </div></div>
+      <div class="s11q" style="bottom:-42px;right:96px;--dd:2.4s" aria-hidden="true"><div class="in" style="--d:6.0s">
+        <div class="hd"><span class="av">AW</span><span class="nm">Andrew Williams</span><span class="rl">now</span></div>
+        <div class="q">Metro&rsquo;s is civil works, not traffic &mdash; same scope?</div><span class="tip tip-t"></span>
+      </div></div>
     </div></div>
   </div>
 </section>
@@ -4121,7 +4388,7 @@ const SCENES=[
  {n:5,dur:12,label:'Step 2 · Request the quote',pov:'both',lay:'split send — two desks in one frame',
   vo:"The contractor sends one request. Same scope, same questions, same deadline — and Tenderfy delivers it to every subcontractor while the page is still open.",
   shot:'The split send. Contractor window left, subbie window right and lower; an amber Request token flies the arc between them. The film\'s first two-sided frame.',
-  cap:'C12 · contractor/new-request.html + subbies inbox ⚠️ needs TWO recordings, cut to the same action'},
+  cap:'C12 · mocks built inline — contractor request-quote dialog (left) + subbie view-quote-request (right). Final: two recordings cut to the same action'},
  {n:6,dur:11,label:'Step 3 · Tenderfy chases',pov:'con',lay:'screen LEFT / copy RIGHT',
   vo:"Then Tenderfy does the chasing. Follow-ups on a schedule the contractor sets, in the contractor's own words, and capped — so nobody is ringing subcontractors at seven at night.",
   shot:'Delay / max / window fields, then the follow-up message. The cap is the point.',
@@ -4140,12 +4407,12 @@ const SCENES=[
   cap:'C14 · contractor/build-tender.html'},
  {n:10,dur:9,label:'Ask direct',pov:'both',lay:'copy LEFT / screen RIGHT + both-party thread',
   vo:"Anything unclear, the subcontractor asks on the job itself — and the contractor answers from the same thread. One record, answered in minutes.",
-  shot:'The exchange in one frame: his question card enters top-left, your answer card enters lower-right, then Answered in 6 minutes. Both POV badges lit.',
-  cap:'C1 · subbies/view-request.html → Messages tab, plus the contractor-side reply'},
+  shot:'The real Subbies Messages card, played live: the subcontractor asks, the contractor answers, turns sliding in on a stagger. Both POV badges lit.',
+  cap:'C1 · subbies Messages card — capture from scene10-chat.html (typing dots + loop); animatic shows the CSS-reveal timing'},
  {n:11,dur:10,label:'One total',pov:'both',lay:'screen LEFT / copy RIGHT + payoff mirror',
   vo:"Then every price lands in one place and totals itself. One subcontractor figure for the job — priced in twenty minutes without a phone call.",
-  shot:'Quotes reveal row by row, then the total counts up and HOLDS. The mirror card lands after it so the payoff resolves on both desks.',
-  cap:'C8 · contractor/compare.html'},
+  shot:'Three quotes side by side (real compare.html data). A teal spotlight sweeps the columns left→right, holding on each; the lowest (Ironbark) stays green. Contractor comment/question cards float in around it.',
+  cap:'C8 · compare.html rebuilt inline for the column sweep + review comments (old iframe + payoff mini/mirror removed)'},
  {n:12,dur:6,label:'End card',pov:'con',lay:'full bleed — brand ramp',
   vo:"Tenderfy Subbies. Request once — every price comes back in one place.",
   shot:'Brand ramp end card, wordmark, one line.',
@@ -4199,6 +4466,8 @@ function paint(n){
   const s=SCENES[n-1];
   [document.getElementById('scene1Vid'),document.getElementById('scene1Inset')]  // live-action opener + inset
     .forEach(v=>{ if(!v) return; if(n===1){ v.currentTime=0; v.play().catch(()=>{}); } else { v.pause(); } });
+  const s1v=document.getElementById('step1Vid');  // Step 1 · Review the pack — plays on scene 4
+  if(s1v){ if(n===4){ s1v.currentTime=0; s1v.play().catch(()=>{}); } else { s1v.pause(); } }
   voNote.textContent=s.vo||'—';
   // light scenes get dark chrome + teal wordmark; dark/ramp scenes get white
   chromeEl.classList.toggle('on-light',/scene-light|scene-offwhite/.test(el.className));
