@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex,nofollow">
+<title>Scene 10 — Subbies chat exchange</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,400,0,0&display=swap" rel="stylesheet">
+<style>
+/* ===== Scene 10 — the real Subbies "Messages" card, played live =====
+   Exact styling from the prototype's .msg-card (tokens + rules copied from
+   styles.css), scaled ~1.85× to match the supplied reference frame at
+   1440×900. The Subbies chat is the subcontractor's app: the account owner
+   (subbie) is "me" on the right in the dark bubble; the contractor is "them"
+   on the left, preceded by a from-line. Auto-plays; SPACE or click replays. */
+:root{
+  --teal:#1D9E75; --teal-bright:#6ADDB5;
+  --header:#2E343C; --ink:#2E3C3B; --gray:#596262; --light:#A1ADAB;
+  --border:#E3E7E6; --accent:#F95246;
+}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%}
+body{
+  font-family:'Outfit',system-ui,sans-serif;color:var(--ink);
+  background:#F7F9F8;display:flex;align-items:center;justify-content:center;overflow:hidden;
+}
+.stage{position:relative;width:1440px;height:900px;display:flex;align-items:center;justify-content:center}
+
+/* .msg-card — real component, scaled to the reference frame */
+.msg-card{width:1010px;background:#fff;border:1px solid #E7EBEA;border-radius:20px;overflow:hidden;
+  box-shadow:0 34px 90px rgba(24,42,38,.16)}
+.msg-head{display:flex;align-items:center;gap:12px;padding:22px 26px;border-bottom:1px solid #EEF1F0}
+.msg-head .ms.ic{font-size:26px;color:var(--teal)}
+.msg-head .ttl{font-weight:600;font-size:23px;color:var(--teal);flex:1}
+.msg-unread{background:var(--accent);color:#fff;font-size:17px;font-weight:700;padding:5px 12px;border-radius:8px}
+.msg-head .chev{font-size:24px;color:var(--gray)}
+
+.msg-body{padding:24px 26px 26px;background:#E9ECEB;min-height:560px;display:flex;flex-direction:column;justify-content:flex-end;overflow:hidden}
+
+/* a rendered turn eases in — subbie from the right, contractor from the left */
+.turn{opacity:0;transition:opacity .3s ease,transform .42s cubic-bezier(.2,.75,.25,1)}
+.turn.them-turn{transform:translateY(12px) translateX(-14px) scale(.985)}
+.turn.me-turn{transform:translateY(12px) translateX(14px) scale(.985)}
+.turn.show{opacity:1;transform:none}
+.turn + .turn{margin-top:6px}
+/* the meta/from lines settle a beat after their bubble */
+.turn .msg-meta,.turn .msg-from{opacity:0;transition:opacity .3s ease .12s}
+.turn.show .msg-meta,.turn.show .msg-from{opacity:1}
+
+.msg-from{display:flex;align-items:center;gap:12px;font-size:17px;color:var(--light);margin:16px 0 9px}
+.msg-from .ava{width:44px;height:44px;border-radius:50%;color:#fff;font-size:16px;font-weight:600;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.msg-from .nm{font-size:19px;font-weight:700;color:var(--ink)}
+
+.bub{padding:16px 22px;font-size:20px;line-height:1.55;max-width:74%;width:fit-content}
+.bub.them{background:#F6F7F7;color:var(--ink);border-radius:16px 16px 16px 4px}
+.bub.me{background:var(--header);color:#fff;margin-left:auto;border-radius:16px 16px 4px 16px}
+.bub + .bub{margin-top:12px}
+
+.msg-meta{text-align:right;font-size:16px;color:var(--light);margin-top:10px}
+
+/* typing — a them-bubble with dots, same styling as the card */
+.typing{opacity:0;transform:translateY(10px) scale(.985);transition:opacity .24s ease,transform .3s cubic-bezier(.2,.75,.25,1);margin-top:14px}
+.typing.show{opacity:1;transform:none}
+.typing.out{opacity:0;transform:translateY(-4px) scale(.98)}
+.typing .row{display:flex;align-items:center;gap:12px}
+.typing .ava{width:44px;height:44px;border-radius:50%;background:#EF6C00;color:#fff;font-size:16px;font-weight:600;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.typing .dots{background:#F6F7F7;border-radius:16px 16px 16px 4px;padding:18px 22px;display:flex;gap:7px}
+.typing .dots i{width:9px;height:9px;border-radius:50%;background:#AEB6B4;animation:bounce 1.2s infinite}
+.typing .dots i:nth-child(2){animation-delay:.15s}
+.typing .dots i:nth-child(3){animation-delay:.3s}
+@keyframes bounce{0%,60%,100%{transform:translateY(0);opacity:.5}30%{transform:translateY(-6px);opacity:1}}
+
+.msg-input{display:flex;align-items:center;gap:14px;padding:20px 24px;border-top:1px solid #EEF1F0}
+.msg-input .plus{width:56px;height:56px;border:1px solid var(--border);border-radius:12px;display:flex;align-items:center;justify-content:center;color:var(--gray);flex-shrink:0}
+.msg-input .plus .ms{font-size:26px}
+.msg-input .box{flex:1;border:1px solid var(--border);border-radius:12px;padding:16px 18px;font-size:19px;color:var(--light)}
+.msg-input .send{background:var(--teal);color:#fff;border-radius:12px;padding:16px 26px;font-size:19px;font-weight:600;display:flex;align-items:center;gap:9px}
+.msg-input .send .ms{font-size:22px}
+
+.replay{position:absolute;bottom:20px;left:50%;transform:translateX(-50%);font-size:13px;color:var(--light);
+  display:flex;align-items:center;gap:6px;cursor:pointer;user-select:none;opacity:0;transition:opacity .3s}
+.stage:hover .replay{opacity:.9}
+.replay .ms{font-size:17px}
+</style>
+</head>
+<body>
+<div class="stage" id="stage" title="click or press space to replay">
+  <div class="msg-card">
+    <div class="msg-head">
+      <span class="ms ic">chat_bubble</span>
+      <span class="ttl">Messages</span>
+      <span class="msg-unread">03</span>
+      <span class="ms chev">expand_less</span>
+    </div>
+    <div class="msg-body" id="body"></div>
+    <div class="msg-input">
+      <span class="plus"><span class="ms">add</span></span>
+      <span class="box">Reply to Acme Constructions…</span>
+      <span class="send">Send <span class="ms">send</span></span>
+    </div>
+  </div>
+  <div class="replay" onclick="play()"><span class="ms">replay</span> Replay</div>
+</div>
+
+<script>
+/* The subbie asks, the contractor answers — grounded in the prototype's real
+   inclusions/exclusions data: after-hours 1.5×, weekend 2.0×, ROL coordination
+   excluded and priced as a variation. */
+const CONTRACTOR = { nm:'Acme Constructions', av:'AC', c:'#EF6C00' };
+const SCRIPT = [
+  {who:'me',   t:'Quick one before I price it — the weekend shifts, are they at the after-hours rate or quoted separately?', time:'9:31am'},
+  {who:'them', t:'Separately. Weekday after-hours is 1.5×, weekends are 2.0×.', time:'9:33am'},
+  {who:'me',   t:'Got it. And ROL coordination — in scope, or excluded?', time:'9:34am'},
+  {who:'them', t:'Excluded for now. Price it as a variation if it turns out you need it.', time:'9:36am'},
+  {who:'me',   t:'Perfect — that answers everything. Quote coming through today.', time:'9:37am'},
+];
+
+const body = document.getElementById('body');
+let timers = [];
+const wait = (ms, fn) => timers.push(setTimeout(fn, ms));
+
+function reset(){ timers.forEach(clearTimeout); timers = []; body.innerHTML = ''; }
+
+function addTyping(){
+  const el = document.createElement('div');
+  el.className = 'typing';
+  el.innerHTML = '<div class="row"><span class="ava">' + CONTRACTOR.av + '</span>'
+    + '<span class="dots"><i></i><i></i><i></i></span></div>';
+  body.appendChild(el);
+  requestAnimationFrame(() => el.classList.add('show'));
+  return el;
+}
+
+function addTurn(m){
+  const el = document.createElement('div');
+  el.className = 'turn ' + (m.who === 'them' ? 'them-turn' : 'me-turn');
+  if(m.who === 'them'){
+    el.innerHTML = '<div class="msg-from"><span class="ava" style="background:' + CONTRACTOR.c + '">' + CONTRACTOR.av + '</span>'
+      + '<span class="nm">' + CONTRACTOR.nm + '</span> Today · ' + m.time + ' · Seen</div>'
+      + '<div class="bub them">' + m.t + '</div>';
+  } else {
+    el.innerHTML = '<div class="bub me">' + m.t + '</div>'
+      + '<div class="msg-meta">Today · ' + m.time + ' · Seen</div>';
+  }
+  body.appendChild(el);
+  requestAnimationFrame(() => el.classList.add('show'));
+}
+
+function play(){
+  reset();
+  let t = 600;
+  SCRIPT.forEach((m) => {
+    if(m.who === 'them'){
+      let typ;
+      wait(t, () => { typ = addTyping(); });
+      t += 1600;
+      // fade the typing bubble out, then swap in the reply
+      wait(t - 220, () => { if(typ) typ.classList.add('out'); });
+      wait(t, () => { if(typ) typ.remove(); addTurn(m); });
+    } else {
+      wait(t, () => addTurn(m));
+    }
+    t += 1500;
+  });
+  wait(t + 3600, play);   // hold on the finished thread, then loop
+}
+
+document.getElementById('stage').addEventListener('click', (e) => { if(!e.target.closest('.replay')) play(); });
+document.addEventListener('keydown', (e) => { if(e.code === 'Space'){ e.preventDefault(); play(); } });
+play();
+</script>
+</body>
+</html>
