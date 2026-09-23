@@ -52,7 +52,7 @@ body{font-family:'Outfit',system-ui,-apple-system,'Segoe UI',sans-serif;backgrou
 
 /* ---- Ray-film reveal: per-character blur-in headline (chIn) ---- */
 .hl .ch{display:inline-block;opacity:0;filter:blur(10px);transform:translateY(.12em);will-change:filter,opacity}
-.scene.active .hl .ch{animation:chIn .8s cubic-bezier(.2,.7,.2,1) both;animation-delay:calc(var(--d,.16s) + var(--i,0)*.024s)}
+.scene.active .hl .ch{animation:chIn .5s cubic-bezier(.2,.7,.2,1) both;animation-delay:calc(var(--d,.1s) + var(--i,0)*.014s)}
 @keyframes chIn{0%{opacity:0;filter:blur(10px);transform:translateY(.12em)}60%{filter:blur(0)}100%{opacity:1;filter:blur(0);transform:none}}
 
 /* ---------------- curtain transition (showcase.html mechanics) ----------------
@@ -107,7 +107,7 @@ body{font-family:'Outfit',system-ui,-apple-system,'Segoe UI',sans-serif;backgrou
 .pov.con{left:var(--pad);color:#3E6C93}
 .scene-dark .pov.sub,.scene-deep .pov.sub{color:#6ADDB5}
 .scene-dark .pov.con,.scene-deep .pov.con{color:#8FB4D8}
-.scene.active .pov{animation:blockIn .8s var(--ease-out) forwards;animation-delay:.5s}
+.scene.active .pov{animation:blockIn .5s var(--ease-out) forwards;animation-delay:0.3s}
 
 /* ---------------- the split: stacked (text + mock), alternating top/bottom ---------------- */
 .split{position:relative;z-index:2;height:100%;display:grid;
@@ -146,14 +146,14 @@ body{font-family:'Outfit',system-ui,-apple-system,'Segoe UI',sans-serif;backgrou
 .scene-dark .mlist li:before,.scene-deep .mlist li:before{background:#6ADDB5}
 
 .fx{opacity:0;transform:translateY(26px)}
-.scene.active .fx{animation:blockIn .9s var(--ease-out) forwards;animation-delay:var(--d,0s)}
+.scene.active .fx{animation:blockIn .4s var(--ease-out) forwards;animation-delay:var(--d,0s)}
 @keyframes blockIn{to{opacity:1;transform:none}}
 
 /* ---------------- floating browser window ---------------- */
 .win{border-radius:14px;overflow:hidden;position:relative;background:#fff;width:100%;
   box-shadow:0 60px 110px -30px rgba(18,45,40,.45),0 24px 44px -20px rgba(18,45,40,.28);
   opacity:0;transform:translateY(46px) rotateX(7deg) scale(.96);transform-style:preserve-3d}
-.scene.active .win{animation:winIn 1.35s var(--ease-out) forwards;animation-delay:var(--d,.3s)}
+.scene.active .win{animation:winIn .8s var(--ease-out) forwards;animation-delay:var(--d,.3s)}
 @keyframes winIn{70%{opacity:1;transform:translateY(-7px) rotateX(-1deg) scale(1.004)}
   100%{opacity:1;transform:translateY(0) rotateX(0) scale(1)}}
 .win-bar{display:flex;align-items:center;gap:6px;padding:10px 14px;background:#EDF1EF;
@@ -169,12 +169,23 @@ body{font-family:'Outfit',system-ui,-apple-system,'Segoe UI',sans-serif;backgrou
 .mini .v{font-size:21px;font-weight:700;color:var(--ink);margin-top:4px;letter-spacing:-.025em;line-height:1}
 .mini .s{font-size:11.5px;color:var(--gray);margin-top:4px}
 .mini.accent .v{color:var(--teal)}
-.scene.active .mini{animation:blockIn .8s var(--ease-out) both;animation-delay:var(--d,0s)}
+.scene.active .mini{animation:blockIn .5s var(--ease-out) both;animation-delay:var(--d,0s)}
 .pill{position:absolute;z-index:7;font-size:12px;font-weight:600;padding:8px 15px;border-radius:20px;
   box-shadow:0 16px 34px rgba(0,0,0,.28);opacity:0;white-space:nowrap;background:var(--ink);color:#fff}
 .pill.teal{background:var(--teal)}
 .pill.amber{background:var(--amber);color:#3B2A06}
 .scene.active .pill{animation:popIn .55s var(--ease-out) both;animation-delay:var(--d,0s)}
+/* the follow-up itself, delivered as an email notification (scene 6) */
+.mailcard{position:absolute;z-index:8;width:272px;background:#fff;border-radius:13px;padding:13px 15px;
+  box-shadow:0 24px 52px rgba(18,45,40,.34),0 0 0 1px rgba(18,45,40,.05);opacity:0}
+.scene.active .mailcard{animation:blockIn .5s var(--ease-out) both;animation-delay:var(--d,0s)}
+.mc-h{display:flex;align-items:center;gap:8px;margin-bottom:7px}
+.mc-ic{width:23px;height:23px;border-radius:6px;background:var(--teal);flex:none;display:flex;align-items:center;justify-content:center}
+.mc-ic svg{width:13px;height:13px}
+.mc-fr{font-size:12px;font-weight:700;color:var(--ink)}
+.mc-tm{margin-left:auto;font-size:10px;color:var(--light)}
+.mc-su{font-size:12px;font-weight:600;color:var(--ink);margin-bottom:4px}
+.mc-bd{font-size:11px;line-height:1.45;color:var(--gray)}
 /* real prototype panels render inside an isolated frame */
 .pf{display:block;border:0;background:#fff;transform:scale(var(--pfz,.82));transform-origin:top left}
 .pfwrap{width:100%;aspect-ratio:1440/900;overflow:hidden;position:relative}
@@ -187,7 +198,7 @@ body{font-family:'Outfit',system-ui,-apple-system,'Segoe UI',sans-serif;backgrou
 .rp{width:39%;flex:none;margin-left:16px;align-self:center;z-index:6;position:relative;
   background:rgba(255,255,255,.98);border:1px solid #E6EAE8;border-radius:15px;overflow:hidden;opacity:0;
   box-shadow:0 30px 60px -28px rgba(20,30,60,.3),0 10px 24px -14px rgba(20,30,60,.14)}
-.scene.active .rp{animation:winIn 1.15s var(--ease-out) both .55s}
+.scene.active .rp{animation:winIn .7s var(--ease-out) both .55s}
 .rp-head{display:flex;align-items:center;gap:8px;padding:9px 12px;border-bottom:1px solid #EEF1F0}
 .rp-av{width:19px;height:19px;border-radius:50%;background:radial-gradient(circle at 32% 30%,#6ADDB5,var(--teal));flex:none}
 .rp-nm{font-size:11.5px;font-weight:700;color:var(--ink)}
@@ -216,12 +227,25 @@ body{font-family:'Outfit',system-ui,-apple-system,'Segoe UI',sans-serif;backgrou
 .chati .snd{width:22px;height:22px;border-radius:7px;background:var(--teal);flex:none}
 /* chat bubbles arrive one by one, after the panel lands */
 .cbub{opacity:0;transform:translateY(9px)}
-.scene.active .cbub{animation:cbIn .5s var(--ease-out) both}
-.scene.active .cbub:nth-child(1){animation-delay:1.15s}
-.scene.active .cbub:nth-child(2){animation-delay:1.95s}
-.scene.active .cbub:nth-child(3){animation-delay:2.75s}
-.scene.active .cbub:nth-child(4){animation-delay:3.55s}
+.scene.active .cbub{animation:cbIn .38s var(--ease-out) both}
+.scene.active .cbub:nth-child(1){animation-delay:0.69s}
+.scene.active .cbub:nth-child(2){animation-delay:1.17s}
+.scene.active .cbub:nth-child(3){animation-delay:1.65s}
+.scene.active .cbub:nth-child(4){animation-delay:2.13s}
 @keyframes cbIn{to{opacity:1;transform:none}}
+/* documents card (scene 7): the attached files, opening in the browser, revealed one by one */
+.rp-fold{width:19px;height:19px;border-radius:5px;background:#EAF3EF;border:1px solid #D6E5DE;flex:none}
+.docl{padding:11px;display:flex;flex-direction:column;gap:7px;background:#F7F9F8}
+.docrow{display:flex;align-items:center;gap:9px;background:#fff;border:1px solid #E6EAE8;border-radius:9px;padding:8px 10px;opacity:0;transform:translateY(9px)}
+.scene.active .docrow{animation:cbIn .38s var(--ease-out) both}
+.scene.active .docrow:nth-child(1){animation-delay:0.69s}
+.scene.active .docrow:nth-child(2){animation-delay:0.96s}
+.scene.active .docrow:nth-child(3){animation-delay:1.23s}
+.scene.active .docrow:nth-child(4){animation-delay:1.5s}
+.dfi{font-size:8px;font-weight:700;letter-spacing:.4px;color:#fff;border-radius:4px;padding:3px 5px;flex:none}
+.dfi.pdf{background:#E4572E}.dfi.doc{background:#2E6BE4}.dfi.xls{background:#1D9E75}
+.dfn{font-size:11px;color:var(--ink);font-weight:600;flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.dopen{font-size:9.5px;color:var(--teal-dark);font-weight:600;flex:none}
 .uim{background:#fff;padding:15px 17px;display:flex;flex-direction:column;gap:7px;
   overflow:hidden;font-size:12px;color:var(--ink)}
 .uim .h{display:flex;align-items:baseline;gap:10px;margin-bottom:2px}
@@ -248,18 +272,20 @@ body{font-family:'Outfit',system-ui,-apple-system,'Segoe UI',sans-serif;backgrou
 .uim .cp.p{background:var(--st-pink-bg);color:var(--st-pink-tx)}
 .uim .cp.n{background:var(--st-grey-bg);color:var(--st-grey-tx)}
 /* Step 2 recipients stylised dedicated element: subbies selected in sequence */
-.uim .rcp{display:flex;align-items:center;gap:11px;padding:10px 12px;border:1px solid #E7EBEA;border-radius:10px}
-.uim .rav{width:26px;height:26px;border-radius:50%;flex:none;background:#B7C2C0}
+.uim .rcp{display:flex;align-items:center;gap:11px;padding:8px 12px;border:1px solid #E7EBEA;border-radius:10px}
+.uim .rav{width:26px;height:26px;border-radius:50%;flex:none;background:#B7C2C0;color:#fff;font-size:9px;font-weight:700;letter-spacing:.2px;display:flex;align-items:center;justify-content:center}
 .uim .rcp:nth-child(2) .rav{background:#5C6BC0}.uim .rcp:nth-child(3) .rav{background:#EF6C00}
 .uim .rcp:nth-child(4) .rav{background:#00838F}.uim .rcp:nth-child(5) .rav{background:#6D4C41}
 .uim .rcp:nth-child(6) .rav{background:#5E35B1}.uim .rcp:nth-child(7) .rav{background:#00897B}
-.uim .rn{height:9px;border-radius:4px;background:#E4E9E7;flex:1;max-width:58%}
+.uim .rn{display:flex;align-items:baseline;gap:8px;flex:1;min-width:0}
+.uim .rnm{font-size:12px;font-weight:600;color:var(--ink);white-space:nowrap;line-height:1.2;flex:none}
+.uim .rtr{font-size:10.5px;color:var(--light);line-height:1.2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .uim .rck{margin-left:auto;width:18px;height:18px;border-radius:50%;background:#1D9E75;position:relative;opacity:0;transform:scale(.4)}
 .scene.active .uim .rck{animation:fdPop .45s cubic-bezier(.2,.9,.3,1) both}
 .uim .rck::after{content:"";position:absolute;left:6px;top:4px;width:4px;height:7px;border:solid #fff;border-width:0 2px 2px 0;transform:rotate(45deg)}
-.uim .rcp:nth-child(2) .rck{animation-delay:.5s}.uim .rcp:nth-child(3) .rck{animation-delay:.75s}
-.uim .rcp:nth-child(4) .rck{animation-delay:1s}.uim .rcp:nth-child(5) .rck{animation-delay:1.25s}
-.uim .rcp:nth-child(6) .rck{animation-delay:1.5s}.uim .rcp:nth-child(7) .rck{animation-delay:1.75s}
+.uim .rcp:nth-child(2) .rck{animation-delay:0.3s}.uim .rcp:nth-child(3) .rck{animation-delay:0.45s}
+.uim .rcp:nth-child(4) .rck{animation-delay:0.6s}.uim .rcp:nth-child(5) .rck{animation-delay:0.75s}
+.uim .rcp:nth-child(6) .rck{animation-delay:0.9s}.uim .rcp:nth-child(7) .rck{animation-delay:1.05s}
 .uim .dl{display:flex;align-items:center;gap:12px;padding:6px 2px;border-bottom:1px solid #F0F3F2;font-size:11.5px}
 .uim .dk{color:var(--gray);width:34%;flex:none}
 .uim .dv{height:8px;border-radius:4px;background:#E4E9E7;flex:1;max-width:52%}
@@ -270,7 +296,7 @@ body{font-family:'Outfit',system-ui,-apple-system,'Segoe UI',sans-serif;backgrou
 .win.back{position:absolute;right:-34px;top:-46px;width:74%;z-index:-1;opacity:0;
   transform:translateY(40px) scale(.94)}
 .split.flip .win.back{right:auto;left:-34px}
-.scene.active .win.back{animation:winInBack 1.3s var(--ease-out) forwards;animation-delay:var(--d,.15s)}
+.scene.active .win.back{animation:winInBack .8s var(--ease-out) forwards;animation-delay:var(--d,.15s)}
 @keyframes winInBack{to{opacity:.55;transform:translateY(0) scale(1)}}
 
 /* ---------------- product mock primitives ---------------- */
@@ -353,7 +379,7 @@ body{font-family:'Outfit',system-ui,-apple-system,'Segoe UI',sans-serif;backgrou
 .toast .tick{width:18px;height:18px;border-radius:50%;background:var(--teal);flex:none;position:relative}
 .toast .tick:after{content:'';position:absolute;left:5.5px;top:3.5px;width:5px;height:9px;
   border:2px solid #fff;border-top:0;border-left:0;transform:rotate(42deg)}
-.scene.active .toast{animation:blockIn .55s var(--ease-out) both;animation-delay:var(--d,0s)}
+.scene.active .toast{animation:blockIn .4s var(--ease-out) both;animation-delay:var(--d,0s)}
 /* scene 1 the email page the moments actually live in, with each moment
    ring-highlighted in context. .mk draws the ring + label via pseudo-elements so the
    underlying content stays visible and no coordinates need guessing. */
@@ -374,13 +400,13 @@ body{font-family:'Outfit',system-ui,-apple-system,'Segoe UI',sans-serif;backgrou
   padding:9px 14px;margin-bottom:13px;font-size:13px;color:#80868B}
 .gm .gm-tools{display:flex;align-items:center;gap:17px;padding-bottom:11px;border-bottom:1px solid #E8EAED}
 .gm .gm-tools .sp{margin-left:auto;font-size:11.5px;color:#80868B}
-.gm .gm-subj{display:flex;gap:10px;align-items:flex-start;font-size:21px;font-weight:400;
-  color:#202124;line-height:1.28;margin:15px 0 0}
+.gm .gm-subj{display:flex;gap:10px;align-items:flex-start;font-size:17px;font-weight:400;
+  color:#202124;line-height:1.28;margin:11px 0 0}
 .gm .gm-lbl{font-size:10.5px;font-weight:500;background:#E8EAED;color:#5F6368;padding:3px 8px;
   border-radius:4px;margin-top:6px;white-space:nowrap}
 .gm .mstat{margin-top:13px;border:1.5px dashed #C4C9CC;border-radius:8px;padding:11px;
   text-align:center;font-size:12.5px;font-weight:500;color:#5F6368}
-.gm .gm-msg{display:flex;gap:13px;padding:16px 0;border-bottom:1px solid #F1F3F4}
+.gm .gm-msg{display:flex;gap:13px;padding:11px 0;border-bottom:1px solid #F1F3F4}
 .gm .gm-av{width:38px;height:38px;border-radius:50%;background:#5C6BC0;color:#fff;font-size:14px;
   font-weight:500;display:flex;align-items:center;justify-content:center;flex-shrink:0}
 .gm .gm-av.me{background:#00897B}
@@ -427,9 +453,9 @@ body{font-family:'Outfit',system-ui,-apple-system,'Segoe UI',sans-serif;backgrou
 .scene-end .tl{font-size:clamp(15px,1.85vw,28px);font-weight:400;z-index:2;opacity:0}
 .scene-end .tl b{color:#6ADDB5;font-weight:600}.scene-end .tl i{color:var(--amber);font-style:normal;font-weight:600}
 .scene-end .url{font-size:clamp(12px,1.3vw,20px);color:rgba(255,255,255,.85);z-index:2;letter-spacing:.3px;opacity:0}
-.scene-end.active .wm{animation:blockIn .9s var(--ease-out) forwards .2s}
-.scene-end.active .tl{animation:blockIn .9s var(--ease-out) forwards .6s}
-.scene-end.active .url{animation:blockIn .9s var(--ease-out) forwards 1s}
+.scene-end.active .wm{animation:blockIn .4s var(--ease-out) forwards .2s}
+.scene-end.active .tl{animation:blockIn .4s var(--ease-out) forwards .6s}
+.scene-end.active .url{animation:blockIn .4s var(--ease-out) forwards 1s}
 .end-clip{position:absolute;left:-3vw;bottom:-9vh;width:clamp(200px,24vw,400px);color:#fff;opacity:.42;z-index:2}
 
 /* ---------------- chrome (mirrors showcase.html) ---------------- */
@@ -531,7 +557,7 @@ body{font-family:'Outfit',system-ui,-apple-system,'Segoe UI',sans-serif;backgrou
 .fan-outs{display:grid;grid-template-columns:repeat(5,1fr);gap:clamp(6px,1vw,16px)}
 .fan-out{display:flex;flex-direction:column;align-items:center;gap:9px;
   opacity:0;transform:translateY(14px)}
-.turn.active .fan-out{animation:blockIn .7s var(--ease-out) forwards;animation-delay:var(--d,0s)}
+.turn.active .fan-out{animation:blockIn .5s var(--ease-out) forwards;animation-delay:var(--d,0s)}
 .fan-av{width:clamp(30px,3.2vw,46px);height:clamp(30px,3.2vw,46px);border-radius:50%;
   display:grid;place-items:center;font-style:normal;font-size:clamp(10px,.92vw,14px);
   font-weight:700;letter-spacing:.4px;color:#062018;background:#6ADDB5;
@@ -565,7 +591,7 @@ body{font-family:'Outfit',system-ui,-apple-system,'Segoe UI',sans-serif;backgrou
 .ss-side .ss-tag{z-index:2}
 @keyframes ssBgIn{from{opacity:0;transform:scale(1.05)}to{opacity:1;transform:scale(1)}}
 /* the subbie half sits lower and slightly smaller he receives, the contractor acts */
-.ss-sub{transform:translateY(46px) scale(.94);transform-origin:left center}
+.ss-sub{transform:translateY(20px) scale(1);transform-origin:left center}  /* was .94 + 46 — scaled up to match the left card */
 .ss-tag{position:absolute;top:-32px;left:2px;font-size:15px;font-weight:700;letter-spacing:1.5px;
   text-transform:uppercase;display:inline-flex;align-items:center;gap:9px;color:#3E6C93;white-space:nowrap}
 .ss-tag:before{content:'';width:9px;height:9px;border-radius:50%;background:currentColor}
@@ -604,7 +630,7 @@ body{font-family:'Outfit',system-ui,-apple-system,'Segoe UI',sans-serif;backgrou
 .mirror{position:absolute;right:-34px;bottom:-36px;z-index:6;width:310px;padding:17px 19px;
   border-radius:15px;background:#0F1B18;color:#fff;border:1px solid rgba(255,255,255,.1);
   box-shadow:0 36px 70px -22px rgba(9,17,15,.6);opacity:0}
-.scene.active .mirror{animation:blockIn .85s var(--ease-out) forwards var(--d,3.2s)}
+.scene.active .mirror{animation:blockIn .4s var(--ease-out) forwards var(--d,3.2s)}
 .mirror .mk{font-size:12px;letter-spacing:1.5px;text-transform:uppercase;font-weight:700;
   color:#6ADDB5;display:inline-flex;align-items:center;gap:8px;margin-bottom:9px}
 .mirror .mk:before{content:'';width:8px;height:8px;border-radius:50%;background:currentColor}
@@ -620,7 +646,7 @@ body{font-family:'Outfit',system-ui,-apple-system,'Segoe UI',sans-serif;backgrou
 .exch-msg{position:absolute;display:flex;gap:13px;align-items:flex-start;width:400px;
   padding:15px 17px;border-radius:15px;font-size:15px;line-height:1.45;opacity:0;
   box-shadow:0 32px 62px -20px rgba(9,17,15,.45)}
-.scene.active .exch-msg{animation:blockIn .8s var(--ease-out) forwards var(--d,0s)}
+.scene.active .exch-msg{animation:blockIn .5s var(--ease-out) forwards var(--d,0s)}
 .exch-q{left:-58px;top:14%;background:#0F1B18;color:#fff;border:1px solid rgba(255,255,255,.12)}
 .exch-a{right:-58px;top:50%;background:#fff;color:var(--ink);border:1px solid var(--line-ink)}
 .exch-av{width:36px;height:36px;border-radius:50%;flex:none;display:grid;place-items:center;
@@ -632,7 +658,7 @@ body{font-family:'Outfit',system-ui,-apple-system,'Segoe UI',sans-serif;backgrou
 .exch-tick{position:absolute;right:-30px;bottom:6%;padding:9px 17px;border-radius:999px;
   background:var(--teal);color:#fff;font-size:13.5px;font-weight:700;letter-spacing:.3px;opacity:0;
   box-shadow:0 18px 36px -14px rgba(29,158,117,.6)}
-.scene.active .exch-tick{animation:blockIn .75s var(--ease-out) forwards 3.6s}
+.scene.active .exch-tick{animation:blockIn .5s var(--ease-out) forwards 3.6s}
 
 /* ---- scene 10 · the real Subbies "Messages" card, played live ----
    Sized as a message panel (not a full-frame card) so it sits in proportion
@@ -676,15 +702,20 @@ body{font-family:'Outfit',system-ui,-apple-system,'Segoe UI',sans-serif;backgrou
 .s10f-in .fav .dot{position:absolute;right:-1px;bottom:-1px;width:9px;height:9px;border-radius:50%;background:#34C759;border:2px solid #fff}
 .s10f-in svg{width:22px;height:22px;flex:none}
 .f-notif{top:-30px;left:-98px;--dd:0s}
-.f-seen{top:46px;right:-90px;--dd:.6s}
-.f-file{top:172px;right:-108px;--dd:1.2s}
-.f-react{bottom:158px;left:-46px;--dd:2.4s}
-.f-quote{bottom:-26px;right:-52px;--dd:1.8s}
+.f-seen{top:46px;right:-90px;--dd:0.36s}
+.f-file{top:172px;right:-108px;--dd:0.72s}
+.f-react{bottom:158px;left:-46px;--dd:1.44s}
+.f-quote{bottom:-26px;right:-52px;--dd:1.08s}
 .f-seen .s10f-in{gap:6px;font-weight:600;color:#2E3C3B}
 .f-seen .s10f-in svg{width:16px;height:16px}
 .f-react .s10f-in{gap:5px;padding:7px 13px;border-radius:20px;font-size:15px}
 .f-react .s10f-in b{font-size:12px;color:#596262}
 .f-quote .s10f-in .q-ic{width:30px;height:30px;border-radius:8px;background:#E1F5EE;color:#085041;font-weight:700;display:flex;align-items:center;justify-content:center;flex:none;font-size:15px}
+.f-email{top:118px;left:-134px;--dd:0.54s}
+.f-note{top:298px;right:-96px;--dd:1.26s}
+.f-email .s10f-in .eic{width:28px;height:28px;border-radius:8px;background:#E1F5EE;display:flex;align-items:center;justify-content:center;flex:none}
+.f-note .s10f-in .nic{width:28px;height:28px;border-radius:8px;background:#FFF3DF;display:flex;align-items:center;justify-content:center;flex:none}
+.f-email .s10f-in .eic svg,.f-note .s10f-in .nic svg{width:15px;height:15px}
 .scene.active .s10f{animation:s10drift 8s ease-in-out infinite var(--dd,0s)}
 .scene.active .s10f-in{animation:s10pop .6s var(--ease-out) forwards var(--d,0s)}
 @keyframes s10pop{from{opacity:0;transform:translateY(10px) scale(.86)}to{opacity:1;transform:none}}
@@ -793,13 +824,13 @@ body{font-family:'Outfit',system-ui,-apple-system,'Segoe UI',sans-serif;backgrou
   <div class="la-wrap">
     <video class="la-bg" id="scene1Vid" src="scene1-foreman.mp4" muted loop playsinline preload="auto"></video>
     <span class="la-scrim" aria-hidden="true"></span>
-    <div class="la-inset fx" style="--d:.5s">
+    <div class="la-inset fx" style="--d:0.3s">
       <video class="la-inset-vid" id="scene1Inset" src="scene1-office.mp4" muted loop playsinline preload="auto"></video>
     </div>
     <div class="la-copy">
       <div class="eyebrow fx">The way it works now</div>
-      <h2 class="hl" style="--d:.16s">Still <em>chasing prices?</em></h2>
-      <p class="supp fx" style="--d:.34s">Half the week lost to the phone chasing prices, certificates, people who never saw the email.</p>
+      <h2 class="hl" style="--d:0.096s">Still <em>chasing prices?</em></h2>
+      <p class="supp fx" style="--d:0.204s">Half the week lost to the phone chasing prices, certificates, people who never saw the email.</p>
     </div>
   </div>
   </section>
@@ -811,17 +842,16 @@ body{font-family:'Outfit',system-ui,-apple-system,'Segoe UI',sans-serif;backgrou
   <div class="split">
     <div class="copy">
       <div class="eyebrow fx">The other end</div>
-      <h2 class="hl" style="--d:.16s">No reply. No status.<br><em>No idea.</em></h2>
-      <p class="supp fx" style="--d:.34s">Buried in a thread neither side can tell if the job’s still live.</p>
+      <h2 class="hl" style="--d:0.096s">No reply. No status.<br><em>No idea.</em></h2>
+      <p class="supp fx" style="--d:0.204s">Buried in a thread neither side can tell if the job’s still live.</p>
     </div>
     <div class="screen"><div class="stagebox">
-      <div class="win" style="--d:.4s"><div class="win-bar"><span></span><span></span><span></span><u></u></div>
+      <div class="win" style="--d:0.24s"><div class="win-bar"><span></span><span></span><span></span><u></u></div>
         <div class="win-body gm">
           <div class="gm-search"><svg viewBox="0 0 20 20"><circle cx="8.5" cy="8.5" r="5.5"/><path d="M12.5 12.5l4.5 4.5"/></svg><span>Search mail</span></div>
-          <div class="gm-tools"><svg viewBox="0 0 20 20"><path d="M11 4L5 10l6 6M5 10h11"/></svg><svg viewBox="0 0 20 20"><path d="M2.5 5.5h15v3h-15zM4 8.5v7h12v-7M8 11h4"/></svg><svg viewBox="0 0 20 20"><path d="M4 5.5h12M8 5.5V4h4v1.5M5.5 5.5l1 10h7l1-10"/></svg><svg viewBox="0 0 20 20"><path d="M2.5 5h15v10h-15zM2.5 5l7.5 6 7.5-6"/></svg><svg viewBox="0 0 20 20"><circle cx="10" cy="10" r="7"/><path d="M10 6v4l3 2"/></svg><svg viewBox="0 0 20 20"><path d="M2.5 6h5l1.5 2h8.5v8h-15z"/></svg><svg viewBox="0 0 20 20"><path d="M3 4h8l6 6-6 6H3z"/></svg><svg viewBox="0 0 20 20"><circle cx="10" cy="4.5" r="1.1" fill="#5F6368" stroke="none"/><circle cx="10" cy="10" r="1.1" fill="#5F6368" stroke="none"/><circle cx="10" cy="15.5" r="1.1" fill="#5F6368" stroke="none"/></svg><span class="sp">3 of 128</span></div>
           <div class="gm-subj">RE: RE: FW: Velocity Link Hwy Extension Request for Quotation
             <span class="gm-lbl">Inbox</span></div>
-          <div class="mstat mk" data-mark="No status" style="--d:3.1s">no status anywhere in this thread</div>
+          <div class="mstat mk" data-mark="No status" style="--d:1.86s">no status anywhere in this thread</div>
 
           <div class="gm-msg">
             <div class="gm-av">A</div>
@@ -831,10 +861,6 @@ body{font-family:'Outfit',system-ui,-apple-system,'Segoe UI',sans-serif;backgrou
                 <span class="gm-right"><span class="gm-date">1 Mar, 9:31 am</span><svg viewBox="0 0 20 20"><path d="M10 3l2.2 4.5 5 .7-3.6 3.5.9 5-4.5-2.4L5.5 16.7l.9-5L2.8 8.2l5-.7z"/></svg><svg viewBox="0 0 20 20"><path d="M8 5L3 9.5 8 14M3 9.5h7a6 6 0 016 6"/></svg></span></div>
               <div class="gm-to">to me</div>
               <div class="gm-text">Please include your itemised schedule of rates with the quote.</div>
-              <div class="gm-att">
-                <div class="gm-card"><div class="th"></div><div class="fn">Scope_of_Works_FINAL_v4.pdf</div><div class="fs">PDF &middot; 2.4 MB</div></div>
-                <div class="gm-card"><div class="th"></div><div class="fn">Drawings_Rev_C.zip</div><div class="fs">ZIP &middot; 48.2 MB</div></div>
-              </div>
             </div>
           </div>
 
@@ -849,9 +875,9 @@ body{font-family:'Outfit',system-ui,-apple-system,'Segoe UI',sans-serif;backgrou
             </div>
           </div>
 
-          <div class="mgap mk" data-mark="No reply" style="--d:2.2s">no reply &middot; 19 days</div>
+          <div class="mgap mk" data-mark="No reply" style="--d:1.32s">no reply &middot; 19 days</div>
 
-          <div class="gm-msg mk" data-mark="No idea" style="--d:4s">
+          <div class="gm-msg mk" data-mark="No idea" style="--d:2.4s">
             <div class="gm-av">A</div>
             <div class="gm-b">
               <div class="gm-top"><span class="gm-name">Andrew Williams</span>
@@ -878,26 +904,26 @@ body{font-family:'Outfit',system-ui,-apple-system,'Segoe UI',sans-serif;backgrou
   <div class="pov con">Head contractor</div>
   <div class="turnwrap">
     <div class="eyebrow fx">How Tenderfy helps</div>
-    <h2 class="hl" style="--d:.16s">Request quotes from every subcontractor <em>in one go.</em></h2>
-    <p class="supp fx" style="--d:.34s">One request to every subcontractor at once same scope, same deadline.</p>
+    <h2 class="hl" style="--d:0.096s">Request quotes from every subcontractor <em>in one go.</em></h2>
+    <p class="supp fx" style="--d:0.204s">One request to every subcontractor at once same scope, same deadline.</p>
     <div class="fanout" aria-hidden="true">
-      <span class="fan-src fx" style="--d:.62s"><i class="fan-dot"></i>One request</span>
+      <span class="fan-src fx" style="--d:0.372s"><i class="fan-dot"></i>One request</span>
       <svg class="fan-lines" viewBox="0 0 720 120" preserveAspectRatio="none">
-        <path pathLength="1" style="--d:.95s" d="M360 2 C360 70 72 46 72 118"/>
-        <path pathLength="1" style="--d:1.05s" d="M360 2 C360 70 216 52 216 118"/>
-        <path pathLength="1" style="--d:1.15s" d="M360 2 L360 118"/>
-        <path pathLength="1" style="--d:1.25s" d="M360 2 C360 70 504 52 504 118"/>
-        <path pathLength="1" style="--d:1.35s" d="M360 2 C360 70 648 46 648 118"/>
+        <path pathLength="1" style="--d:0.57s" d="M360 2 C360 70 72 46 72 118"/>
+        <path pathLength="1" style="--d:0.63s" d="M360 2 C360 70 216 52 216 118"/>
+        <path pathLength="1" style="--d:0.69s" d="M360 2 L360 118"/>
+        <path pathLength="1" style="--d:0.75s" d="M360 2 C360 70 504 52 504 118"/>
+        <path pathLength="1" style="--d:0.81s" d="M360 2 C360 70 648 46 648 118"/>
       </svg>
       <div class="fan-outs">
-        <span class="fan-out" style="--d:1.5s"><i class="fan-av">CO</i><b class="fan-lb">Concrete</b></span>
-        <span class="fan-out" style="--d:1.6s"><i class="fan-av">EL</i><b class="fan-lb">Electrical</b></span>
-        <span class="fan-out" style="--d:1.7s"><i class="fan-av">PL</i><b class="fan-lb">Plumbing</b></span>
-        <span class="fan-out" style="--d:1.8s"><i class="fan-av">ST</i><b class="fan-lb">Steel</b></span>
-        <span class="fan-out" style="--d:1.9s"><i class="fan-av">GL</i><b class="fan-lb">Glazing</b></span>
+        <span class="fan-out" style="--d:0.9s"><i class="fan-av">CO</i><b class="fan-lb">Concrete</b></span>
+        <span class="fan-out" style="--d:0.96s"><i class="fan-av">EL</i><b class="fan-lb">Electrical</b></span>
+        <span class="fan-out" style="--d:1.02s"><i class="fan-av">PL</i><b class="fan-lb">Plumbing</b></span>
+        <span class="fan-out" style="--d:1.08s"><i class="fan-av">ST</i><b class="fan-lb">Steel</b></span>
+        <span class="fan-out" style="--d:1.14s"><i class="fan-av">GL</i><b class="fan-lb">Glazing</b></span>
       </div>
     </div>
-    <div class="fan-note fx" style="--d:2.15s">No phone calls · no chasing · no re-typing</div>
+    <div class="fan-note fx" style="--d:1.29s">No phone calls · no chasing · no re-typing</div>
   </div>
 </section>
 
@@ -905,15 +931,15 @@ body{font-family:'Outfit',system-ui,-apple-system,'Segoe UI',sans-serif;backgrou
 <section class="scene scene-light" data-s="4">
   <div class="deco"><span class="orb orb-teal" style="width:36vw;height:36vw;right:-9vw;top:-16vh"></span><span class="dots" style="width:15vw;height:19vh;left:4%;bottom:10%"></span></div>
   <div class="pov con">Head contractor</div>
-  <div class="split flip">
+  <div class="split">
     <div class="copy">
       <div class="eyebrow fx">Step 1 of 3 · Review the pack</div>
-      <h2 class="hl" style="--d:.16s"><em>Step 1.</em><br>Review the pack.</h2>
-      <p class="supp fx" style="--d:.34s">Ray pulls the packages that need pricing straight from the pack.</p>
+      <h2 class="hl" style="--d:0.096s"><em>Step 1.</em><br>Review the pack.</h2>
+      <p class="supp fx" style="--d:0.204s">Ray pulls the packages that need pricing straight from the pack.</p>
     </div>
     <div class="screen"><div class="stagebox" style="width:1120px">
-      <div class="deckwrap"><div class="win" style="--d:.4s"><div class="win-bar"><span></span><span></span><span></span><u></u></div>
-        <div class="pfwrap"><iframe class="pf" data-screen="p4" scrolling="no" title="Tenderfy actual UI"></iframe></div></div><aside class="rp" style="--d:.4s"><div class="rp-head"><span class="rp-av con"></span><span class="rp-nm">Andrew Williams</span><span class="rp-nm2">Tenderfy Civil</span></div><div class="chatb"><div class="cbub them"><span class="who">Contractor</span>Sent through the tender pack 6 documents.</div><div class="cbub me"><span class="who">You</span>Thanks going through the drawings now.</div></div><div class="chati"><span class="ph"></span><span class="snd"></span></div></aside></div>    </div></div>
+      <div class="win" style="--d:0.24s"><div class="win-bar"><span></span><span></span><span></span><u></u></div>
+        <div class="pfwrap"><iframe class="pf" data-screen="p4" scrolling="no" title="Tenderfy actual UI"></iframe></div></div>    </div></div>
   </div>
 </section>
 
@@ -922,36 +948,34 @@ body{font-family:'Outfit',system-ui,-apple-system,'Segoe UI',sans-serif;backgrou
   <div class="deco"><span class="orb orb-blue" style="width:34vw;height:34vw;left:-9vw;bottom:-13vh"></span><span class="dots" style="width:14vw;height:18vh;right:5%;top:12%"></span></div>
   <div class="pov con">Head contractor</div>
   <div class="pov sub">Subcontractor</div>
-  <div class="split flip">
+  <div class="split">
     <div class="copy">
       <div class="eyebrow fx">Step 2 of 3 · Request the quote</div>
-      <h2 class="hl" style="--d:.16s"><em>Step 2.</em><br>Request the quote.</h2>
-      <p class="supp fx" style="--d:.34s">One request, sent to every subcontractor while the page is still open.</p>
+      <h2 class="hl" style="--d:0.096s"><em>Step 2.</em><br>Request the quote.</h2>
+      <p class="supp fx" style="--d:0.204s">One request, sent to every subcontractor while the page is still open.</p>
     </div>
     <div class="screen"><div class="stagebox" style="width:1180px">
       <div class="sendsplit">
         <div class="ss-side">
-          <span class="ss-tag fx" style="--d:.55s">Contractor sends once</span>
-          <video class="ss-bg" id="s5conVid" src="happy-contractor.mp4" muted loop playsinline preload="auto"></video>
-          <div class="win" style="--d:.4s"><div class="win-bar"><span></span><span></span><span></span><u></u></div>
-            <div class="uim"><div class="h"><span class="t">Send to subcontractors</span><span class="cp g" style="margin-left:auto">8 selected</span></div><div class="rcp"><span class="rav"></span><span class="rn"></span><span class="rck"></span></div><div class="rcp"><span class="rav"></span><span class="rn"></span><span class="rck"></span></div><div class="rcp"><span class="rav"></span><span class="rn"></span><span class="rck"></span></div><div class="rcp"><span class="rav"></span><span class="rn"></span><span class="rck"></span></div><div class="rcp"><span class="rav"></span><span class="rn"></span><span class="rck"></span></div><div class="rcp"><span class="rav"></span><span class="rn"></span><span class="rck"></span></div></div></div>
+          <span class="ss-tag fx" style="--d:0.33s">Contractor sends once</span>
+          <div class="win" style="--d:0.24s"><div class="win-bar"><span></span><span></span><span></span><u></u></div>
+            <div class="uim"><div class="h"><span class="t">Send to subcontractors</span><span class="cp g" style="margin-left:auto">6 selected</span></div><div class="rcp"><span class="rav">NC</span><span class="rn"><span class="rnm">Northolt Construction</span><span class="rtr">Traffic Management</span></span><span class="rck"></span></div><div class="rcp"><span class="rav">IT</span><span class="rn"><span class="rnm">Ironbark Traffic</span><span class="rtr">Traffic Control</span></span><span class="rck"></span></div><div class="rcp"><span class="rav">MC</span><span class="rn"><span class="rnm">Metro Civil</span><span class="rtr">Civil Works</span></span><span class="rck"></span></div><div class="rcp"><span class="rav">AL</span><span class="rn"><span class="rnm">Apex Linemarking</span><span class="rtr">Line Marking</span></span><span class="rck"></span></div><div class="rcp"><span class="rav">BE</span><span class="rn"><span class="rnm">Boulder Earthworks</span><span class="rtr">Earthworks</span></span><span class="rck"></span></div><div class="rcp"><span class="rav">SS</span><span class="rn"><span class="rnm">Summit Signage</span><span class="rtr">Signage &amp; Devices</span></span><span class="rck"></span></div></div></div>
         </div>
         <div class="ss-mid" aria-hidden="true">
-          <svg class="ss-arc" viewBox="0 0 168 84">
+          <svg class="ss-arc" viewBox="0 0 168 120" preserveAspectRatio="xMidYMid meet">
             <defs><linearGradient id="ssg" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#FFBC4A"/><stop offset=".55" stop-color="#39B98C"/><stop offset="1" stop-color="#1D9E75"/></linearGradient></defs>
-            <path class="arc-line" pathLength="1" d="M4 66 C46 4 122 4 160 60"/>
-            <path class="arc-head" d="M160 60 L147 57 L152 68 Z" transform="rotate(50 160 60)" fill="#1D9E75"/></svg>
+            <path class="arc-line" pathLength="1" d="M8 74 C54 26 116 26 160 78"/>
+            <path class="arc-head" d="M160 78 L147 73 L147 83 Z" transform="rotate(50 160 78)" fill="#1D9E75"/></svg>
           <span class="ss-pulse"></span>
           <span class="ss-token"><svg viewBox="0 0 24 24" fill="#0F1917"><path d="M3.4 20.6l17.6-8.6L3.4 3.4 3.4 10l11 2-11 2z"/></svg>Request</span>
         </div>
         <div class="ss-side ss-sub">
-          <span class="ss-tag sub fx" style="--d:2.5s">Lands with every subcontractor</span>
-          <video class="ss-bg" id="s5subVid" src="happy-subbies.mp4" muted loop playsinline preload="auto"></video>
-          <div class="win" style="--d:2.35s"><div class="win-bar"><span></span><span></span><span></span><u></u></div>
+          <span class="ss-tag sub fx" style="--d:1.5s">Lands with every subcontractor</span>
+          <div class="win" style="--d:1.41s"><div class="win-bar"><span></span><span></span><span></span><u></u></div>
             <div class="pfwrap"><iframe class="pf" data-screen="req" scrolling="no" title="Request details"></iframe></div></div>
         </div>
       </div>
-      <div class="toast" style="left:-24px;bottom:-52px;--d:3.5s"><span class="tick"></span> Request sent · 8 subcontractors</div>
+      <div class="toast" style="left:-24px;bottom:-52px;--d:2.1s"><span class="tick"></span> Request sent · 6 subcontractors</div>
     </div></div>
   </div>
 </section>
@@ -960,15 +984,15 @@ body{font-family:'Outfit',system-ui,-apple-system,'Segoe UI',sans-serif;backgrou
 <section class="scene scene-deep" data-s="6">
   <div class="deco"><span class="orb orb-teal" style="width:40vw;height:40vw;left:-10vw;bottom:-16vh;--od:17s"></span><span class="dots" style="width:16vw;height:20vh;right:6%;top:14%"></span></div>
   <div class="pov con">Head contractor</div>
-  <div class="split flip">
+  <div class="split">
     <div class="copy">
       <div class="eyebrow fx">Step 3 of 3 · Automatic follow-up</div>
-      <h2 class="hl" style="--d:.16s"><em>Step 3.</em><br>Tenderfy <em>does the chasing.</em></h2>
-      <p class="supp fx" style="--d:.34s">Follow-ups go out automatically on schedule, capped, in the contractor’s words.</p>
+      <h2 class="hl" style="--d:0.096s"><em>Step 3.</em><br>Tenderfy <em>does the chasing.</em></h2>
+      <p class="supp fx" style="--d:0.204s">Follow-ups go out automatically on schedule, capped, in the contractor’s words.</p>
     </div>
     <div class="screen"><div class="stagebox" style="width:1120px">
-      <div class="win" style="--d:.4s;max-height:560px"><div class="win-bar"><span></span><span></span><span></span><u></u></div>
-        <div class="pfwrap"><iframe class="pf" data-screen="nud" scrolling="no" title="Nudge settings"></iframe></div></div><div class="toast" style="right:-20px;bottom:-30px;--d:3.4s"><span class="tick"></span> Nudge sent · 1 of 2</div>
+      <div class="win" style="--d:0.24s;max-height:560px"><div class="win-bar"><span></span><span></span><span></span><u></u></div>
+        <div class="pfwrap"><iframe class="pf" data-screen="nud" scrolling="no" title="Nudge settings"></iframe></div></div><div class="mailcard" style="top:18px;right:-52px;--d:1.86s"><div class="mc-h"><span class="mc-ic"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18v12H3z"/><path d="M3 7l9 6 9-6"/></svg></span><span class="mc-fr">Tenderfy Civil</span><span class="mc-tm">9:00am</span></div><div class="mc-su">Following up on your quote request</div><div class="mc-bd">Just following up on our quote request for Traffic Management. We’d love to hear from you before Fri 14 Mar.</div></div><div class="toast" style="right:-20px;bottom:-30px;--d:2.34s"><span class="tick"></span> Nudge sent · 1 of 2</div>
     </div></div>
   </div>
 </section>
@@ -977,15 +1001,15 @@ body{font-family:'Outfit',system-ui,-apple-system,'Segoe UI',sans-serif;backgrou
 <section class="scene scene-light" data-s="7">
   <div class="deco"><span class="orb orb-teal" style="width:36vw;height:36vw;right:-9vw;top:-16vh"></span><span class="dots" style="width:15vw;height:19vh;left:4%;bottom:10%"></span></div>
   <div class="pov sub">Subcontractor</div>
-  <div class="split">
+  <div class="split flip">
     <div class="copy">
-      <div class="eyebrow fx">Why the subcontractor says yes</div>
-      <h2 class="hl" style="--d:.16s">Priced online.<br><em>Nothing to download.</em></h2>
-      <p class="supp fx" style="--d:.34s">Drawings, scope and terms in the browser priced right, first time.</p>
+      <div class="eyebrow fx">Why it works · 1 of 3</div>
+      <h2 class="hl" style="--d:0.096s">Priced online.<br><em>Nothing to download.</em></h2>
+      <p class="supp fx" style="--d:0.204s">Drawings, scope and documents in the browser priced right, first time.</p>
     </div>
     <div class="screen"><div class="stagebox" style="width:1120px">
-      <div class="deckwrap"><div class="win" style="--d:.4s"><div class="win-bar"><span></span><span></span><span></span><u></u></div>
-        <div class="pfwrap"><iframe class="pf" data-screen="p7" scrolling="no" title="Tenderfy actual UI"></iframe></div></div><aside class="rp" style="--d:.4s"><div class="rp-head"><span class="rp-av con"></span><span class="rp-nm">Andrew Williams</span><span class="rp-nm2">Tenderfy Civil</span></div><div class="chatb"><div class="cbub them"><span class="who">Contractor</span>Does your price include ROL coordination?</div><div class="cbub me"><span class="who">You</span>Excluded it’s listed under exclusions.</div><div class="cbub them"><span class="who">Contractor</span>Understood, we’ll carry that.</div></div><div class="chati"><span class="ph"></span><span class="snd"></span></div></aside></div>
+      <div class="deckwrap"><div class="win" style="--d:0.24s"><div class="win-bar"><span></span><span></span><span></span><u></u></div>
+        <div class="pfwrap"><iframe class="pf" data-screen="p7" scrolling="no" title="Tenderfy actual UI"></iframe></div></div><aside class="rp" style="--d:0.24s"><div class="rp-head"><span class="rp-fold"></span><span class="rp-nm">Attached to this request</span><span class="rp-nm2">4 files · in-browser</span></div><div class="docl"><div class="docrow"><span class="dfi pdf">PDF</span><span class="dfn">Drawings · Rev 3</span><span class="dopen">Open</span></div><div class="docrow"><span class="dfi doc">DOC</span><span class="dfn">Scope of Works</span><span class="dopen">Open</span></div><div class="docrow"><span class="dfi xls">XLS</span><span class="dfn">Pricing Schedule</span><span class="dopen">Open</span></div><div class="docrow"><span class="dfi pdf">PDF</span><span class="dfn">Addendum 01</span><span class="dopen">Open</span></div></div></aside></div>
     </div></div>
   </div>
 </section>
@@ -997,47 +1021,30 @@ body{font-family:'Outfit',system-ui,-apple-system,'Segoe UI',sans-serif;backgrou
   <div class="pov sub">Subcontractor</div>
   <div class="split flip">
     <div class="copy">
-      <div class="eyebrow fx">Compliance</div>
-      <h2 class="hl" style="--d:.16s">Compliance <em>without asking.</em></h2>
-      <p class="supp fx" style="--d:.34s">The profile shows what’s current and what’s about to lapse uploaded once.</p>
+      <div class="eyebrow fx">Why it works · 2 of 3</div>
+      <h2 class="hl" style="--d:0.096s">Compliance <em>without asking.</em></h2>
+      <p class="supp fx" style="--d:0.204s">The profile shows what’s current and what’s about to lapse uploaded once.</p>
     </div>
-    <div class="screen"><div class="stagebox" style="width:1120px">
-      <div class="deckwrap"><div class="win" style="--d:.4s"><div class="win-bar"><span></span><span></span><span></span><u></u></div>
-        <div class="pfwrap"><iframe class="pf" data-screen="p8p" scrolling="no" title="Tenderfy actual UI"></iframe></div></div><aside class="rp" style="--d:.4s"><div class="rp-head"><span class="rp-av con"></span><span class="rp-nm">Andrew Williams</span><span class="rp-nm2">Tenderfy Civil</span></div><div class="chatb"><div class="cbub them"><span class="who">Contractor</span>Can you confirm your Workers Comp is current?</div><div class="cbub me"><span class="who">You</span>Valid to 12 Aug certificate’s attached.</div></div><div class="chati"><span class="ph"></span><span class="snd"></span></div></aside></div>      <div class="mirror" style="--d:3.4s"><div class="mk">Subcontractor side</div><div class="mv">Uploaded once.</div><div class="msub">Current on every tender they price no re-sending, no reminders.</div></div>
+    <div class="screen"><div class="stagebox" style="width:900px">
+      <div class="win" style="--d:0.24s"><div class="win-bar"><span></span><span></span><span></span><u></u></div>
+        <div class="uim"><div class="h"><span class="t">Compliance documents</span><span class="cp g" style="margin-left:auto">3 current · 1 expiring</span></div><div class="r"><span class="fi"></span><span class="nm">Public Liability</span><span class="sm">$20M · to 30 Jun 2026</span><span class="cp g sp">Current</span></div><div class="r"><span class="fi"></span><span class="nm">Workers Compensation</span><span class="sm">to 12 Aug 2026</span><span class="cp g sp">Current</span></div><div class="r"><span class="fi"></span><span class="nm">QBCC Licence</span><span class="sm">#1208834</span><span class="cp g sp">Current</span></div><div class="r"><span class="fi"></span><span class="nm">Professional Indemnity</span><span class="sm">renewal due soon</span><span class="cp a sp">Expires in 21 days</span></div></div></div><div class="mirror" style="--d:2.04s"><div class="mk">Subcontractor side</div><div class="mv">Uploaded once.</div><div class="msub">Current on every tender they price no re-sending, no reminders.</div></div>
     </div></div>
   </div>
 </section>
 
-<!-- ========== 9. ONE REQUEST, DOCUMENTS ATTACHED screen L / copy R (contractor) ========== -->
-<section class="scene scene-deep" data-s="9">
-  <div class="deco"><span class="orb orb-teal" style="width:40vw;height:40vw;left:-10vw;bottom:-16vh;--od:17s"></span><span class="dots" style="width:16vw;height:20vh;right:6%;top:14%"></span></div>
-  <div class="pov con">Head contractor</div>
-  <div class="split flip">
-    <div class="copy">
-      <div class="eyebrow fx">Documents</div>
-      <h2 class="hl" style="--d:.16s">One request.<br><em>Documents attached.</em></h2>
-      <p class="supp fx" style="--d:.34s">One request pulls the documents straight through into the tender.</p>
-    </div>
-    <div class="screen"><div class="stagebox" style="width:1120px">
-      <div class="deckwrap"><div class="win" style="--d:.4s"><div class="win-bar"><span></span><span></span><span></span><u></u></div>
-        <div class="pfwrap"><iframe class="pf" data-screen="p9d" scrolling="no" title="Tenderfy actual UI"></iframe></div></div><aside class="rp" style="--d:.4s"><div class="rp-head"><span class="rp-av con"></span><span class="rp-nm">Andrew Williams</span><span class="rp-nm2">Tenderfy Civil</span></div><div class="chatb"><div class="cbub them"><span class="who">Contractor</span>Can you attach your capability statement?</div><div class="cbub me"><span class="who">You</span>Done pulled it into the request.</div></div><div class="chati"><span class="ph"></span><span class="snd"></span></div></aside></div>
-    </div></div>
-  </div>
-</section>
-
-<!-- ========== 10. ASK DIRECT the exchange, both sides in frame ========== -->
-<section class="scene scene-light" data-s="10">
+<!-- ========== 9. ASK DIRECT the exchange, both sides in frame (was 10; docs folded into 7) ========== -->
+<section class="scene scene-light" data-s="9">
   <div class="deco"><span class="orb orb-teal" style="width:36vw;height:36vw;right:-9vw;top:-16vh"></span><span class="dots" style="width:15vw;height:19vh;left:4%;bottom:10%"></span></div>
   <div class="pov con">Head contractor</div>
   <div class="pov sub">Subcontractor</div>
-  <div class="split">
+  <div class="split flip">
     <div class="copy">
-      <div class="eyebrow fx">One record</div>
-      <h2 class="hl" style="--d:.16s">Subcontractor asks.<br><em>Contractor answers.</em></h2>
-      <p class="supp fx" style="--d:.34s">One thread on the job no side email, nothing lost.</p>
+      <div class="eyebrow fx">Why it works · 3 of 3</div>
+      <h2 class="hl" style="--d:0.096s">Subcontractor asks.<br><em>Contractor answers.</em></h2>
+      <p class="supp fx" style="--d:0.204s">One thread on the job no side email, nothing lost.</p>
     </div>
     <div class="screen"><div class="stagebox" style="width:660px">
-      <div class="s10chat fx" style="--d:.3s" role="img" aria-label="The subcontractor and the contractor messaging in one Tenderfy thread">
+      <div class="s10chat fx" style="--d:0.18s" role="img" aria-label="The subcontractor and the contractor messaging in one Tenderfy thread">
         <div class="msg-card">
           <div class="msg-head">
             <svg class="tl" viewBox="0 0 24 24"><path d="M4 4h16a1 1 0 011 1v10a1 1 0 01-1 1H9.5L5 20v-4H4a1 1 0 01-1-1V5a1 1 0 011-1z" fill="#1D9E75"/></svg>
@@ -1046,11 +1053,11 @@ body{font-family:'Outfit',system-ui,-apple-system,'Segoe UI',sans-serif;backgrou
             <svg class="ch" viewBox="0 0 24 24" fill="none" stroke="#596262" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 15l6-6 6 6"/></svg>
           </div>
           <div class="msg-body">
-            <div class="turn me-turn" style="--d:.9s"><div class="bub me">Quick one before I price it &mdash; the weekend shifts, are they at the after-hours rate or quoted separately?</div><div class="msg-meta">Today &middot; 9:31am &middot; Seen</div></div>
-            <div class="turn them-turn" style="--d:2.1s"><div class="msg-from"><span class="ava" style="background:#EF6C00">AC</span><span class="nm">Acme Constructions</span> Today &middot; 9:33am &middot; Seen</div><div class="bub them">Separately. Weekday after-hours is 1.5&times;, weekends are 2.0&times;.</div></div>
-            <div class="turn me-turn" style="--d:3.3s"><div class="bub me">Got it. And ROL coordination &mdash; in scope, or excluded?</div><div class="msg-meta">Today &middot; 9:34am &middot; Seen</div></div>
-            <div class="turn them-turn" style="--d:4.5s"><div class="msg-from"><span class="ava" style="background:#EF6C00">AC</span><span class="nm">Acme Constructions</span> Today &middot; 9:36am &middot; Seen</div><div class="bub them">Excluded for now. Price it as a variation if it turns out you need it.</div></div>
-            <div class="turn me-turn" style="--d:5.7s"><div class="bub me">Perfect &mdash; that answers everything. Quote coming through today.</div><div class="msg-meta">Today &middot; 9:37am &middot; Seen</div></div>
+            <div class="turn me-turn" style="--d:0.54s"><div class="bub me">Quick one before I price it the weekend shifts, are they at the after-hours rate or quoted separately?</div><div class="msg-meta">Today &middot; 9:31am &middot; Seen</div></div>
+            <div class="turn them-turn" style="--d:1.26s"><div class="msg-from"><span class="ava" style="background:#EF6C00">AC</span><span class="nm">Acme Constructions</span> Today &middot; 9:33am &middot; Seen</div><div class="bub them">Separately. Weekday after-hours is 1.5&times;, weekends are 2.0&times;.</div></div>
+            <div class="turn me-turn" style="--d:1.98s"><div class="bub me">Got it. And ROL coordination in scope, or excluded?</div><div class="msg-meta">Today &middot; 9:34am &middot; Seen</div></div>
+            <div class="turn them-turn" style="--d:2.7s"><div class="msg-from"><span class="ava" style="background:#EF6C00">AC</span><span class="nm">Acme Constructions</span> Today &middot; 9:36am &middot; Seen</div><div class="bub them">Excluded for now. Price it as a variation if it turns out you need it.</div></div>
+            <div class="turn me-turn" style="--d:3.42s"><div class="bub me">Perfect that answers everything. Quote coming through today.</div><div class="msg-meta">Today &middot; 9:37am &middot; Seen</div></div>
           </div>
           <div class="msg-input">
             <span class="plus"><svg viewBox="0 0 24 24" fill="none" stroke="#596262" stroke-width="2" stroke-linecap="round"><path d="M12 6v12M6 12h12"/></svg></span>
@@ -1060,39 +1067,47 @@ body{font-family:'Outfit',system-ui,-apple-system,'Segoe UI',sans-serif;backgrou
         </div>
       </div>
       <!-- floating UI bits around the card visual noise, not part of the chat -->
-      <div class="s10f f-notif" aria-hidden="true"><div class="s10f-in" style="--d:1.5s">
+      <div class="s10f f-notif" aria-hidden="true"><div class="s10f-in" style="--d:0.9s">
         <span class="fav" style="background:#EF6C00">AC<i class="dot"></i></span>
         <div class="tx"><b>Acme Constructions</b><span>replied &middot; just now</span></div>
       </div></div>
-      <div class="s10f f-file" aria-hidden="true"><div class="s10f-in" style="--d:2.7s">
+      <div class="s10f f-file" aria-hidden="true"><div class="s10f-in" style="--d:1.62s">
         <svg viewBox="0 0 24 24" fill="none" stroke="#B7791F" stroke-width="1.7"><path d="M6 3h8l4 4v14H6z"/><path d="M9 13h6M9 16h4" stroke-linecap="round"/></svg>
         <div class="tx"><b>Rate Card 2026</b><span>PDF &middot; 240 KB</span></div>
       </div></div>
-      <div class="s10f f-react" aria-hidden="true"><div class="s10f-in" style="--d:4.9s">&#128077; <b>1</b></div></div>
-      <div class="s10f f-seen" aria-hidden="true"><div class="s10f-in" style="--d:3.6s">
+      <div class="s10f f-react" aria-hidden="true"><div class="s10f-in" style="--d:2.94s">&#128077; <b>1</b></div></div>
+      <div class="s10f f-seen" aria-hidden="true"><div class="s10f-in" style="--d:2.16s">
         <svg viewBox="0 0 24 24" fill="none" stroke="#1D9E75" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12l5 5 8-10"/><path d="M11 15l2 2 8-10"/></svg> Seen 9:37am
       </div></div>
-      <div class="s10f f-quote" aria-hidden="true"><div class="s10f-in" style="--d:6.2s">
+      <div class="s10f f-quote" aria-hidden="true"><div class="s10f-in" style="--d:3.72s">
         <span class="q-ic">$</span>
         <div class="tx"><b>Quote QUO-2026-0455</b><span>$11,290 inc. GST &middot; sent</span></div>
+      </div></div>
+      <div class="s10f f-email" aria-hidden="true"><div class="s10f-in" style="--d:1.2s">
+        <span class="eic"><svg viewBox="0 0 24 24" fill="none" stroke="#1D9E75" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18v12H3z"/><path d="M3 7l9 6 9-6"/></svg></span>
+        <div class="tx"><b>New reply in your thread</b><span>Email notification &middot; now</span></div>
+      </div></div>
+      <div class="s10f f-note" aria-hidden="true"><div class="s10f-in" style="--d:1.86s">
+        <span class="nic"><svg viewBox="0 0 24 24" fill="none" stroke="#B7791F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v11l-5 5H4z"/><path d="M15 20v-5h5"/></svg></span>
+        <div class="tx"><b>Note · weekend rate</b><span>Confirm before award</span></div>
       </div></div>
     </div></div>
   </div>
 </section>
 
-<!-- ========== 11. EVERY QUOTE, ONE TOTAL the payoff, two-up ========== -->
-<section class="scene scene-dark" data-s="11">
+<!-- ========== 10. EVERY QUOTE, ONE TOTAL the payoff, two-up ========== -->
+<section class="scene scene-dark" data-s="10">
   <div class="deco"><span class="orb orb-blue" style="width:44vw;height:44vw;left:-12vw;top:-18vh"></span><span class="orb orb-amber" style="width:24vw;height:24vw;right:-7vw;bottom:-14vh;--od:18s"></span><svg class="clip-mark" viewBox="0 0 32 65"><use href="#clipSym"/></svg></div>
   <div class="pov con">Head contractor</div>
   <div class="pov sub">Subcontractor</div>
   <div class="split flip">
     <div class="copy">
       <div class="eyebrow fx">The number</div>
-      <h2 class="hl" style="--d:.16s">Every quote.<br><em>One total.</em></h2>
-      <p class="supp fx" style="--d:.34s">Every price in one place, totalling itself no spreadsheet.</p>
+      <h2 class="hl" style="--d:0.096s">Every quote.<br><em>One total.</em></h2>
+      <p class="supp fx" style="--d:0.204s">Every price in one place, totalling itself no spreadsheet.</p>
     </div>
     <div class="screen"><div class="stagebox" style="width:840px">
-      <div class="s11cmp fx" style="--d:.3s" role="img" aria-label="Three subcontractor quotes compared side by side, the lowest highlighted">
+      <div class="s11cmp fx" style="--d:0.18s" role="img" aria-label="Three subcontractor quotes compared side by side, the lowest highlighted">
         <div class="cmp-wrap">
           <span class="col-hl"></span>
           <table class="cmp-table">
@@ -1126,28 +1141,28 @@ body{font-family:'Outfit',system-ui,-apple-system,'Segoe UI',sans-serif;backgrou
         </div>
       </div>
       <!-- floating contractor comment / question cards around the comparison -->
-      <div class="s11q" style="top:-54px;left:78px;--dd:0s" aria-hidden="true"><div class="in" style="--d:2.2s">
+      <div class="s11q" style="top:-54px;left:78px;--dd:0s" aria-hidden="true"><div class="in" style="--d:1.32s">
         <div class="hd"><span class="av">AW</span><span class="nm">Andrew Williams</span><span class="rl">2m</span></div>
         <div class="q">Does everyone&rsquo;s price include after-hours?</div><span class="tip tip-b"></span>
       </div></div>
-      <div class="s11q" style="bottom:-42px;left:120px;--dd:1.4s" aria-hidden="true"><div class="in" style="--d:4.2s">
+      <div class="s11q" style="bottom:-42px;left:120px;--dd:0.84s" aria-hidden="true"><div class="in" style="--d:2.52s">
         <div class="hd"><span class="av">AW</span><span class="nm">Andrew Williams</span><span class="rl">1m</span></div>
-        <div class="q">Lowest total &mdash; but does it cover permits? &#10003;</div><span class="tip tip-t"></span>
+        <div class="q">Lowest total but does it cover permits? &#10003;</div><span class="tip tip-t"></span>
       </div></div>
-      <div class="s11q" style="bottom:-42px;right:96px;--dd:2.4s" aria-hidden="true"><div class="in" style="--d:6.0s">
+      <div class="s11q" style="bottom:-42px;right:96px;--dd:1.44s" aria-hidden="true"><div class="in" style="--d:3.6s">
         <div class="hd"><span class="av">AW</span><span class="nm">Andrew Williams</span><span class="rl">now</span></div>
-        <div class="q">Metro&rsquo;s is civil works, not traffic &mdash; same scope?</div><span class="tip tip-t"></span>
+        <div class="q">Metro&rsquo;s is civil works, not traffic same scope?</div><span class="tip tip-t"></span>
       </div></div>
     </div></div>
   </div>
 </section>
 
-<!-- ========== 12. END CARD ========== -->
-<section class="scene scene-end" data-s="12">
+<!-- ========== 11. END CARD ========== -->
+<section class="scene scene-end" data-s="11">
   <div class="la-wrap end-la">
     <video class="la-bg" id="endBgVid" src="happy-contractor.mp4" muted loop playsinline preload="auto"></video>
     <span class="la-scrim end-scrim"></span>
-    <div class="la-inset end-inset fx" style="--d:.6s"><video class="la-inset-vid" id="endInsetVid" src="happy-subbies.mp4" muted loop playsinline preload="auto"></video></div>
+    <div class="la-inset end-inset fx" style="--d:0.36s"><video class="la-inset-vid" id="endInsetVid" src="happy-subbies.mp4" muted loop playsinline preload="auto"></video></div>
   </div>
   <svg class="wm" role="img" aria-label="Tenderfy"><use href="#tfWordmark"/></svg>
   <span class="rule"></span>
@@ -1172,7 +1187,7 @@ body{font-family:'Outfit',system-ui,-apple-system,'Segoe UI',sans-serif;backgrou
   </div>
   <div class="chrome-bot">
     <div class="segs" id="segs" role="tablist" aria-label="Scenes"></div>
-    <span class="hud-count" id="hudCount">01 / 12</span><!-- set by paint() -->
+    <span class="hud-count" id="hudCount">01 / 11</span><!-- set by paint() -->
     <div class="hud">
       <button class="hud-btn" id="btnRestart" aria-label="Restart">
         <svg viewBox="0 0 16 16" fill="none"><path d="M5 3.4v9.2M12.2 3.4l-6 4.6 6 4.6z" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
@@ -3347,7 +3362,7 @@ function renderAddList(){
   let html = '';
   if(cqTender && TENDERS[cqTender]){
     const tdocs = TENDERS[cqTender].docs.filter(d=>!taken.has(d.name));
-    html += \`<div class="cq-srclab">From this tender &mdash; \${esc(cqTender)}</div>\`;
+    html += \`<div class="cq-srclab">From this tender \${esc(cqTender)}</div>\`;
     html += tdocs.length
       ? tdocs.map(l=>\`<div class="cq-addopt" onclick="addFile('\${esc(l.name)}')"><span class="ftag \${l.type}">\${l.type.toUpperCase()}</span> \${esc(l.name)}<span class="sz">\${l.size}</span></div>\`).join('')
       : '<div class="cq-addempty">All tender documents added.</div>';
@@ -3538,7 +3553,7 @@ function renderPreview(){
       }).join('');
       const chips=ranges(f).map(r=>\`<span class="schip">\${r[0]===r[1]?('p. '+r[0]):('pp. '+r[0]+'–'+r[1])}<span class="ms x" onclick="rmRange(\${f.id},\${r[0]},\${r[1]})">close</span></span>\`).join('');
       const hasToc = (f.toc||[]).length>0;
-      inner=\`\${hasToc?'Tick whole sections from the outline, or jump':'Jump'} to a page and tap &mdash; <b style="display:inline">\${esc(f.name)}</b>\${rayHits?\` &middot; <span style="color:#7E57C2;font-weight:600">Ray matches marked</span>\`:''}\`
+      inner=\`\${hasToc?'Tick whole sections from the outline, or jump':'Jump'} to a page and tap <b style="display:inline">\${esc(f.name)}</b>\${rayHits?\` &middot; <span style="color:#7E57C2;font-weight:600">Ray matches marked</span>\`:''}\`
         +(hasToc?\`<div class="toc">\${toc}</div>\`:'')
         +\`<div class="pgjump"><span class="lbl">Go to page</span><input id="pgGoto" type="number" min="1" max="\${f.pages}" placeholder="118" onkeydown="if(event.key==='Enter')pgJump(\${f.id})"><a class="btn btn-outline btn-sm" onclick="pgJump(\${f.id})">Go</a><span class="pager"><span class="pgbtn\${winStart<=1?' off':''}" onclick="pgWinStep(\${f.id},-1)"><span class="ms" style="font-size:16px">chevron_left</span></span><span class="win">\${winStart}&ndash;\${end} of \${f.pages}</span><span class="pgbtn\${end>=f.pages?' off':''}" onclick="pgWinStep(\${f.id},1)"><span class="ms" style="font-size:16px">chevron_right</span></span></span></div>\`
         +\`<div class="pgpick oneline">\${pills}</div>\`
@@ -3794,14 +3809,14 @@ function nsTest(id){
 <a class="fdoc" href="document-detail.html" data-exp="2026-09-30" data-rem="30" data-mail="1"><div class="top"><span class="doctag pdf">PDF</span><span class="top-r"><span class="sub" style="font-size:11px">3 Pages</span><span class="fgear" title="Due date &amp; reminders"><span class="ms">settings</span></span></span></div><div class="thumb"><b style="font-size:9px;color:#666">Certificate of Currency &ndash; Public Liability</b><br><br>This is to certify that the insurance policy described below is current and in force. Insured: Tenderfy Civil Pty Ltd. Limit of liability: $20,000,000 any one occurrence&hellip;</div><div class="ti">Public Liability Insurance</div><div class="by cat">Insurance</div><div class="fexp"></div></a>
 <a class="fdoc" href="document-detail.html" data-exp="2026-07-05" data-rem="30" data-mail="1"><div class="top"><span class="doctag pdf">PDF</span><span class="top-r"><span class="sub" style="font-size:11px">2 Pages</span><span class="fgear" title="Due date &amp; reminders"><span class="ms">settings</span></span></span></div><div class="thumb"><b style="font-size:9px;color:#666">Workers&rsquo; Compensation &ndash; Certificate of Currency</b><br><br>This certificate confirms a current workers&rsquo; compensation insurance policy is held in accordance with the Workers&rsquo; Compensation and Rehabilitation Act&hellip;</div><div class="ti">Workers Comp Certificate</div><div class="by cat">Insurance</div><div class="fexp"></div></a>
 <a class="fdoc" href="document-detail.html" data-exp="2026-05-20" data-rem="14" data-mail="1"><div class="top"><span class="doctag pdf">PDF</span><span class="top-r"><span class="sub" style="font-size:11px">1 Page</span><span class="fgear" title="Due date &amp; reminders"><span class="ms">settings</span></span></span></div><div class="thumb"><b style="font-size:9px;color:#666">QBCC Contractor Licence</b><br><br>Licence No. QLD 000 749-0. Class: Electrical &amp; Traffic Management. The licensee named is authorised to carry out the classes of work listed, subject to conditions&hellip;</div><div class="ti">Trade Licence</div><div class="by cat">Licence</div><div class="fexp"></div></a>
-<a class="fdoc" href="document-detail.html" data-exp="2027-01-15" data-rem="60" data-mail="1" data-by="Kenzie May"><div class="top"><span class="doctag pdf">PDF</span><span class="top-r"><span class="sub" style="font-size:11px">1 Page</span><span class="fgear" title="Due date &amp; reminders"><span class="ms">settings</span></span></span></div><div class="thumb"><b style="font-size:9px;color:#666">General Construction Induction Card (White Card)</b><br><br>Card No. 0048213. The holder has completed general construction induction training in accordance with the Work Health and Safety Regulation&hellip;</div><div class="ti">White Card &mdash; K. May</div><div class="by cat">Certification</div><div class="fexp"></div></a>
-<a class="fdoc" href="document-detail.html"><div class="top"><span class="doctag">DOCX</span><span class="top-r"><span class="sub" style="font-size:11px">6 Pages</span><span class="fgear" title="Due date &amp; reminders"><span class="ms">settings</span></span></span></div><div class="thumb"><b style="font-size:9px;color:#666">Safe Work Method Statement &ndash; Traffic Management</b><br><br>This SWMS covers high-risk construction work involving traffic control, signage installation and lane closures. Hazards, risks and control measures are detailed&hellip;</div><div class="ti">SWMS &mdash; Traffic Management</div><div class="by cat">Others</div><div class="fexp"></div></a>
+<a class="fdoc" href="document-detail.html" data-exp="2027-01-15" data-rem="60" data-mail="1" data-by="Kenzie May"><div class="top"><span class="doctag pdf">PDF</span><span class="top-r"><span class="sub" style="font-size:11px">1 Page</span><span class="fgear" title="Due date &amp; reminders"><span class="ms">settings</span></span></span></div><div class="thumb"><b style="font-size:9px;color:#666">General Construction Induction Card (White Card)</b><br><br>Card No. 0048213. The holder has completed general construction induction training in accordance with the Work Health and Safety Regulation&hellip;</div><div class="ti">White Card K. May</div><div class="by cat">Certification</div><div class="fexp"></div></a>
+<a class="fdoc" href="document-detail.html"><div class="top"><span class="doctag">DOCX</span><span class="top-r"><span class="sub" style="font-size:11px">6 Pages</span><span class="fgear" title="Due date &amp; reminders"><span class="ms">settings</span></span></span></div><div class="thumb"><b style="font-size:9px;color:#666">Safe Work Method Statement &ndash; Traffic Management</b><br><br>This SWMS covers high-risk construction work involving traffic control, signage installation and lane closures. Hazards, risks and control measures are detailed&hellip;</div><div class="ti">SWMS Traffic Management</div><div class="by cat">Others</div><div class="fexp"></div></a>
 <a class="fdoc" href="document-detail.html" data-exp="2026-12-01" data-rem="14"><div class="top"><span class="doctag pdf">PDF</span><span class="top-r"><span class="sub" style="font-size:11px">8 Pages</span><span class="fgear" title="Due date &amp; reminders"><span class="ms">settings</span></span></span></div><div class="thumb"><b style="font-size:9px;color:#666">Capability Statement 2026</b><br><br>Company profile, key personnel, plant and equipment schedule, recent projects and referees for Tenderfy Civil Pty Ltd&hellip;</div><div class="ti">Capability Statement</div><div class="by cat">Capability Statement</div><div class="fexp"></div></a>
 </div>`,
   p9d: `<div class="card collapsible" style="margin-top:18px">
             <div class="coll-head"><h3 class="coll-title" style="margin:0">Supporting documents <span class="ms coll-chev">expand_less</span></h3><a class="btn btn-outline coll-actions fm-add" style="cursor:pointer"><span class="ms" style="font-size:18px">folder_open</span> Add from File Manager</a></div>
             <div class="coll-body">
-            <p class="sub" style="margin-top:4px">Optional &mdash; but a complete submission improves your chances.</p>
+            <p class="sub" style="margin-top:4px">Optional but a complete submission improves your chances.</p>
             <div class="dropzone" style="cursor:pointer"><div style="font-weight:500;color:var(--ink)">Click or drag files to upload</div><div style="font-size:12px;margin-top:4px">PDF, DOCX, JPG, PNG &middot; Max 25MB per file</div></div>
             <div class="filerow"><span class="pdftag">PDF</span><span class="grow">Itemised Quote / Schedule of Rates.pdf</span><span class="sub"><span style="cursor:pointer" data-toast="Opening preview&hellip;">View</span> &nbsp; <span style="color:var(--accent);cursor:pointer"><span class="ms" style="font-size:14px">close</span> Remove</span></span></div><div class="filerow"><span class="pdftag">PDF</span><span class="grow">Public Liability Certificate.pdf</span><span class="sub"><span style="cursor:pointer" data-toast="Opening preview&hellip;">View</span> &nbsp; <span style="color:var(--accent);cursor:pointer"><span class="ms" style="font-size:14px">close</span> Remove</span></span></div>
             </div>
@@ -3833,7 +3848,7 @@ function nsTest(id){
       <h3>Capabilities</h3>
       <div class="pfrow"><span class="k">Trades</span><span class="v"><span class="tchip">Traffic Management</span><span class="tchip">Civil Works</span><span class="tchip">Drainage</span><span class="tchip">Signage &amp; Linemarking</span></span></div>
       <div class="pfrow"><span class="k">Accreditations</span><span class="v">CM3 Certified &middot; ISO 45001 &middot; TMR Prequalified (R1)</span></div>
-      <div class="pfrow"><span class="k">Service area</span><span class="v">South East QLD &mdash; Brisbane, Logan, Gold Coast, Ipswich</span></div>
+      <div class="pfrow"><span class="k">Service area</span><span class="v">South East QLD Brisbane, Logan, Gold Coast, Ipswich</span></div>
       <div class="pfrow"><span class="k">Company size</span><span class="v">11&ndash;50 employees &middot; 8 field crews</span></div>
     </div>
   </div>`
@@ -3843,6 +3858,7 @@ function nsTest(id){
 const FRAME_CSS = `html,body{margin:0;background:#F9FAFB;font-family:'Outfit',system-ui,sans-serif;overflow:hidden}
   .backlink,.mbar,.mbar-pad>.crumb,.crumb,.ctabs,.vr-title{display:none!important}
   .pad,.pad.mbar-pad{padding-top:20px!important}
+  .vr-detail{padding:6px 20px 12px!important}   /* extracted panel lost its parent's side padding */
   .rev{opacity:0}
   .rev.go{animation:rowIn .5s cubic-bezier(.25,1,.3,1) both,revPop .6s ease both;animation-delay:calc(var(--i,0)*70ms)}
   @keyframes rowIn{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
@@ -3860,8 +3876,7 @@ const FRAME_CSS = `html,body{margin:0;background:#F9FAFB;font-family:'Outfit',sy
   /* cards select in sequence reusing the Ray film's own pieces:
      stripPop (scale + green-tint flash) + its border-checkmark (rotated white border in a teal badge) */
   .fdoc{position:relative!important;border:2px solid transparent!important;border-radius:12px!important;
-    animation:fdStrip .55s cubic-bezier(.2,.7,.2,1) both,fdBorder .4s ease both,fdLive 3.2s ease-in-out infinite}
-  @keyframes fdLive{0%,100%{box-shadow:0 1px 3px rgba(0,0,0,.05)}50%{box-shadow:0 0 0 3px rgba(29,158,117,.14),0 6px 16px rgba(29,158,117,.12)}}
+    animation:fdStrip .55s cubic-bezier(.2,.7,.2,1) both,fdBorder .4s ease both}
   .fdoc::before{content:"";position:absolute;top:9px;right:9px;width:18px;height:18px;border-radius:50%;
     background:#1D9E75;opacity:0;transform:scale(.4);animation:fdPop .45s cubic-bezier(.2,.9,.3,1) both;z-index:3}
   .fdoc::after{content:"";position:absolute;top:13px;right:15px;width:4px;height:7px;border:solid #fff;
@@ -3870,14 +3885,14 @@ const FRAME_CSS = `html,body{margin:0;background:#F9FAFB;font-family:'Outfit',sy
   @keyframes fdBorder{to{border-color:#1D9E75}}
   @keyframes fdPop{to{opacity:1;transform:scale(1)}}
   @keyframes fdTick{to{opacity:1}}
-  .fdoc:nth-child(1),.fdoc:nth-child(1)::before,.fdoc:nth-child(1)::after{animation-delay:.45s}
-  .fdoc:nth-child(2),.fdoc:nth-child(2)::before,.fdoc:nth-child(2)::after{animation-delay:.72s}
-  .fdoc:nth-child(3),.fdoc:nth-child(3)::before,.fdoc:nth-child(3)::after{animation-delay:.99s}
-  .fdoc:nth-child(4),.fdoc:nth-child(4)::before,.fdoc:nth-child(4)::after{animation-delay:1.26s}
-  .fdoc:nth-child(5),.fdoc:nth-child(5)::before,.fdoc:nth-child(5)::after{animation-delay:1.53s}
-  .fdoc:nth-child(6),.fdoc:nth-child(6)::before,.fdoc:nth-child(6)::after{animation-delay:1.8s}
-  .fdoc:nth-child(7),.fdoc:nth-child(7)::before,.fdoc:nth-child(7)::after{animation-delay:2.07s}
-  .fdoc:nth-child(8),.fdoc:nth-child(8)::before,.fdoc:nth-child(8)::after{animation-delay:2.34s}`;
+  .fdoc:nth-child(1),.fdoc:nth-child(1)::before,.fdoc:nth-child(1)::after{animation-delay:0.27s}
+  .fdoc:nth-child(2),.fdoc:nth-child(2)::before,.fdoc:nth-child(2)::after{animation-delay:0.432s}
+  .fdoc:nth-child(3),.fdoc:nth-child(3)::before,.fdoc:nth-child(3)::after{animation-delay:0.594s}
+  .fdoc:nth-child(4),.fdoc:nth-child(4)::before,.fdoc:nth-child(4)::after{animation-delay:0.756s}
+  .fdoc:nth-child(5),.fdoc:nth-child(5)::before,.fdoc:nth-child(5)::after{animation-delay:0.918s}
+  .fdoc:nth-child(6),.fdoc:nth-child(6)::before,.fdoc:nth-child(6)::after{animation-delay:1.08s}
+  .fdoc:nth-child(7),.fdoc:nth-child(7)::before,.fdoc:nth-child(7)::after{animation-delay:1.242s}
+  .fdoc:nth-child(8),.fdoc:nth-child(8)::before,.fdoc:nth-child(8)::after{animation-delay:1.404s}`;
 
 /* rows stagger in, then the panel drifts if it is taller than the crop */
 const ROWSEL='tr,.row,.nc-item,.qa-opt,.set-row,.field,.bub,.tnote,.rs-row,.iechip,.ie-chips,.filerow,.gst-line,.doc,.coll-head,.sline,.mrow,.subrow,.rcp,li';
@@ -3902,26 +3917,37 @@ function mountScreen(frame){
   frame.dataset.mounted = '1';
   frame.addEventListener('load', () => {
     const sizeIt = () => {
-      const wrap = frame.parentElement; if(!wrap) return;   // .pfwrap, 16:9
-      const Z = 0.82;                                       // constant scale → uniform ~11.5px text everywhere
-      frame.style.width  = (wrap.clientWidth  / Z) + 'px';  // logical width derived from the window
-      frame.style.height = (wrap.clientHeight / Z) + 'px';
+      const wrap = frame.parentElement; if(!wrap) return;   // .pfwrap
+      const Z = 0.95;                                       // renders panels near 1:1 → larger, more legible UI text
+      const logicalW = wrap.clientWidth / Z;                // logical width derived from the window
+      frame.style.width = logicalW + 'px';
       frame.style.setProperty('--pfz', Z);
+      // fit the window to the panel's real height — no empty gap under short panels, no
+      // mid-scroll crop — but never taller than a 16:10 frame (long pages still crop + drift)
+      const cap = logicalW * (900/1440);
+      let ch = cap;
+      try { const d = frame.contentDocument;
+        if(d && d.body){ const nat = Math.max(d.body.scrollHeight, d.documentElement.scrollHeight);
+          if(nat > 40) ch = Math.min(nat + 6, cap); } } catch(e){}
+      frame.style.height = ch + 'px';
+      wrap.style.aspectRatio = 'auto';
+      wrap.style.height = (ch * Z) + 'px';
       fitBoxes();
     };
     sizeIt();
     addEventListener('resize', sizeIt);
     setTimeout(()=>{ sizeIt(); animateFrame(frame); }, 250);
+    setTimeout(sizeIt, 650);   // re-fit once fonts/layout settle
   });
   frame.srcdoc = '<style>' + PROTO_CSS + FRAME_CSS + '</' + 'style>' + SCREENS[key];
 }
 
 const SCENES=[
- {n:1,dur:8,label:'Still chasing',pov:'con',lay:'full bleed live action',
+ {n:1,dur:7,label:'Still chasing',pov:'con',lay:'full bleed live action',
   vo:"Half the contractor's week goes on the phone. Chasing prices, chasing certificates, chasing people who never saw the email.",
   shot:'Site office, contractor on the phone, hold-music face. Printed pack gone cold. Desaturated grade.',
   cap:'L1 · LIVE ACTION not yet shot. Stock or phone-shot; see §6 blocking decision 1.'},
- {n:2,dur:8,label:'No idea',pov:'sub',lay:'copy LEFT / screen RIGHT',
+ {n:2,dur:7,label:'No idea',pov:'sub',lay:'copy LEFT / screen RIGHT',
   vo:"At the other end, the request sits buried in a thread. The subcontractor cannot tell whether the job is still live either.",
   shot:'Dead thread, unread chase message, missed calls. Nothing is teal yet.',
   cap:'P1 · motion graphics, nothing to record'},
@@ -3929,39 +3955,35 @@ const SCENES=[
   vo:"Here is what changes. The contractor selects the subcontractors and sends one request same scope, same questions, same deadline, to all of them at once.",
   shot:'The turn from problem to product. One amber request chip fans out along five drawn lines to five subbie avatars. First teal in the film.',
   cap:'C16 · motion graphics, nothing to record'},
- {n:4,dur:11,label:'Step 1 · Review the pack',pov:'con',lay:'screen LEFT / copy RIGHT',
-  vo:"It starts where the work does. The contractor opens the tender pack, and Ray pulls out the packages that need pricing reviewing scope, not hunting through a PDF.",
-  shot:'Pack opens; Ray surfaces five trade packages down the right. Eyebrow reads STEP 1 OF 3.',
+ {n:4,dur:9,label:'Step 1 · Review the pack',pov:'con',lay:'mock top / copy below',
+  vo:"It starts where the work does. The contractor opens the tender pack and the packages that need pricing surface on their own reviewing scope, not hunting through a PDF.",
+  shot:'Pack opens; five trade packages surface as selectable cards. Eyebrow reads STEP 1 OF 3.',
   cap:'C11 · contractor/build-tender.html'},
- {n:5,dur:12,label:'Step 2 · Request the quote',pov:'both',lay:'split send two desks in one frame',
+ {n:5,dur:10,label:'Step 2 · Request the quote',pov:'both',lay:'split send two windows in one frame',
   vo:"The contractor sends one request. Same scope, same questions, same deadline and Tenderfy delivers it to every subcontractor while the page is still open.",
-  shot:'The split send. Contractor window left, subbie window right and lower; an amber Request token flies the arc between them. The film\'s first two-sided frame.',
-  cap:'C12 · mocks built inline contractor request-quote dialog (left) + subbie view-quote-request (right). Final: two recordings cut to the same action'},
- {n:6,dur:11,label:'Step 3 · Tenderfy chases',pov:'con',lay:'screen LEFT / copy RIGHT',
+  shot:'The split send. Contractor window left, subbie window right and lower; an amber Request token flies the arc between them. Clean UI, no footage.',
+  cap:'C12 · mocks built inline contractor request-quote dialog (left) + subbie view-quote-request (right).'},
+ {n:6,dur:9,label:'Step 3 · Tenderfy chases',pov:'con',lay:'copy top / mock below',
   vo:"Then Tenderfy does the chasing. Follow-ups on a schedule the contractor sets, in the contractor's own words, and capped so nobody is ringing subcontractors at seven at night.",
   shot:'Delay / max / window fields, then the follow-up message. The cap is the point.',
   cap:'C5 · contractor/settings.html'},
- {n:7,dur:12,label:'Priced online',pov:'sub',lay:'copy LEFT / screen RIGHT',
-  vo:"The subcontractor side is just as easy. Nothing to download the drawings and the scope open in the browser, and inclusions, exclusions and assumptions are already stated, so the subcontractor prices the right job first time.",
-  shot:'Moved up from 9 to break the contractor run. Document opens inline, then line items stagger and I/E/A tags pop. The three-item list is the subbie\'s reason to say yes.',
-  cap:'C6 + C15 · subbies/view-request.html, document-detail.html, prepare-quote.html'},
- {n:8,dur:11,label:'Compliance',pov:'both',lay:'screen LEFT / copy RIGHT + mirror card',
+ {n:7,dur:11,label:'Priced online',pov:'sub',lay:'mock top / copy below + Q&A panel',
+  vo:"The subcontractor side is just as easy. Nothing to download drawings, scope and any attached documents open in the browser, inclusions and exclusions already stated, so they price the right job first time.",
+  shot:'Merged benefit (old 7 + 9): document opens inline, line items stagger, I/E/A tags pop, and a short pricing Q&A sits beside it. Documents flow through here too.',
+  cap:'C6 + C15 · subbies/view-request.html, prepare-quote.html'},
+ {n:8,dur:9,label:'Compliance',pov:'both',lay:'mock top / copy below + mirror card (no chat)',
   vo:"And the contractor never asks for an insurance certificate again. The subcontractor profile shows what is current and what is about to lapse uploaded once, and current for every tender they price.",
-  shot:'Four document rows, three Current, one amber Expires in 21 days. The mirror card gives the subbie\'s half of the same fact.',
+  shot:'Four document rows, three Current, one amber Expires in 21 days. The mirror card gives the subbie half of the same fact. Composition differs from 7 no side chat.',
   cap:'C13 · contractor/subbies.html'},
- {n:9,dur:9,label:'Documents attached',pov:'con',lay:'screen LEFT / copy RIGHT',
-  vo:"When those documents are needed on the job, one request pulls them straight through into the tender.",
-  shot:'Request documents → four files land in the attachments list in sequence.',
-  cap:'C14 · contractor/build-tender.html'},
- {n:10,dur:9,label:'Ask direct',pov:'both',lay:'copy LEFT / screen RIGHT + both-party thread',
+ {n:9,dur:8,label:'Ask direct',pov:'both',lay:'mock top / copy below + both-party thread',
   vo:"Anything unclear, the subcontractor asks on the job itself and the contractor answers from the same thread. One record, answered in minutes.",
   shot:'The real Subbies Messages card, played live: the subcontractor asks, the contractor answers, turns sliding in on a stagger. Both POV badges lit.',
-  cap:'C1 · subbies Messages card capture from scene10-chat.html (typing dots + loop); animatic shows the CSS-reveal timing'},
- {n:11,dur:10,label:'One total',pov:'both',lay:'screen LEFT / copy RIGHT + payoff mirror',
+  cap:'C1 · subbies Messages card; the one place chat is the whole frame.'},
+ {n:10,dur:9,label:'One total',pov:'both',lay:'mock top / copy below + payoff mirror',
   vo:"Then every price lands in one place and totals itself. One subcontractor figure for the job priced in twenty minutes without a phone call.",
-  shot:'Three quotes side by side (real compare.html data). A teal spotlight sweeps the columns left→right, holding on each; the lowest (Ironbark) stays green. Contractor comment/question cards float in around it.',
-  cap:'C8 · compare.html rebuilt inline for the column sweep + review comments (old iframe + payoff mini/mirror removed)'},
- {n:12,dur:6,label:'End card',pov:'con',lay:'full bleed brand ramp',
+  shot:'Three quotes side by side (real compare.html data). A teal spotlight sweeps the columns left→right, holding on each; the lowest (Ironbark) stays green.',
+  cap:'C8 · compare.html rebuilt inline for the column sweep.'},
+ {n:11,dur:6,label:'End card',pov:'con',lay:'full bleed brand ramp',
   vo:"Tenderfy Subbies. Request once every price comes back in one place.",
   shot:'Brand ramp end card, wordmark, one line.',
   cap:'C10 · motion graphics'}
@@ -4011,7 +4033,9 @@ function fitBoxes(){
       padX=Math.max(padX, br.left-r.left, r.right-br.right);
     });
     bw+=2*padX; bh+=2*padY;
-    box.style.setProperty('--ws', Math.min(1, w/(bw+40), h/(bh+40)).toFixed(4));
+    // upscale small mocks to fill the stacked area — improves readability of the ~11.5px UI text;
+    // scenes with room grow (capped 1.35), height/width-constrained ones stay put
+    box.style.setProperty('--ws', Math.min(1.35, w/(bw+40), h/(bh+40)).toFixed(4));
   });
 }
 addEventListener('resize',fitBoxes);
@@ -4049,20 +4073,11 @@ function paint(n){
   const hl=el.querySelector('.hl'); if(hl) splitCh(hl);   // Ray per-char headline reveal
   void el.offsetWidth; el.classList.add('active');   // force animation restart on re-entry
   const s=SCENES[n-1];
-  [document.getElementById('scene1Vid'),document.getElementById('scene1Inset')]  // live-action opener + inset
+  // live-action bookends only: opener (scene 1) and end card (scene 11). The middle is clean UI.
+  [document.getElementById('scene1Vid'),document.getElementById('scene1Inset')]
     .forEach(v=>{ if(!v) return; if(n===1){ v.currentTime=0; v.play().catch(()=>{}); } else { v.pause(); } });
-  const s1v=document.getElementById('step1Vid');  // Step 1 · Review the pack plays on scene 4
-  if(s1v){ if(n===4){ s1v.currentTime=0; s1v.play().catch(()=>{}); } else { s1v.pause(); } }
-  const s7v=document.getElementById('s7Vid');  // Priced online plays on scene 7
-  if(s7v){ if(n===7){ s7v.currentTime=0; s7v.play().catch(()=>{}); } else { s7v.pause(); } }
-  const s8v=document.getElementById('s8Vid');  // Compliance without asking plays on scene 8
-  if(s8v){ if(n===8){ s8v.currentTime=0; s8v.play().catch(()=>{}); } else { s8v.pause(); } }
-  const s9v=document.getElementById('s9Vid');  // One request, documents attached plays on scene 9
-  if(s9v){ if(n===9){ s9v.currentTime=0; s9v.play().catch(()=>{}); } else { s9v.pause(); } }
-  [document.getElementById('s5conVid'),document.getElementById('s5subVid')]  // happy both sides behind Step 2 UI
-    .forEach(v=>{ if(!v) return; if(n===5){ v.currentTime=0; v.play().catch(()=>{}); } else { v.pause(); } });
-  [document.getElementById('endBgVid'),document.getElementById('endInsetVid')]  // happy both sides on the thank-you
-    .forEach(v=>{ if(!v) return; if(n===12){ v.currentTime=0; v.play().catch(()=>{}); } else { v.pause(); } });
+  [document.getElementById('endBgVid'),document.getElementById('endInsetVid')]
+    .forEach(v=>{ if(!v) return; if(n===11){ v.currentTime=0; v.play().catch(()=>{}); } else { v.pause(); } });
   voNote.textContent=s.vo||'—';
   // light scenes get dark chrome + teal wordmark; dark/ramp scenes get white
   chromeEl.classList.toggle('on-light',/scene-light|scene-offwhite/.test(el.className));
