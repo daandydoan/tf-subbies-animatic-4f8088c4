@@ -222,6 +222,19 @@ body{font-family:'Outfit',system-ui,-apple-system,'Segoe UI',sans-serif;backgrou
 .scene.active .cbub:nth-child(3){animation-delay:2.75s}
 .scene.active .cbub:nth-child(4){animation-delay:3.55s}
 @keyframes cbIn{to{opacity:1;transform:none}}
+/* documents card (scene 7): the attached files, opening in the browser, revealed one by one */
+.rp-fold{width:19px;height:19px;border-radius:5px;background:#EAF3EF;border:1px solid #D6E5DE;flex:none}
+.docl{padding:11px;display:flex;flex-direction:column;gap:7px;background:#F7F9F8}
+.docrow{display:flex;align-items:center;gap:9px;background:#fff;border:1px solid #E6EAE8;border-radius:9px;padding:8px 10px;opacity:0;transform:translateY(9px)}
+.scene.active .docrow{animation:cbIn .5s var(--ease-out) both}
+.scene.active .docrow:nth-child(1){animation-delay:1.15s}
+.scene.active .docrow:nth-child(2){animation-delay:1.6s}
+.scene.active .docrow:nth-child(3){animation-delay:2.05s}
+.scene.active .docrow:nth-child(4){animation-delay:2.5s}
+.dfi{font-size:8px;font-weight:700;letter-spacing:.4px;color:#fff;border-radius:4px;padding:3px 5px;flex:none}
+.dfi.pdf{background:#E4572E}.dfi.doc{background:#2E6BE4}.dfi.xls{background:#1D9E75}
+.dfn{font-size:11px;color:var(--ink);font-weight:600;flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.dopen{font-size:9.5px;color:var(--teal-dark);font-weight:600;flex:none}
 .uim{background:#fff;padding:15px 17px;display:flex;flex-direction:column;gap:7px;
   overflow:hidden;font-size:12px;color:var(--ink)}
 .uim .h{display:flex;align-items:baseline;gap:10px;margin-bottom:2px}
@@ -905,15 +918,15 @@ body{font-family:'Outfit',system-ui,-apple-system,'Segoe UI',sans-serif;backgrou
 <section class="scene scene-light" data-s="4">
   <div class="deco"><span class="orb orb-teal" style="width:36vw;height:36vw;right:-9vw;top:-16vh"></span><span class="dots" style="width:15vw;height:19vh;left:4%;bottom:10%"></span></div>
   <div class="pov con">Head contractor</div>
-  <div class="split flip">
+  <div class="split">
     <div class="copy">
       <div class="eyebrow fx">Step 1 of 3 · Review the pack</div>
       <h2 class="hl" style="--d:.16s"><em>Step 1.</em><br>Review the pack.</h2>
       <p class="supp fx" style="--d:.34s">Ray pulls the packages that need pricing straight from the pack.</p>
     </div>
     <div class="screen"><div class="stagebox" style="width:1120px">
-      <div class="deckwrap"><div class="win" style="--d:.4s"><div class="win-bar"><span></span><span></span><span></span><u></u></div>
-        <div class="pfwrap"><iframe class="pf" data-screen="p4" scrolling="no" title="Tenderfy actual UI"></iframe></div></div><aside class="rp" style="--d:.4s"><div class="rp-head"><span class="rp-av con"></span><span class="rp-nm">Andrew Williams</span><span class="rp-nm2">Tenderfy Civil</span></div><div class="chatb"><div class="cbub them"><span class="who">Contractor</span>Sent through the tender pack 6 documents.</div><div class="cbub me"><span class="who">You</span>Thanks going through the drawings now.</div></div><div class="chati"><span class="ph"></span><span class="snd"></span></div></aside></div>    </div></div>
+      <div class="win" style="--d:.4s"><div class="win-bar"><span></span><span></span><span></span><u></u></div>
+        <div class="pfwrap"><iframe class="pf" data-screen="p4" scrolling="no" title="Tenderfy actual UI"></iframe></div></div>    </div></div>
   </div>
 </section>
 
@@ -958,7 +971,7 @@ body{font-family:'Outfit',system-ui,-apple-system,'Segoe UI',sans-serif;backgrou
 <section class="scene scene-deep" data-s="6">
   <div class="deco"><span class="orb orb-teal" style="width:40vw;height:40vw;left:-10vw;bottom:-16vh;--od:17s"></span><span class="dots" style="width:16vw;height:20vh;right:6%;top:14%"></span></div>
   <div class="pov con">Head contractor</div>
-  <div class="split flip">
+  <div class="split">
     <div class="copy">
       <div class="eyebrow fx">Step 3 of 3 · Automatic follow-up</div>
       <h2 class="hl" style="--d:.16s"><em>Step 3.</em><br>Tenderfy <em>does the chasing.</em></h2>
@@ -975,15 +988,15 @@ body{font-family:'Outfit',system-ui,-apple-system,'Segoe UI',sans-serif;backgrou
 <section class="scene scene-light" data-s="7">
   <div class="deco"><span class="orb orb-teal" style="width:36vw;height:36vw;right:-9vw;top:-16vh"></span><span class="dots" style="width:15vw;height:19vh;left:4%;bottom:10%"></span></div>
   <div class="pov sub">Subcontractor</div>
-  <div class="split">
+  <div class="split flip">
     <div class="copy">
-      <div class="eyebrow fx">Why the subcontractor says yes</div>
+      <div class="eyebrow fx">Why it works · 1 of 3</div>
       <h2 class="hl" style="--d:.16s">Priced online.<br><em>Nothing to download.</em></h2>
       <p class="supp fx" style="--d:.34s">Drawings, scope and documents in the browser priced right, first time.</p>
     </div>
     <div class="screen"><div class="stagebox" style="width:1120px">
       <div class="deckwrap"><div class="win" style="--d:.4s"><div class="win-bar"><span></span><span></span><span></span><u></u></div>
-        <div class="pfwrap"><iframe class="pf" data-screen="p7" scrolling="no" title="Tenderfy actual UI"></iframe></div></div><aside class="rp" style="--d:.4s"><div class="rp-head"><span class="rp-av con"></span><span class="rp-nm">Andrew Williams</span><span class="rp-nm2">Tenderfy Civil</span></div><div class="chatb"><div class="cbub them"><span class="who">Contractor</span>Does your price include ROL coordination?</div><div class="cbub me"><span class="who">You</span>Excluded it’s listed under exclusions.</div><div class="cbub them"><span class="who">Contractor</span>Understood, we’ll carry that.</div></div><div class="chati"><span class="ph"></span><span class="snd"></span></div></aside></div>
+        <div class="pfwrap"><iframe class="pf" data-screen="p7" scrolling="no" title="Tenderfy actual UI"></iframe></div></div><aside class="rp" style="--d:.4s"><div class="rp-head"><span class="rp-fold"></span><span class="rp-nm">Attached to this request</span><span class="rp-nm2">4 files · in-browser</span></div><div class="docl"><div class="docrow"><span class="dfi pdf">PDF</span><span class="dfn">Drawings · Rev 3</span><span class="dopen">Open</span></div><div class="docrow"><span class="dfi doc">DOC</span><span class="dfn">Scope of Works</span><span class="dopen">Open</span></div><div class="docrow"><span class="dfi xls">XLS</span><span class="dfn">Pricing Schedule</span><span class="dopen">Open</span></div><div class="docrow"><span class="dfi pdf">PDF</span><span class="dfn">Addendum 01</span><span class="dopen">Open</span></div></div></aside></div>
     </div></div>
   </div>
 </section>
@@ -995,7 +1008,7 @@ body{font-family:'Outfit',system-ui,-apple-system,'Segoe UI',sans-serif;backgrou
   <div class="pov sub">Subcontractor</div>
   <div class="split flip">
     <div class="copy">
-      <div class="eyebrow fx">Compliance</div>
+      <div class="eyebrow fx">Why it works · 2 of 3</div>
       <h2 class="hl" style="--d:.16s">Compliance <em>without asking.</em></h2>
       <p class="supp fx" style="--d:.34s">The profile shows what’s current and what’s about to lapse uploaded once.</p>
     </div>
@@ -1011,9 +1024,9 @@ body{font-family:'Outfit',system-ui,-apple-system,'Segoe UI',sans-serif;backgrou
   <div class="deco"><span class="orb orb-teal" style="width:36vw;height:36vw;right:-9vw;top:-16vh"></span><span class="dots" style="width:15vw;height:19vh;left:4%;bottom:10%"></span></div>
   <div class="pov con">Head contractor</div>
   <div class="pov sub">Subcontractor</div>
-  <div class="split">
+  <div class="split flip">
     <div class="copy">
-      <div class="eyebrow fx">One record</div>
+      <div class="eyebrow fx">Why it works · 3 of 3</div>
       <h2 class="hl" style="--d:.16s">Subcontractor asks.<br><em>Contractor answers.</em></h2>
       <p class="supp fx" style="--d:.34s">One thread on the job no side email, nothing lost.</p>
     </div>
