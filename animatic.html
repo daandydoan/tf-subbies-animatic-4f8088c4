@@ -3897,16 +3897,27 @@ function mountScreen(frame){
   frame.dataset.mounted = '1';
   frame.addEventListener('load', () => {
     const sizeIt = () => {
-      const wrap = frame.parentElement; if(!wrap) return;   // .pfwrap, 16:9
+      const wrap = frame.parentElement; if(!wrap) return;   // .pfwrap
       const Z = 0.82;                                       // constant scale → uniform ~11.5px text everywhere
-      frame.style.width  = (wrap.clientWidth  / Z) + 'px';  // logical width derived from the window
-      frame.style.height = (wrap.clientHeight / Z) + 'px';
+      const logicalW = wrap.clientWidth / Z;                // logical width derived from the window
+      frame.style.width = logicalW + 'px';
       frame.style.setProperty('--pfz', Z);
+      // fit the window to the panel's real height — no empty gap under short panels, no
+      // mid-scroll crop — but never taller than a 16:10 frame (long pages still crop + drift)
+      const cap = logicalW * (900/1440);
+      let ch = cap;
+      try { const d = frame.contentDocument;
+        if(d && d.body){ const nat = Math.max(d.body.scrollHeight, d.documentElement.scrollHeight);
+          if(nat > 40) ch = Math.min(nat + 6, cap); } } catch(e){}
+      frame.style.height = ch + 'px';
+      wrap.style.aspectRatio = 'auto';
+      wrap.style.height = (ch * Z) + 'px';
       fitBoxes();
     };
     sizeIt();
     addEventListener('resize', sizeIt);
     setTimeout(()=>{ sizeIt(); animateFrame(frame); }, 250);
+    setTimeout(sizeIt, 650);   // re-fit once fonts/layout settle
   });
   frame.srcdoc = '<style>' + PROTO_CSS + FRAME_CSS + '</' + 'style>' + SCREENS[key];
 }
