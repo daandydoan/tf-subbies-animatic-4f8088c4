@@ -175,6 +175,17 @@ body{font-family:'Outfit',system-ui,-apple-system,'Segoe UI',sans-serif;backgrou
 .pill.teal{background:var(--teal)}
 .pill.amber{background:var(--amber);color:#3B2A06}
 .scene.active .pill{animation:popIn .55s var(--ease-out) both;animation-delay:var(--d,0s)}
+/* the follow-up itself, delivered as an email notification (scene 6) */
+.mailcard{position:absolute;z-index:8;width:272px;background:#fff;border-radius:13px;padding:13px 15px;
+  box-shadow:0 24px 52px rgba(18,45,40,.34),0 0 0 1px rgba(18,45,40,.05);opacity:0}
+.scene.active .mailcard{animation:blockIn .8s var(--ease-out) both;animation-delay:var(--d,0s)}
+.mc-h{display:flex;align-items:center;gap:8px;margin-bottom:7px}
+.mc-ic{width:23px;height:23px;border-radius:6px;background:var(--teal);flex:none;display:flex;align-items:center;justify-content:center}
+.mc-ic svg{width:13px;height:13px}
+.mc-fr{font-size:12px;font-weight:700;color:var(--ink)}
+.mc-tm{margin-left:auto;font-size:10px;color:var(--light)}
+.mc-su{font-size:12px;font-weight:600;color:var(--ink);margin-bottom:4px}
+.mc-bd{font-size:11px;line-height:1.45;color:var(--gray)}
 /* real prototype panels render inside an isolated frame */
 .pf{display:block;border:0;background:#fff;transform:scale(var(--pfz,.82));transform-origin:top left}
 .pfwrap{width:100%;aspect-ratio:1440/900;overflow:hidden;position:relative}
@@ -700,6 +711,11 @@ body{font-family:'Outfit',system-ui,-apple-system,'Segoe UI',sans-serif;backgrou
 .f-react .s10f-in{gap:5px;padding:7px 13px;border-radius:20px;font-size:15px}
 .f-react .s10f-in b{font-size:12px;color:#596262}
 .f-quote .s10f-in .q-ic{width:30px;height:30px;border-radius:8px;background:#E1F5EE;color:#085041;font-weight:700;display:flex;align-items:center;justify-content:center;flex:none;font-size:15px}
+.f-email{top:118px;left:-134px;--dd:.9s}
+.f-note{top:298px;right:-96px;--dd:2.1s}
+.f-email .s10f-in .eic{width:28px;height:28px;border-radius:8px;background:#E1F5EE;display:flex;align-items:center;justify-content:center;flex:none}
+.f-note .s10f-in .nic{width:28px;height:28px;border-radius:8px;background:#FFF3DF;display:flex;align-items:center;justify-content:center;flex:none}
+.f-email .s10f-in .eic svg,.f-note .s10f-in .nic svg{width:15px;height:15px}
 .scene.active .s10f{animation:s10drift 8s ease-in-out infinite var(--dd,0s)}
 .scene.active .s10f-in{animation:s10pop .6s var(--ease-out) forwards var(--d,0s)}
 @keyframes s10pop{from{opacity:0;transform:translateY(10px) scale(.86)}to{opacity:1;transform:none}}
@@ -981,7 +997,7 @@ body{font-family:'Outfit',system-ui,-apple-system,'Segoe UI',sans-serif;backgrou
     </div>
     <div class="screen"><div class="stagebox" style="width:1120px">
       <div class="win" style="--d:.4s;max-height:560px"><div class="win-bar"><span></span><span></span><span></span><u></u></div>
-        <div class="pfwrap"><iframe class="pf" data-screen="nud" scrolling="no" title="Nudge settings"></iframe></div></div><div class="toast" style="right:-20px;bottom:-30px;--d:3.4s"><span class="tick"></span> Nudge sent · 1 of 2</div>
+        <div class="pfwrap"><iframe class="pf" data-screen="nud" scrolling="no" title="Nudge settings"></iframe></div></div><div class="mailcard" style="top:18px;right:-52px;--d:3.1s"><div class="mc-h"><span class="mc-ic"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18v12H3z"/><path d="M3 7l9 6 9-6"/></svg></span><span class="mc-fr">Tenderfy Civil</span><span class="mc-tm">9:00am</span></div><div class="mc-su">Following up on your quote request</div><div class="mc-bd">Just following up on our quote request for Traffic Management. We’d love to hear from you before Fri 14 Mar.</div></div><div class="toast" style="right:-20px;bottom:-30px;--d:3.9s"><span class="tick"></span> Nudge sent · 1 of 2</div>
     </div></div>
   </div>
 </section>
@@ -1014,9 +1030,9 @@ body{font-family:'Outfit',system-ui,-apple-system,'Segoe UI',sans-serif;backgrou
       <h2 class="hl" style="--d:.16s">Compliance <em>without asking.</em></h2>
       <p class="supp fx" style="--d:.34s">The profile shows what’s current and what’s about to lapse uploaded once.</p>
     </div>
-    <div class="screen"><div class="stagebox" style="width:1120px">
-      <div class="win" style="--d:.4s;max-height:560px"><div class="win-bar"><span></span><span></span><span></span><u></u></div>
-        <div class="pfwrap"><iframe class="pf" data-screen="p8p" scrolling="no" title="Tenderfy actual UI"></iframe></div></div><div class="mirror" style="--d:3.4s"><div class="mk">Subcontractor side</div><div class="mv">Uploaded once.</div><div class="msub">Current on every tender they price no re-sending, no reminders.</div></div>
+    <div class="screen"><div class="stagebox" style="width:900px">
+      <div class="win" style="--d:.4s"><div class="win-bar"><span></span><span></span><span></span><u></u></div>
+        <div class="uim"><div class="h"><span class="t">Compliance documents</span><span class="cp g" style="margin-left:auto">3 current · 1 expiring</span></div><div class="r"><span class="fi"></span><span class="nm">Public Liability</span><span class="sm">$20M · to 30 Jun 2026</span><span class="cp g sp">Current</span></div><div class="r"><span class="fi"></span><span class="nm">Workers Compensation</span><span class="sm">to 12 Aug 2026</span><span class="cp g sp">Current</span></div><div class="r"><span class="fi"></span><span class="nm">QBCC Licence</span><span class="sm">#1208834</span><span class="cp g sp">Current</span></div><div class="r"><span class="fi"></span><span class="nm">Professional Indemnity</span><span class="sm">renewal due soon</span><span class="cp a sp">Expires in 21 days</span></div></div></div><div class="mirror" style="--d:3.4s"><div class="mk">Subcontractor side</div><div class="mv">Uploaded once.</div><div class="msub">Current on every tender they price no re-sending, no reminders.</div></div>
     </div></div>
   </div>
 </section>
@@ -1071,6 +1087,14 @@ body{font-family:'Outfit',system-ui,-apple-system,'Segoe UI',sans-serif;backgrou
       <div class="s10f f-quote" aria-hidden="true"><div class="s10f-in" style="--d:6.2s">
         <span class="q-ic">$</span>
         <div class="tx"><b>Quote QUO-2026-0455</b><span>$11,290 inc. GST &middot; sent</span></div>
+      </div></div>
+      <div class="s10f f-email" aria-hidden="true"><div class="s10f-in" style="--d:2.0s">
+        <span class="eic"><svg viewBox="0 0 24 24" fill="none" stroke="#1D9E75" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18v12H3z"/><path d="M3 7l9 6 9-6"/></svg></span>
+        <div class="tx"><b>New reply in your thread</b><span>Email notification &middot; now</span></div>
+      </div></div>
+      <div class="s10f f-note" aria-hidden="true"><div class="s10f-in" style="--d:3.1s">
+        <span class="nic"><svg viewBox="0 0 24 24" fill="none" stroke="#B7791F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v11l-5 5H4z"/><path d="M15 20v-5h5"/></svg></span>
+        <div class="tx"><b>Note · weekend rate</b><span>Confirm before award</span></div>
       </div></div>
     </div></div>
   </div>
@@ -3839,6 +3863,7 @@ function nsTest(id){
 const FRAME_CSS = `html,body{margin:0;background:#F9FAFB;font-family:'Outfit',system-ui,sans-serif;overflow:hidden}
   .backlink,.mbar,.mbar-pad>.crumb,.crumb,.ctabs,.vr-title{display:none!important}
   .pad,.pad.mbar-pad{padding-top:20px!important}
+  .vr-detail{padding:6px 20px 12px!important}   /* extracted panel lost its parent's side padding */
   .rev{opacity:0}
   .rev.go{animation:rowIn .5s cubic-bezier(.25,1,.3,1) both,revPop .6s ease both;animation-delay:calc(var(--i,0)*70ms)}
   @keyframes rowIn{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
