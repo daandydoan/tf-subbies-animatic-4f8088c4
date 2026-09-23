@@ -3923,7 +3923,7 @@ function mountScreen(frame){
   frame.addEventListener('load', () => {
     const sizeIt = () => {
       const wrap = frame.parentElement; if(!wrap) return;   // .pfwrap
-      const Z = 0.82;                                       // constant scale → uniform ~11.5px text everywhere
+      const Z = 0.95;                                       // renders panels near 1:1 → larger, more legible UI text
       const logicalW = wrap.clientWidth / Z;                // logical width derived from the window
       frame.style.width = logicalW + 'px';
       frame.style.setProperty('--pfz', Z);
@@ -4038,8 +4038,9 @@ function fitBoxes(){
       padX=Math.max(padX, br.left-r.left, r.right-br.right);
     });
     bw+=2*padX; bh+=2*padY;
-    // allow modest upscale (was capped at 1) so a small mock fills the stacked area instead of floating in dead space
-    box.style.setProperty('--ws', Math.min(1.12, w/(bw+40), h/(bh+40)).toFixed(4));
+    // upscale small mocks to fill the stacked area — improves readability of the ~11.5px UI text;
+    // scenes with room grow (capped 1.35), height/width-constrained ones stay put
+    box.style.setProperty('--ws', Math.min(1.35, w/(bw+40), h/(bh+40)).toFixed(4));
   });
 }
 addEventListener('resize',fitBoxes);
