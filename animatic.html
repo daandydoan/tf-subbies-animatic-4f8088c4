@@ -262,11 +262,13 @@ body{font-family:'Outfit',system-ui,-apple-system,'Segoe UI',sans-serif;backgrou
 .uim .cp.n{background:var(--st-grey-bg);color:var(--st-grey-tx)}
 /* Step 2 recipients stylised dedicated element: subbies selected in sequence */
 .uim .rcp{display:flex;align-items:center;gap:11px;padding:10px 12px;border:1px solid #E7EBEA;border-radius:10px}
-.uim .rav{width:26px;height:26px;border-radius:50%;flex:none;background:#B7C2C0}
+.uim .rav{width:26px;height:26px;border-radius:50%;flex:none;background:#B7C2C0;color:#fff;font-size:9px;font-weight:700;letter-spacing:.2px;display:flex;align-items:center;justify-content:center}
 .uim .rcp:nth-child(2) .rav{background:#5C6BC0}.uim .rcp:nth-child(3) .rav{background:#EF6C00}
 .uim .rcp:nth-child(4) .rav{background:#00838F}.uim .rcp:nth-child(5) .rav{background:#6D4C41}
 .uim .rcp:nth-child(6) .rav{background:#5E35B1}.uim .rcp:nth-child(7) .rav{background:#00897B}
-.uim .rn{height:9px;border-radius:4px;background:#E4E9E7;flex:1;max-width:58%}
+.uim .rn{display:flex;flex-direction:column;gap:2px;flex:1;min-width:0}
+.uim .rnm{font-size:12px;font-weight:600;color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;line-height:1.2}
+.uim .rtr{font-size:10px;color:var(--light);line-height:1.2}
 .uim .rck{margin-left:auto;width:18px;height:18px;border-radius:50%;background:#1D9E75;position:relative;opacity:0;transform:scale(.4)}
 .scene.active .uim .rck{animation:fdPop .45s cubic-bezier(.2,.9,.3,1) both}
 .uim .rck::after{content:"";position:absolute;left:6px;top:4px;width:4px;height:7px;border:solid #fff;border-width:0 2px 2px 0;transform:rotate(45deg)}
@@ -946,7 +948,7 @@ body{font-family:'Outfit',system-ui,-apple-system,'Segoe UI',sans-serif;backgrou
         <div class="ss-side">
           <span class="ss-tag fx" style="--d:.55s">Contractor sends once</span>
           <div class="win" style="--d:.4s"><div class="win-bar"><span></span><span></span><span></span><u></u></div>
-            <div class="uim"><div class="h"><span class="t">Send to subcontractors</span><span class="cp g" style="margin-left:auto">8 selected</span></div><div class="rcp"><span class="rav"></span><span class="rn"></span><span class="rck"></span></div><div class="rcp"><span class="rav"></span><span class="rn"></span><span class="rck"></span></div><div class="rcp"><span class="rav"></span><span class="rn"></span><span class="rck"></span></div><div class="rcp"><span class="rav"></span><span class="rn"></span><span class="rck"></span></div><div class="rcp"><span class="rav"></span><span class="rn"></span><span class="rck"></span></div><div class="rcp"><span class="rav"></span><span class="rn"></span><span class="rck"></span></div></div></div>
+            <div class="uim"><div class="h"><span class="t">Send to subcontractors</span><span class="cp g" style="margin-left:auto">6 selected</span></div><div class="rcp"><span class="rav">NC</span><span class="rn"><span class="rnm">Northolt Construction</span><span class="rtr">Traffic Management</span></span><span class="rck"></span></div><div class="rcp"><span class="rav">IT</span><span class="rn"><span class="rnm">Ironbark Traffic</span><span class="rtr">Traffic Control</span></span><span class="rck"></span></div><div class="rcp"><span class="rav">MC</span><span class="rn"><span class="rnm">Metro Civil</span><span class="rtr">Civil Works</span></span><span class="rck"></span></div><div class="rcp"><span class="rav">AL</span><span class="rn"><span class="rnm">Apex Linemarking</span><span class="rtr">Line Marking</span></span><span class="rck"></span></div><div class="rcp"><span class="rav">BE</span><span class="rn"><span class="rnm">Boulder Earthworks</span><span class="rtr">Earthworks</span></span><span class="rck"></span></div><div class="rcp"><span class="rav">SS</span><span class="rn"><span class="rnm">Summit Signage</span><span class="rtr">Signage &amp; Devices</span></span><span class="rck"></span></div></div></div>
         </div>
         <div class="ss-mid" aria-hidden="true">
           <svg class="ss-arc" viewBox="0 0 168 84">
@@ -962,7 +964,7 @@ body{font-family:'Outfit',system-ui,-apple-system,'Segoe UI',sans-serif;backgrou
             <div class="pfwrap"><iframe class="pf" data-screen="req" scrolling="no" title="Request details"></iframe></div></div>
         </div>
       </div>
-      <div class="toast" style="left:-24px;bottom:-52px;--d:3.5s"><span class="tick"></span> Request sent · 8 subcontractors</div>
+      <div class="toast" style="left:-24px;bottom:-52px;--d:3.5s"><span class="tick"></span> Request sent · 6 subcontractors</div>
     </div></div>
   </div>
 </section>
