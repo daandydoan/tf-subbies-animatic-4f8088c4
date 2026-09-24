@@ -453,9 +453,12 @@ body{font-family:'Outfit',system-ui,-apple-system,'Segoe UI',sans-serif;backgrou
 .scene-end .tl{font-size:clamp(15px,1.85vw,28px);font-weight:400;z-index:2;opacity:0}
 .scene-end .tl b{color:#6ADDB5;font-weight:600}.scene-end .tl i{color:var(--amber);font-style:normal;font-weight:600}
 .scene-end .url{font-size:clamp(12px,1.3vw,20px);color:rgba(255,255,255,.85);z-index:2;letter-spacing:.3px;opacity:0}
+.scene-end .cta{background:var(--teal);color:#fff;font-weight:600;font-size:clamp(13px,1.35vw,18px);
+  padding:11px 26px;border-radius:999px;z-index:2;opacity:0;box-shadow:0 16px 34px -12px rgba(29,158,117,.6)}
 .scene-end.active .wm{animation:blockIn .4s var(--ease-out) forwards .2s}
 .scene-end.active .tl{animation:blockIn .4s var(--ease-out) forwards .6s}
-.scene-end.active .url{animation:blockIn .4s var(--ease-out) forwards 1s}
+.scene-end.active .cta{animation:blockIn .4s var(--ease-out) forwards 1s}
+.scene-end.active .url{animation:blockIn .4s var(--ease-out) forwards 1.3s}
 .end-clip{position:absolute;left:-3vw;bottom:-9vh;width:clamp(200px,24vw,400px);color:#fff;opacity:.42;z-index:2}
 
 /* ---------------- chrome (mirrors showcase.html) ---------------- */
@@ -745,14 +748,13 @@ body{font-family:'Outfit',system-ui,-apple-system,'Segoe UI',sans-serif;backgrou
 .scene.active .s11cmp .col-hl{animation:s11sweep 7.2s var(--ease-curve) forwards 1s}
 @keyframes s11sweep{
   0%{left:150px;opacity:0}
-  5%{opacity:1}
-  20%{left:150px}
-  30%{left:380px}
-  44%{left:380px}
-  54%{left:610px}
-  66%{left:610px}
-  78%{left:380px}
-  100%{left:380px;opacity:1}
+  6%{opacity:1}
+  22%{left:150px}
+  38%{left:380px}
+  54%{left:380px}
+  70%{left:610px}
+  86%{left:610px;opacity:1}
+  100%{left:610px;opacity:0}
 }
 /* floating contractor comment / question cards */
 .s11q{position:absolute;z-index:6;pointer-events:none;width:214px}
@@ -1167,6 +1169,7 @@ body{font-family:'Outfit',system-ui,-apple-system,'Segoe UI',sans-serif;backgrou
   <svg class="wm" role="img" aria-label="Tenderfy"><use href="#tfWordmark"/></svg>
   <span class="rule"></span>
   <div class="tl"><b>Helping Good Businesses</b> / <i>Win Great Work</i></div>
+  <div class="cta">Book a demo</div>
   <div class="url">tenderfy.org</div>
   <svg class="end-clip" viewBox="0 0 32 65"><use href="#clipSym"/></svg>
 </section>
