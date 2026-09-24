@@ -52,6 +52,7 @@ body{font-family:'Outfit',system-ui,-apple-system,'Segoe UI',sans-serif;backgrou
 
 /* ---- Ray-film reveal: per-character blur-in headline (chIn) ---- */
 .hl .ch{display:inline-block;opacity:0;filter:blur(10px);transform:translateY(.12em);will-change:filter,opacity}
+.hl .chw{white-space:nowrap}   /* keep each word's letters together — no mid-word wrap */
 .scene.active .hl .ch{animation:chIn .5s cubic-bezier(.2,.7,.2,1) both;animation-delay:calc(var(--d,.1s) + var(--i,0)*.014s)}
 @keyframes chIn{0%{opacity:0;filter:blur(10px);transform:translateY(.12em)}60%{filter:blur(0)}100%{opacity:1;filter:blur(0);transform:none}}
 
@@ -289,6 +290,7 @@ body{font-family:'Outfit',system-ui,-apple-system,'Segoe UI',sans-serif;backgrou
 .uim .dl{display:flex;align-items:center;gap:12px;padding:6px 2px;border-bottom:1px solid #F0F3F2;font-size:11.5px}
 .uim .dk{color:var(--gray);width:34%;flex:none}
 .uim .dv{height:8px;border-radius:4px;background:#E4E9E7;flex:1;max-width:52%}
+.uim .dvt{flex:1;min-width:0;color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .uim .desc{margin-top:8px;display:flex;flex-direction:column;gap:6px}
 .uim .dline{height:8px;border-radius:4px;background:#EDF1F0}
 .uim .fld{display:flex;align-items:center;padding:8px 2px;border-bottom:1px solid #F0F3F2;font-size:11.5px;color:var(--gray)}
@@ -586,7 +588,7 @@ body{font-family:'Outfit',system-ui,-apple-system,'Segoe UI',sans-serif;backgrou
 /* ---- scene 5 · the split send one action, two desks ---- */
 .sendsplit{position:relative;display:grid;grid-template-columns:1fr 168px 1fr;align-items:center}
 .ss-side{position:relative;min-width:0}
-.ss-side .win{max-height:none;position:relative;z-index:1;width:80%;margin-inline:auto}
+.ss-side .win{height:360px;position:relative;z-index:1;width:80%;margin-inline:auto}   /* both windows the same size */
 /* happy-both-sides footage sitting behind & below each window kept clear of the label text above */
 .ss-bg{position:absolute;left:0;top:0;width:100%;height:102%;object-fit:cover;border-radius:18px;z-index:0;opacity:0;
   filter:saturate(.66) contrast(1.03) brightness(.72);box-shadow:0 40px 80px -26px rgba(9,13,12,.6)}
@@ -594,9 +596,9 @@ body{font-family:'Outfit',system-ui,-apple-system,'Segoe UI',sans-serif;backgrou
 .ss-side .ss-tag{z-index:2}
 @keyframes ssBgIn{from{opacity:0;transform:scale(1.05)}to{opacity:1;transform:scale(1)}}
 /* the subbie half sits lower and slightly smaller he receives, the contractor acts */
-.ss-sub{transform:translateY(20px) scale(1);transform-origin:left center}  /* was .94 + 46 — scaled up to match the left card */
-.ss-tag{position:absolute;top:-32px;left:2px;font-size:15px;font-weight:700;letter-spacing:1.5px;
-  text-transform:uppercase;display:inline-flex;align-items:center;gap:9px;color:#3E6C93;white-space:nowrap}
+.ss-sub{transform:none}  /* level with the left card, same size */
+.ss-tag{position:absolute;top:-32px;left:0;right:0;font-size:15px;font-weight:700;letter-spacing:1.5px;
+  text-transform:uppercase;display:flex;justify-content:center;align-items:center;gap:9px;color:#3E6C93;white-space:nowrap}
 .ss-tag:before{content:'';width:9px;height:9px;border-radius:50%;background:currentColor}
 .ss-tag.sub{color:var(--teal-dark)}
 .ss-mid{position:relative;height:120px}
@@ -970,15 +972,15 @@ body{font-family:'Outfit',system-ui,-apple-system,'Segoe UI',sans-serif;backgrou
         <div class="ss-mid" aria-hidden="true">
           <svg class="ss-arc" viewBox="0 0 168 120" preserveAspectRatio="xMidYMid meet">
             <defs><linearGradient id="ssg" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#FFBC4A"/><stop offset=".55" stop-color="#39B98C"/><stop offset="1" stop-color="#1D9E75"/></linearGradient></defs>
-            <path class="arc-line" pathLength="1" d="M8 74 C54 26 116 26 160 78"/>
-            <path class="arc-head" d="M160 78 L147 73 L147 83 Z" transform="rotate(50 160 78)" fill="#1D9E75"/></svg>
+            <path class="arc-line" pathLength="1" d="M6 60 L154 60"/>
+            <path class="arc-head" d="M154 60 L143 54 L143 66 Z" fill="#1D9E75"/></svg>
           <span class="ss-pulse"></span>
           <span class="ss-token"><svg viewBox="0 0 24 24" fill="#0F1917"><path d="M3.4 20.6l17.6-8.6L3.4 3.4 3.4 10l11 2-11 2z"/></svg>RFQ</span>
         </div>
         <div class="ss-side ss-sub">
           <span class="ss-tag sub fx" style="--d:1.5s">Lands with every subcontractor</span>
           <div class="win" style="--d:1.41s"><div class="win-bar"><span></span><span></span><span></span><u></u></div>
-            <div class="pfwrap"><iframe class="pf" data-screen="req" scrolling="no" title="Request details"></iframe></div></div>
+            <div class="uim"><div class="h"><span class="t">Request details</span></div><div class="dl"><span class="dk">Status</span><span class="dvt" style="color:#1D9E75;font-weight:600">Opened</span></div><div class="dl"><span class="dk">Tender name</span><span class="dvt">Velocity Link Highway Extension</span></div><div class="dl"><span class="dk">Tender number</span><span class="dvt">TMRICT22076</span></div><div class="dl"><span class="dk">Organisation</span><span class="dvt">Dept of Transport &amp; Main Roads</span></div><div class="dl"><span class="dk">Sector</span><span class="dvt">Traffic Management</span></div><div class="dl"><span class="dk">Contractor</span><span class="dvt">Tenderfy Civil</span></div></div></div>
         </div>
       </div>
       <div class="toast" style="left:-24px;bottom:-52px;--d:2.1s"><span class="tick"></span> RFQ sent · 6 subcontractors</div>
@@ -4065,12 +4067,16 @@ function splitCh(hl){
     [...node.childNodes].forEach(ch=>{
       if(ch.nodeType===3){
         const frag=document.createDocumentFragment();
+        let word=null;
+        const flush=()=>{ if(word){ frag.appendChild(word); word=null; } };
         for(const c of ch.textContent){
-          if(c===' '){ frag.appendChild(document.createTextNode(' ')); continue; }
+          if(c===' '){ flush(); frag.appendChild(document.createTextNode(' ')); continue; }
+          if(!word){ word=document.createElement('span'); word.className='chw'; }  // group letters per word
           const s=document.createElement('i');
           s.className='ch'; s.style.setProperty('--i',i++); s.textContent=c;
-          frag.appendChild(s);
+          word.appendChild(s);
         }
+        flush();
         node.replaceChild(frag,ch);
       } else if(ch.tagName==='EM'){ walk(ch); }   // keep emphasis colour, split inside
     });                                            // <br> and others left untouched
@@ -4141,7 +4147,9 @@ const btnSound=document.getElementById("btnSound");
 const icSoundOn=document.getElementById("icSoundOn"), icSoundOff=document.getElementById("icSoundOff");
 let musicOn=false;
 const bgm=document.getElementById("bgm"); bgm.loop=true; bgm.volume=0;
-function fadeAudio(to,then){ const step=()=>{ const d=to-bgm.volume; if(Math.abs(d)<.03){ bgm.volume=Math.max(0,Math.min(1,to)); if(then)then(); return; } bgm.volume=Math.max(0,Math.min(1,bgm.volume+d*.12)); requestAnimationFrame(step); }; step(); }
+let fadeId=null;
+function fadeAudio(to,then){ if(fadeId) cancelAnimationFrame(fadeId);   // one fade at a time
+  const step=()=>{ const d=to-bgm.volume; if(Math.abs(d)<.03){ bgm.volume=Math.max(0,Math.min(1,to)); fadeId=null; if(then)then(); return; } bgm.volume=Math.max(0,Math.min(1,bgm.volume+d*.12)); fadeId=requestAnimationFrame(step); }; step(); }
 const music={
   start(){ const p=bgm.play(); if(p&&p.catch)p.catch(()=>{}); fadeAudio(.29); },   // .25 +15%
   stop(){ fadeAudio(0,()=>{ try{ bgm.pause(); }catch(e){} }); }
