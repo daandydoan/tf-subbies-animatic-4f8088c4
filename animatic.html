@@ -453,9 +453,12 @@ body{font-family:'Outfit',system-ui,-apple-system,'Segoe UI',sans-serif;backgrou
 .scene-end .tl{font-size:clamp(15px,1.85vw,28px);font-weight:400;z-index:2;opacity:0}
 .scene-end .tl b{color:#6ADDB5;font-weight:600}.scene-end .tl i{color:var(--amber);font-style:normal;font-weight:600}
 .scene-end .url{font-size:clamp(12px,1.3vw,20px);color:rgba(255,255,255,.85);z-index:2;letter-spacing:.3px;opacity:0}
+.scene-end .cta{background:var(--teal);color:#fff;font-weight:600;font-size:clamp(13px,1.35vw,18px);
+  padding:11px 26px;border-radius:999px;z-index:2;opacity:0;box-shadow:0 16px 34px -12px rgba(29,158,117,.6)}
 .scene-end.active .wm{animation:blockIn .4s var(--ease-out) forwards .2s}
 .scene-end.active .tl{animation:blockIn .4s var(--ease-out) forwards .6s}
-.scene-end.active .url{animation:blockIn .4s var(--ease-out) forwards 1s}
+.scene-end.active .cta{animation:blockIn .4s var(--ease-out) forwards 1s}
+.scene-end.active .url{animation:blockIn .4s var(--ease-out) forwards 1.3s}
 .end-clip{position:absolute;left:-3vw;bottom:-9vh;width:clamp(200px,24vw,400px);color:#fff;opacity:.42;z-index:2}
 
 /* ---------------- chrome (mirrors showcase.html) ---------------- */
@@ -469,9 +472,9 @@ body{font-family:'Outfit',system-ui,-apple-system,'Segoe UI',sans-serif;backgrou
 .chrome-top,.chrome-bot{display:flex;align-items:center;justify-content:space-between;gap:16px}
 /* nav reduced to a compact bottom-right cluster, dimmed at rest, full on hover (Ray-film style) */
 .chrome-label{display:none}
-.chrome-bot{position:fixed;left:50%;bottom:clamp(16px,2.4vw,30px);right:auto;top:auto;transform:translateX(-50%);
-  width:auto;flex-direction:row;align-items:center;gap:clamp(13px,1.7vw,22px);z-index:41;
-  opacity:0;pointer-events:none;transition:opacity .3s ease}   /* Ray-film transport: hidden until the screen is hovered */
+.chrome-bot{position:fixed;right:clamp(14px,2vw,26px);bottom:clamp(12px,1.8vw,22px);left:auto;top:auto;
+  width:auto;flex-direction:row;align-items:center;gap:clamp(8px,1vw,13px);z-index:41;
+  opacity:0;pointer-events:none;transition:opacity .3s ease}   /* Ray-film transport: bottom-right, hidden until the screen is hovered */
 .chrome-bot.show{opacity:1;pointer-events:auto}
 .segs{width:auto;justify-content:center}
 .hud-count{min-width:52px;opacity:.9;text-align:center;order:0}
@@ -482,18 +485,18 @@ body{font-family:'Outfit',system-ui,-apple-system,'Segoe UI',sans-serif;backgrou
 .wordmark{height:clamp(19px,1.9vw,28px);aspect-ratio:118/32;display:block;color:#fff}
 .chrome.on-light .wordmark{color:var(--teal)}
 .chrome-label{font-size:11px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;opacity:.75}
-.segs{display:flex;gap:6px;pointer-events:auto}
-.seg{width:clamp(12px,1.5vw,22px);height:16px;display:flex;align-items:center;cursor:pointer}
+.segs{display:flex;gap:5px;pointer-events:auto}
+.seg{width:clamp(9px,1.1vw,16px);height:14px;display:flex;align-items:center;cursor:pointer}
 .seg b{display:block;width:100%;height:2px;background:rgba(255,255,255,.25);position:relative;
   overflow:hidden;border-radius:2px}
 .seg b i{position:absolute;inset:0;background:var(--amber);transform:scaleX(0);transform-origin:left}
-.hud{display:flex;align-items:center;gap:14px;pointer-events:auto}
-.hud-count{font-size:12px;letter-spacing:.14em;font-variant-numeric:tabular-nums;opacity:.8;min-width:58px}
-.hud-btn{width:34px;height:34px;border-radius:50%;border:1px solid rgba(255,255,255,.35);
+.hud{display:flex;align-items:center;gap:8px;pointer-events:auto}
+.hud-count{font-size:10.5px;letter-spacing:.12em;font-variant-numeric:tabular-nums;opacity:.8;min-width:46px}
+.hud-btn{width:27px;height:27px;border-radius:50%;border:1px solid rgba(255,255,255,.35);
   background:none;color:#fff;cursor:pointer;padding:0;display:grid;place-items:center;
   transition:background .3s,transform .3s}
 .hud-btn:hover{background:rgba(255,255,255,.14);transform:scale(1.06)}
-.hud-btn svg{width:16px;height:16px}
+.hud-btn svg{width:13px;height:13px}
 /* light-scene chrome: the blend used to handle this, now it is explicit */
 .chrome.on-light .seg b{background:rgba(46,60,59,.18)}
 .chrome.on-light .hud-btn{border-color:rgba(46,60,59,.26);color:var(--ink)}
@@ -745,13 +748,13 @@ body{font-family:'Outfit',system-ui,-apple-system,'Segoe UI',sans-serif;backgrou
 .scene.active .s11cmp .col-hl{animation:s11sweep 7.2s var(--ease-curve) forwards 1s}
 @keyframes s11sweep{
   0%{left:150px;opacity:0}
-  5%{opacity:1}
-  27%{left:150px}
-  35%{left:380px}
-  59%{left:380px}
-  67%{left:610px}
-  95%{left:610px}
-  100%{left:610px;opacity:1}
+  6%{opacity:1}
+  22%{left:150px}
+  38%{left:380px}
+  54%{left:380px}
+  70%{left:610px}
+  86%{left:610px;opacity:1}
+  100%{left:610px;opacity:0}
 }
 /* floating contractor comment / question cards */
 .s11q{position:absolute;z-index:6;pointer-events:none;width:214px}
@@ -830,7 +833,7 @@ body{font-family:'Outfit',system-ui,-apple-system,'Segoe UI',sans-serif;backgrou
     <div class="la-copy">
       <div class="eyebrow fx">The way it works now</div>
       <h2 class="hl" style="--d:0.096s">Still <em>chasing prices?</em></h2>
-      <p class="supp fx" style="--d:0.204s">Half the week lost to the phone chasing prices, certificates, people who never saw the email.</p>
+      <p class="supp fx" style="--d:0.204s">Quotes, documents and follow-ups shouldn’t take half your week.</p>
     </div>
   </div>
   </section>
@@ -843,7 +846,7 @@ body{font-family:'Outfit',system-ui,-apple-system,'Segoe UI',sans-serif;backgrou
     <div class="copy">
       <div class="eyebrow fx">The other end</div>
       <h2 class="hl" style="--d:0.096s">No reply. No status.<br><em>No idea.</em></h2>
-      <p class="supp fx" style="--d:0.204s">Buried in a thread neither side can tell if the job’s still live.</p>
+      <p class="supp fx" style="--d:0.204s">Buried in email threads, neither side knows where the quote stands.</p>
     </div>
     <div class="screen"><div class="stagebox">
       <div class="win" style="--d:0.24s"><div class="win-bar"><span></span><span></span><span></span><u></u></div>
@@ -904,8 +907,8 @@ body{font-family:'Outfit',system-ui,-apple-system,'Segoe UI',sans-serif;backgrou
   <div class="pov con">Head contractor</div>
   <div class="turnwrap">
     <div class="eyebrow fx">How Tenderfy helps</div>
-    <h2 class="hl" style="--d:0.096s">Request quotes from every subcontractor <em>in one go.</em></h2>
-    <p class="supp fx" style="--d:0.204s">One request to every subcontractor at once same scope, same deadline.</p>
+    <h2 class="hl" style="--d:0.096s">One RFQ. Every subbie. <em>In one go.</em></h2>
+    <p class="supp fx" style="--d:0.204s">Same scope. Same deadline. Everyone gets the same information.</p>
     <div class="fanout" aria-hidden="true">
       <span class="fan-src fx" style="--d:0.372s"><i class="fan-dot"></i>One request</span>
       <svg class="fan-lines" viewBox="0 0 720 120" preserveAspectRatio="none">
@@ -923,7 +926,7 @@ body{font-family:'Outfit',system-ui,-apple-system,'Segoe UI',sans-serif;backgrou
         <span class="fan-out" style="--d:1.14s"><i class="fan-av">GL</i><b class="fan-lb">Glazing</b></span>
       </div>
     </div>
-    <div class="fan-note fx" style="--d:1.29s">No phone calls · no chasing · no re-typing</div>
+    <div class="fan-note fx" style="--d:1.29s">LESS ADMIN · LESS CHASING · MORE QUOTES</div>
   </div>
 </section>
 
@@ -935,7 +938,7 @@ body{font-family:'Outfit',system-ui,-apple-system,'Segoe UI',sans-serif;backgrou
     <div class="copy">
       <div class="eyebrow fx">Step 1 of 3 · Review the pack</div>
       <h2 class="hl" style="--d:0.096s"><em>Step 1.</em><br>Review the pack.</h2>
-      <p class="supp fx" style="--d:0.204s">Ray pulls the packages that need pricing straight from the pack.</p>
+      <p class="supp fx" style="--d:0.204s">Ray reviews the pack, identifies what needs pricing, and works out which subcontractors are needed for the job.</p>
     </div>
     <div class="screen"><div class="stagebox" style="width:1120px">
       <div class="win" style="--d:0.24s"><div class="win-bar"><span></span><span></span><span></span><u></u></div>
@@ -950,9 +953,9 @@ body{font-family:'Outfit',system-ui,-apple-system,'Segoe UI',sans-serif;backgrou
   <div class="pov sub">Subcontractor</div>
   <div class="split">
     <div class="copy">
-      <div class="eyebrow fx">Step 2 of 3 · Request the quote</div>
-      <h2 class="hl" style="--d:0.096s"><em>Step 2.</em><br>Request the quote.</h2>
-      <p class="supp fx" style="--d:0.204s">One request, sent to every subcontractor while the page is still open.</p>
+      <div class="eyebrow fx">Step 2 of 3 · Send the RFQ</div>
+      <h2 class="hl" style="--d:0.096s"><em>Step 2.</em><br>Send the RFQ.</h2>
+      <p class="supp fx" style="--d:0.204s">Select the subbies you want to quote and send one request to everyone at once.</p>
     </div>
     <div class="screen"><div class="stagebox" style="width:1180px">
       <div class="sendsplit">
@@ -967,7 +970,7 @@ body{font-family:'Outfit',system-ui,-apple-system,'Segoe UI',sans-serif;backgrou
             <path class="arc-line" pathLength="1" d="M8 74 C54 26 116 26 160 78"/>
             <path class="arc-head" d="M160 78 L147 73 L147 83 Z" transform="rotate(50 160 78)" fill="#1D9E75"/></svg>
           <span class="ss-pulse"></span>
-          <span class="ss-token"><svg viewBox="0 0 24 24" fill="#0F1917"><path d="M3.4 20.6l17.6-8.6L3.4 3.4 3.4 10l11 2-11 2z"/></svg>Request</span>
+          <span class="ss-token"><svg viewBox="0 0 24 24" fill="#0F1917"><path d="M3.4 20.6l17.6-8.6L3.4 3.4 3.4 10l11 2-11 2z"/></svg>RFQ</span>
         </div>
         <div class="ss-side ss-sub">
           <span class="ss-tag sub fx" style="--d:1.5s">Lands with every subcontractor</span>
@@ -975,7 +978,7 @@ body{font-family:'Outfit',system-ui,-apple-system,'Segoe UI',sans-serif;backgrou
             <div class="pfwrap"><iframe class="pf" data-screen="req" scrolling="no" title="Request details"></iframe></div></div>
         </div>
       </div>
-      <div class="toast" style="left:-24px;bottom:-52px;--d:2.1s"><span class="tick"></span> Request sent · 6 subcontractors</div>
+      <div class="toast" style="left:-24px;bottom:-52px;--d:2.1s"><span class="tick"></span> RFQ sent · 6 subcontractors</div>
     </div></div>
   </div>
 </section>
@@ -988,7 +991,7 @@ body{font-family:'Outfit',system-ui,-apple-system,'Segoe UI',sans-serif;backgrou
     <div class="copy">
       <div class="eyebrow fx">Step 3 of 3 · Automatic follow-up</div>
       <h2 class="hl" style="--d:0.096s"><em>Step 3.</em><br>Tenderfy <em>does the chasing.</em></h2>
-      <p class="supp fx" style="--d:0.204s">Follow-ups go out automatically on schedule, capped, in the contractor’s words.</p>
+      <p class="supp fx" style="--d:0.204s">Automatic follow-ups go out on your schedule, in your words, so you don’t have to keep chasing.</p>
     </div>
     <div class="screen"><div class="stagebox" style="width:1120px">
       <div class="win" style="--d:0.24s;max-height:560px"><div class="win-bar"><span></span><span></span><span></span><u></u></div>
@@ -1003,13 +1006,13 @@ body{font-family:'Outfit',system-ui,-apple-system,'Segoe UI',sans-serif;backgrou
   <div class="pov sub">Subcontractor</div>
   <div class="split flip">
     <div class="copy">
-      <div class="eyebrow fx">Why it works · 1 of 3</div>
-      <h2 class="hl" style="--d:0.096s">Priced online.<br><em>Nothing to download.</em></h2>
-      <p class="supp fx" style="--d:0.204s">Drawings, scope and documents in the browser priced right, first time.</p>
+      <div class="eyebrow fx">Why subbies love it · 1 of 3</div>
+      <h2 class="hl" style="--d:0.096s">Quoting, <em>simplified for the subbie.</em></h2>
+      <p class="supp fx" style="--d:0.204s">Everything they need to review the job, price the work and respond is in one place.</p>
     </div>
     <div class="screen"><div class="stagebox" style="width:1120px">
       <div class="deckwrap"><div class="win" style="--d:0.24s"><div class="win-bar"><span></span><span></span><span></span><u></u></div>
-        <div class="pfwrap"><iframe class="pf" data-screen="p7" scrolling="no" title="Tenderfy actual UI"></iframe></div></div><aside class="rp" style="--d:0.24s"><div class="rp-head"><span class="rp-fold"></span><span class="rp-nm">Attached to this request</span><span class="rp-nm2">4 files · in-browser</span></div><div class="docl"><div class="docrow"><span class="dfi pdf">PDF</span><span class="dfn">Drawings · Rev 3</span><span class="dopen">Open</span></div><div class="docrow"><span class="dfi doc">DOC</span><span class="dfn">Scope of Works</span><span class="dopen">Open</span></div><div class="docrow"><span class="dfi xls">XLS</span><span class="dfn">Pricing Schedule</span><span class="dopen">Open</span></div><div class="docrow"><span class="dfi pdf">PDF</span><span class="dfn">Addendum 01</span><span class="dopen">Open</span></div></div></aside></div>
+        <div class="uim"><div class="h"><span class="t">Your quote</span><span class="cp g" style="margin-left:auto">Ready to submit</span></div><div class="li">Traffic management &amp; control<span class="amt"><span class="cp n">5 line items</span></span></div><div class="iea"><div class="col i"><h4>Inclusions</h4><span class="cp g">Signage &amp; devices</span><span class="cp g">After-hours 1.5&times;</span><span class="cp g">Permits</span></div><div class="col e"><h4>Exclusions</h4><span class="cp p">ROL coordination</span><span class="cp p">Rock excavation</span></div><div class="col a"><h4>Assumptions</h4><span class="cp a">Rev 3 drawings</span><span class="cp a">Clear site access</span><span class="cp a">Valid 30 days</span></div></div></div></div><aside class="rp" style="--d:0.24s"><div class="rp-head"><span class="rp-fold"></span><span class="rp-nm">Attached to this request</span><span class="rp-nm2">4 files · in-browser</span></div><div class="docl"><div class="docrow"><span class="dfi pdf">PDF</span><span class="dfn">Drawings · Rev 3</span><span class="dopen">Open</span></div><div class="docrow"><span class="dfi doc">DOC</span><span class="dfn">Scope of Works</span><span class="dopen">Open</span></div><div class="docrow"><span class="dfi xls">XLS</span><span class="dfn">Pricing Schedule</span><span class="dopen">Open</span></div><div class="docrow"><span class="dfi pdf">PDF</span><span class="dfn">Addendum 01</span><span class="dopen">Open</span></div></div></aside></div>
     </div></div>
   </div>
 </section>
@@ -1021,13 +1024,13 @@ body{font-family:'Outfit',system-ui,-apple-system,'Segoe UI',sans-serif;backgrou
   <div class="pov sub">Subcontractor</div>
   <div class="split flip">
     <div class="copy">
-      <div class="eyebrow fx">Why it works · 2 of 3</div>
-      <h2 class="hl" style="--d:0.096s">Compliance <em>without asking.</em></h2>
-      <p class="supp fx" style="--d:0.204s">The profile shows what’s current and what’s about to lapse uploaded once.</p>
+      <div class="eyebrow fx">Why subbies love it · 2 of 3</div>
+      <h2 class="hl" style="--d:0.096s">Compliance, <em>shared automatically.</em></h2>
+      <p class="supp fx" style="--d:0.204s">Subbies upload their compliance once, and you can see what’s current, what’s expiring and what still needs attention.</p>
     </div>
     <div class="screen"><div class="stagebox" style="width:900px">
       <div class="win" style="--d:0.24s"><div class="win-bar"><span></span><span></span><span></span><u></u></div>
-        <div class="uim"><div class="h"><span class="t">Compliance documents</span><span class="cp g" style="margin-left:auto">3 current · 1 expiring</span></div><div class="r"><span class="fi"></span><span class="nm">Public Liability</span><span class="sm">$20M · to 30 Jun 2026</span><span class="cp g sp">Current</span></div><div class="r"><span class="fi"></span><span class="nm">Workers Compensation</span><span class="sm">to 12 Aug 2026</span><span class="cp g sp">Current</span></div><div class="r"><span class="fi"></span><span class="nm">QBCC Licence</span><span class="sm">#1208834</span><span class="cp g sp">Current</span></div><div class="r"><span class="fi"></span><span class="nm">Professional Indemnity</span><span class="sm">renewal due soon</span><span class="cp a sp">Expires in 21 days</span></div></div></div><div class="mirror" style="--d:2.04s"><div class="mk">Subcontractor side</div><div class="mv">Uploaded once.</div><div class="msub">Current on every tender they price no re-sending, no reminders.</div></div>
+        <div class="uim"><div class="h"><span class="t">Compliance documents</span><span class="cp g" style="margin-left:auto">4 on file · 1 expiring</span></div><div class="r"><span class="fi"></span><span class="nm">Public Liability</span><span class="sm">$20M · to 30 Jun 2026</span><span class="cp g sp">Current</span></div><div class="r"><span class="fi"></span><span class="nm">Workers Compensation</span><span class="sm">to 12 Aug 2026</span><span class="cp g sp">Current</span></div><div class="r"><span class="fi"></span><span class="nm">QBCC Licence</span><span class="sm">#1208834</span><span class="cp g sp">Current</span></div><div class="r"><span class="fi"></span><span class="nm">Capability Statement</span><span class="sm">Company profile · PDF</span><span class="cp g sp">On file</span></div><div class="r"><span class="fi"></span><span class="nm">Professional Indemnity</span><span class="sm">renewal due soon</span><span class="cp a sp">Expires in 21 days</span></div></div></div><div class="mirror" style="--d:2.04s"><div class="mk">Subcontractor side</div><div class="mv">Uploaded once.</div><div class="msub">Current on every tender they price no re-sending, no reminders.</div></div>
     </div></div>
   </div>
 </section>
@@ -1039,9 +1042,9 @@ body{font-family:'Outfit',system-ui,-apple-system,'Segoe UI',sans-serif;backgrou
   <div class="pov sub">Subcontractor</div>
   <div class="split flip">
     <div class="copy">
-      <div class="eyebrow fx">Why it works · 3 of 3</div>
-      <h2 class="hl" style="--d:0.096s">Subcontractor asks.<br><em>Contractor answers.</em></h2>
-      <p class="supp fx" style="--d:0.204s">One thread on the job no side email, nothing lost.</p>
+      <div class="eyebrow fx">Why subbies love it · 3 of 3</div>
+      <h2 class="hl" style="--d:0.096s">Direct chat.<br><em>No side emails.</em></h2>
+      <p class="supp fx" style="--d:0.204s">Subbies can ask questions directly in Tenderfy, keeping every clarification, attachment and answer in one place.</p>
     </div>
     <div class="screen"><div class="stagebox" style="width:660px">
       <div class="s10chat fx" style="--d:0.18s" role="img" aria-label="The subcontractor and the contractor messaging in one Tenderfy thread">
@@ -1085,7 +1088,7 @@ body{font-family:'Outfit',system-ui,-apple-system,'Segoe UI',sans-serif;backgrou
       </div></div>
       <div class="s10f f-email" aria-hidden="true"><div class="s10f-in" style="--d:1.2s">
         <span class="eic"><svg viewBox="0 0 24 24" fill="none" stroke="#1D9E75" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18v12H3z"/><path d="M3 7l9 6 9-6"/></svg></span>
-        <div class="tx"><b>New reply in your thread</b><span>Email notification &middot; now</span></div>
+        <div class="tx"><b>New reply in your thread</b><span>In-app notification &middot; now</span></div>
       </div></div>
       <div class="s10f f-note" aria-hidden="true"><div class="s10f-in" style="--d:1.86s">
         <span class="nic"><svg viewBox="0 0 24 24" fill="none" stroke="#B7791F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v11l-5 5H4z"/><path d="M15 20v-5h5"/></svg></span>
@@ -1162,12 +1165,12 @@ body{font-family:'Outfit',system-ui,-apple-system,'Segoe UI',sans-serif;backgrou
   <div class="la-wrap end-la">
     <video class="la-bg" id="endBgVid" src="happy-contractor.mp4" muted loop playsinline preload="auto"></video>
     <span class="la-scrim end-scrim"></span>
-    <div class="la-inset end-inset fx" style="--d:0.36s"><video class="la-inset-vid" id="endInsetVid" src="happy-subbies.mp4" muted loop playsinline preload="auto"></video></div>
   </div>
   <svg class="wm" role="img" aria-label="Tenderfy"><use href="#tfWordmark"/></svg>
   <span class="rule"></span>
   <div class="tl"><b>Helping Good Businesses</b> / <i>Win Great Work</i></div>
-  <div class="url">tenderfy.org/subbies</div>
+  <div class="cta">Book a demo</div>
+  <div class="url">tenderfy.org</div>
   <svg class="end-clip" viewBox="0 0 32 65"><use href="#clipSym"/></svg>
 </section>
 
@@ -1198,6 +1201,9 @@ body{font-family:'Outfit',system-ui,-apple-system,'Segoe UI',sans-serif;backgrou
         <svg id="icPlay" viewBox="0 0 16 16" fill="none" style="display:none"><path d="M4.5 3l8 5-8 5z" fill="currentColor"/></svg></button>
       <button class="hud-btn" id="btnNext" aria-label="Next scene">
         <svg viewBox="0 0 16 16" fill="none"><path d="M6 3l5 5-5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      <button class="hud-btn" id="btnSound" aria-label="Mute music">
+        <svg id="icSoundOn" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h2.3L8 3.2v9.6L5.3 10H3z"/><path d="M10.6 6.2a3 3 0 010 3.6"/><path d="M12.4 4.8a5.2 5.2 0 010 6.4"/></svg>
+        <svg id="icSoundOff" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="display:none"><path d="M3 6h2.3L8 3.2v9.6L5.3 10H3z"/><path d="M11 6.2l3.2 3.6M14.2 6.2l-3.2 3.6"/></svg></button>
     </div>
   </div>
 </div>
@@ -3777,7 +3783,7 @@ function nsTest(id){
             <div class="fgrid">
               <div class="fdoc" data-date="3 Mar 2026" data-size="248 KB"><div class="top"><span class="doctag">DOCX</span><span class="sub" style="font-size:11px">2 Pages &middot;&middot;&middot;</span></div><div class="thumb"><b style="font-size:9px;color:#666">Schedule 5 &ndash; Request for Quotation Template</b><br><br>Note to Service Provider:<br>This Schedule 5 provides a Request for Quotation (RFQ) template that includes the typical information that an Agency will provide to the Service Provider to request a quotation&hellip;</div><div class="ti">Request for Quotation</div><div class="by">by Andrew Williams</div></div>
               <div class="fdoc" data-date="1 Mar 2026" data-size="1.2 MB"><div class="top"><span class="doctag pdf">PDF</span><span class="sub" style="font-size:11px">2 Pages &middot;&middot;&middot;</span></div><div class="thumb"><b style="font-size:9px;color:#666">Part B &ndash; Schedule TMR-2 Managed Services Requirements</b><br><br>TMR Tenancy V1.1<br>This part sets out the managed service requirements, performance standards and reporting obligations applicable to the engagement&hellip;</div><div class="ti">Part B &ndash; Managed service requirements</div><div class="by">by Andrew Williams</div></div>
-              <div class="fdoc" data-date="1 Mar 2026" data-size="884 KB"><div class="top"><span class="doctag img">IMG</span><span class="sub" style="font-size:11px">1 Page &middot;&middot;&middot;</span></div><div class="thumb map"><span class="ms">map</span></div><div class="ti">Site Map</div><div class="by">by Andrew Williams</div></div>
+              <div class="fdoc" data-date="1 Mar 2026" data-size="3.1 MB"><div class="top"><span class="doctag pdf">PDF</span><span class="sub" style="font-size:11px">12 Pages &middot;&middot;&middot;</span></div><div class="thumb map"><span class="ms">architecture</span></div><div class="ti">Plans</div><div class="by">by Andrew Williams</div></div>
               <div class="fdoc" data-date="1 Mar 2026" data-size="884 KB"><div class="top"><span class="doctag img">IMG</span><span class="sub" style="font-size:11px">1 Page &middot;&middot;&middot;</span></div><div class="thumb map"><span class="ms">map</span></div><div class="ti">Site Map</div><div class="by">by Andrew Williams</div></div>
               <div class="fdoc" data-date="28 Feb 2026" data-size="4.6 MB"><div class="top"><span class="doctag pdf">PDF</span><span class="sub" style="font-size:11px">8 Pages &middot;&middot;&middot;</span></div><div class="thumb"><b style="font-size:9px;color:#666">Geotechnical Investigation &amp; Soil Report</b><br><br>Site assessment of subsurface conditions, including borehole logs, soil classification and foundation recommendations for the project corridor&hellip;</div><div class="ti">Geotechnical Investigation &amp; Soil Report</div><div class="by">by Andrew Williams</div></div>
               <div class="fdoc" data-date="28 Feb 2026" data-size="4.6 MB"><div class="top"><span class="doctag pdf">PDF</span><span class="sub" style="font-size:11px">8 Pages &middot;&middot;&middot;</span></div><div class="thumb"><b style="font-size:9px;color:#666">Geotechnical Investigation &amp; Soil Report</b><br><br>Site assessment of subsurface conditions, including borehole logs, soil classification and foundation recommendations for the project corridor&hellip;</div><div class="ti">Geotechnical Investigation &amp; Soil Report</div><div class="by">by Andrew Williams</div></div>
@@ -3944,47 +3950,47 @@ function mountScreen(frame){
 
 const SCENES=[
  {n:1,dur:7,label:'Still chasing',pov:'con',lay:'full bleed live action',
-  vo:"Half the contractor's week goes on the phone. Chasing prices, chasing certificates, chasing people who never saw the email.",
+  vo:"Half your week shouldn't disappear chasing prices, certificates, and people who never saw the email.",
   shot:'Site office, contractor on the phone, hold-music face. Printed pack gone cold. Desaturated grade.',
   cap:'L1 · LIVE ACTION not yet shot. Stock or phone-shot; see §6 blocking decision 1.'},
  {n:2,dur:7,label:'No idea',pov:'sub',lay:'copy LEFT / screen RIGHT',
-  vo:"At the other end, the request sits buried in a thread. The subcontractor cannot tell whether the job is still live either.",
+  vo:"At the other end it's buried in a thread — and neither side knows where the quote stands.",
   shot:'Dead thread, unread chase message, missed calls. Nothing is teal yet.',
   cap:'P1 · motion graphics, nothing to record'},
  {n:3,dur:8,label:'How Tenderfy helps',pov:'con',lay:'centred the turn',
-  vo:"Here is what changes. The contractor selects the subcontractors and sends one request same scope, same questions, same deadline, to all of them at once.",
+  vo:"Tenderfy changes that. One RFQ goes to every subbie at once — same scope, same deadline, everyone on the same information.",
   shot:'The turn from problem to product. One amber request chip fans out along five drawn lines to five subbie avatars. First teal in the film.',
   cap:'C16 · motion graphics, nothing to record'},
  {n:4,dur:9,label:'Step 1 · Review the pack',pov:'con',lay:'mock top / copy below',
-  vo:"It starts where the work does. The contractor opens the tender pack and the packages that need pricing surface on their own reviewing scope, not hunting through a PDF.",
+  vo:"It starts with the pack. Ray reviews it, flags what needs pricing, and works out which subcontractors the job needs.",
   shot:'Pack opens; five trade packages surface as selectable cards. Eyebrow reads STEP 1 OF 3.',
   cap:'C11 · contractor/build-tender.html'},
  {n:5,dur:10,label:'Step 2 · Request the quote',pov:'both',lay:'split send two windows in one frame',
-  vo:"The contractor sends one request. Same scope, same questions, same deadline and Tenderfy delivers it to every subcontractor while the page is still open.",
+  vo:"Pick the subbies you want quoting and send one RFQ to everyone at once — it lands with each of them instantly.",
   shot:'The split send. Contractor window left, subbie window right and lower; an amber Request token flies the arc between them. Clean UI, no footage.',
   cap:'C12 · mocks built inline contractor request-quote dialog (left) + subbie view-quote-request (right).'},
  {n:6,dur:9,label:'Step 3 · Tenderfy chases',pov:'con',lay:'copy top / mock below',
-  vo:"Then Tenderfy does the chasing. Follow-ups on a schedule the contractor sets, in the contractor's own words, and capped so nobody is ringing subcontractors at seven at night.",
+  vo:"Then Tenderfy does the chasing — automatic follow-ups on your schedule, in your words, so you never have to chase again.",
   shot:'Delay / max / window fields, then the follow-up message. The cap is the point.',
   cap:'C5 · contractor/settings.html'},
  {n:7,dur:11,label:'Priced online',pov:'sub',lay:'mock top / copy below + Q&A panel',
-  vo:"The subcontractor side is just as easy. Nothing to download drawings, scope and any attached documents open in the browser, inclusions and exclusions already stated, so they price the right job first time.",
+  vo:"For the subbie it's just as simple. Everything to review the job, price the work and respond is in one place — inclusions, exclusions and assumptions already stated.",
   shot:'Merged benefit (old 7 + 9): document opens inline, line items stagger, I/E/A tags pop, and a short pricing Q&A sits beside it. Documents flow through here too.',
   cap:'C6 + C15 · subbies/view-request.html, prepare-quote.html'},
  {n:8,dur:9,label:'Compliance',pov:'both',lay:'mock top / copy below + mirror card (no chat)',
-  vo:"And the contractor never asks for an insurance certificate again. The subcontractor profile shows what is current and what is about to lapse uploaded once, and current for every tender they price.",
+  vo:"Compliance is shared automatically. Subbies upload once, and you see what's current, what's expiring, and what still needs attention.",
   shot:'Four document rows, three Current, one amber Expires in 21 days. The mirror card gives the subbie half of the same fact. Composition differs from 7 no side chat.',
   cap:'C13 · contractor/subbies.html'},
  {n:9,dur:8,label:'Ask direct',pov:'both',lay:'mock top / copy below + both-party thread',
-  vo:"Anything unclear, the subcontractor asks on the job itself and the contractor answers from the same thread. One record, answered in minutes.",
+  vo:"Questions get asked right inside Tenderfy — every clarification, attachment and answer kept in one place. No side emails.",
   shot:'The real Subbies Messages card, played live: the subcontractor asks, the contractor answers, turns sliding in on a stagger. Both POV badges lit.',
   cap:'C1 · subbies Messages card; the one place chat is the whole frame.'},
  {n:10,dur:9,label:'One total',pov:'both',lay:'mock top / copy below + payoff mirror',
-  vo:"Then every price lands in one place and totals itself. One subcontractor figure for the job priced in twenty minutes without a phone call.",
+  vo:"Every quote lands in one place and totals itself — the whole job compared side by side, so you choose with confidence.",
   shot:'Three quotes side by side (real compare.html data). A teal spotlight sweeps the columns left→right, holding on each; the lowest (Ironbark) stays green.',
   cap:'C8 · compare.html rebuilt inline for the column sweep.'},
  {n:11,dur:6,label:'End card',pov:'con',lay:'full bleed brand ramp',
-  vo:"Tenderfy Subbies. Request once every price comes back in one place.",
+  vo:"Tenderfy Subbies. Request once — every price comes back in one place. Book a demo at tenderfy.org.",
   shot:'Brand ramp end card, wordmark, one line.',
   cap:'C10 · motion graphics'}
 ];
@@ -4119,10 +4125,95 @@ btnPlay.onclick=()=>{
   document.body.classList.toggle('paused',!playing);
   icPause.style.display=playing?'':'none'; icPlay.style.display=playing?'none':'';
   btnPlay.setAttribute('aria-label',playing?'Pause':'Play');
+  if(musicOn){ if(playing) music.start(); else music.stop(); }
 };
 document.getElementById('btnRestart').onclick=()=>seek(SCENES[0].start+.02);
 document.getElementById('btnPrev').onclick=()=>seek(SCENES[Math.max(cur-2,0)].start+.02);
 document.getElementById('btnNext').onclick=()=>seek(cur>=SCENES.length?0:SCENES[cur].start+.02);
+
+// ---- soundtrack: generative ambient bed, synthesized in-browser (same engine as the Ray film) ----
+// royalty-free by construction — no samples, no external audio files
+const btnSound=document.getElementById('btnSound');
+const icSoundOn=document.getElementById('icSoundOn'), icSoundOff=document.getElementById('icSoundOff');
+let musicOn=false;
+const music=(function(){
+  let actx=null,master=null,noiseBuf=null,timer=null,barIdx=0,running=false;
+  const chords=[                                    // warm cinematic: Dm → Bb → F → C (i–VI–III–VII) at ~88 BPM
+    {root:73.42,tones:[293.66,349.23,440.00,587.33]}, // Dm
+    {root:58.27,tones:[233.08,293.66,349.23,466.16]}, // Bb
+    {root:87.31,tones:[349.23,440.00,523.25,698.46]}, // F
+    {root:65.41,tones:[261.63,329.63,392.00,523.25]}  // C
+  ];
+  const BEAT=60/124, BAR=BEAT*4;                    // upbeat, driving
+  function ensure(){ if(actx) return; const AC=window.AudioContext||window.webkitAudioContext; actx=new AC();
+    master=actx.createGain(); master.gain.value=0; const comp=actx.createDynamicsCompressor();
+    master.connect(comp); comp.connect(actx.destination);
+    noiseBuf=actx.createBuffer(1,Math.floor(actx.sampleRate*.3),actx.sampleRate);
+    const d=noiseBuf.getChannelData(0); for(let i=0;i<d.length;i++) d[i]=Math.random()*2-1; }
+  function kick(t){ const o=actx.createOscillator(),g=actx.createGain(); o.type='sine';   // punchy
+    o.frequency.setValueAtTime(142,t); o.frequency.exponentialRampToValueAtTime(46,t+.09);
+    g.gain.setValueAtTime(.16,t); g.gain.exponentialRampToValueAtTime(.0001,t+.17);
+    o.connect(g); g.connect(master); o.start(t); o.stop(t+.2); }
+  function hat(t,vol){ const s=actx.createBufferSource(),g=actx.createGain(),hp=actx.createBiquadFilter();
+    s.buffer=noiseBuf; hp.type='highpass'; hp.frequency.value=8200;
+    g.gain.setValueAtTime(vol,t); g.gain.exponentialRampToValueAtTime(.0001,t+.04);
+    s.connect(hp); hp.connect(g); g.connect(master); s.start(t); s.stop(t+.05); }
+  function clap(t,vol){ const s=actx.createBufferSource(),g=actx.createGain(),bp=actx.createBiquadFilter();
+    s.buffer=noiseBuf; bp.type='bandpass'; bp.frequency.value=1800; bp.Q.value=1.1;        // backbeat
+    g.gain.setValueAtTime(vol,t); g.gain.exponentialRampToValueAtTime(.0001,t+.13);
+    s.connect(bp); bp.connect(g); g.connect(master); s.start(t); s.stop(t+.15); }
+  function bassNote(f,t,dur){ const o=actx.createOscillator(),g=actx.createGain(),lp=actx.createBiquadFilter();
+    o.type='sine'; o.frequency.value=f; lp.type='lowpass'; lp.frequency.value=380;         // round, driving
+    g.gain.setValueAtTime(.12,t); g.gain.exponentialRampToValueAtTime(.0001,t+dur);
+    o.connect(lp); lp.connect(g); g.connect(master); o.start(t); o.stop(t+dur+.05); }
+  function pluck(f,t,vol,bright){ const o=actx.createOscillator(),g=actx.createGain(),lp=actx.createBiquadFilter();
+    o.type='triangle'; o.frequency.value=f; lp.type='lowpass'; lp.frequency.value=bright;  // brighter, snappier
+    g.gain.setValueAtTime(0,t); g.gain.linearRampToValueAtTime(vol,t+.008); g.gain.exponentialRampToValueAtTime(.0001,t+.45);
+    const dl=actx.createDelay(),dg=actx.createGain(); dl.delayTime.value=BEAT*.5; dg.gain.value=.24;
+    o.connect(g); g.connect(lp); lp.connect(master); lp.connect(dl); dl.connect(dg); dg.connect(master);
+    o.start(t); o.stop(t+.6); }
+  function pad(tones,t,dur){ tones.forEach(function(f){ const o=actx.createOscillator(),g=actx.createGain(),lp=actx.createBiquadFilter();
+    o.type='sine'; o.frequency.value=f/2; lp.type='lowpass'; lp.frequency.value=1000;
+    g.gain.setValueAtTime(0,t); g.gain.linearRampToValueAtTime(.013,t+.3); g.gain.linearRampToValueAtTime(.0001,t+dur);
+    o.connect(g); g.connect(lp); lp.connect(master); o.start(t); o.stop(t+dur+.1); }); }
+  function bar(){ const t=actx.currentTime+.06; const ch=chords[barIdx%chords.length];
+    const lift=Math.min(1,.62+Math.max(0,cur-1)*.045);     // starts energetic, builds through the film
+    pad(ch.tones,t,BAR+.25);
+    for(let b=0;b<4;b++){ const bt=t+b*BEAT;
+      kick(bt);                                             // four-on-the-floor
+      hat(bt+BEAT/2,.05+.03*lift);                          // offbeat hats
+      if(lift>.7){ hat(bt+BEAT/4,.022); hat(bt+3*BEAT/4,.022); }  // sixteenths when it lifts
+      if(b===1||b===3) clap(bt,.11);                        // backbeat clap on 2 & 4
+      bassNote(ch.root*2,bt,BEAT*.5); bassNote(ch.root*2,bt+BEAT/2,BEAT*.45); // driving eighth-note bass
+    }
+    const steps=lift>.7?8:6;                                // busier rising arpeggio
+    for(let i=0;i<steps;i++){ pluck(ch.tones[(i+barIdx)%ch.tones.length],t+i*(BAR/steps),.045+.02*lift,1800+1200*lift); }
+    barIdx++; timer=setTimeout(bar,BAR*1000); }
+  return {
+    start:function(){ ensure();
+      const begin=()=>{ if(actx.state!=='running'||running) return;   // singleton: one live clock, one scheduler
+        running=true; clearTimeout(timer); timer=null;
+        master.gain.cancelScheduledValues(actx.currentTime); master.gain.setValueAtTime(master.gain.value,actx.currentTime);
+        master.gain.linearRampToValueAtTime(.5,actx.currentTime+1.2); bar(); };  // half volume
+      actx.resume().then(begin).catch(()=>{}); begin(); },
+    stop:function(){ if(!actx) return; running=false; master.gain.cancelScheduledValues(actx.currentTime);
+      master.gain.linearRampToValueAtTime(0,actx.currentTime+.5); clearTimeout(timer); timer=null;
+      setTimeout(function(){ if(actx&&!running) actx.suspend(); },650); }
+  };
+})();
+function setMusic(on){ musicOn=on;
+  icSoundOn.style.display=on?'':'none'; icSoundOff.style.display=on?'none':'';
+  btnSound.setAttribute('aria-label',on?'Mute music':'Play music');
+  if(on&&playing) music.start(); else music.stop(); }
+btnSound.onclick=(e)=>{ e.stopPropagation(); setMusic(!musicOn); };
+setMusic(true);    // autoplay: music on by default, starts the instant the browser allows audio
+// browsers block audio until the first user gesture — resume the moment one happens.
+// one shared handler so removeEventListener clears all three (the scheduler is singleton-guarded anyway)
+function unlockAudio(){
+  ['pointerdown','keydown','touchstart'].forEach(ev=>removeEventListener(ev,unlockAudio));
+  if(musicOn&&playing) music.start();
+}
+['pointerdown','keydown','touchstart'].forEach(ev=>addEventListener(ev,unlockAudio));
 
 // transport shows only while the screen is hovered (Ray-film behaviour): reveal on
 // pointer movement, hide when the pointer leaves the window or after a short idle
