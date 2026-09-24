@@ -4137,7 +4137,7 @@ const btnSound=document.getElementById('btnSound');
 const icSoundOn=document.getElementById('icSoundOn'), icSoundOff=document.getElementById('icSoundOff');
 let musicOn=false;
 const music=(function(){
-  let actx=null,master=null,noiseBuf=null,timer=null,barIdx=0;
+  let actx=null,master=null,noiseBuf=null,timer=null,barIdx=0,running=false;
   const chords=[                                    // warm cinematic: Dm → Bb → F → C (i–VI–III–VII) at ~88 BPM
     {root:73.42,tones:[293.66,349.23,440.00,587.33]}, // Dm
     {root:58.27,tones:[233.08,293.66,349.23,466.16]}, // Bb
@@ -4191,13 +4191,14 @@ const music=(function(){
     barIdx++; timer=setTimeout(bar,BAR*1000); }
   return {
     start:function(){ ensure();
-      const begin=()=>{ if(actx.state!=='running') return;   // only run the scheduler on a live clock
+      const begin=()=>{ if(actx.state!=='running'||running) return;   // singleton: one live clock, one scheduler
+        running=true; clearTimeout(timer); timer=null;
         master.gain.cancelScheduledValues(actx.currentTime); master.gain.setValueAtTime(master.gain.value,actx.currentTime);
-        master.gain.linearRampToValueAtTime(.5,actx.currentTime+1.2); if(!timer) bar(); };  // half volume
+        master.gain.linearRampToValueAtTime(.5,actx.currentTime+1.2); bar(); };  // half volume
       actx.resume().then(begin).catch(()=>{}); begin(); },
-    stop:function(){ if(!actx) return; master.gain.cancelScheduledValues(actx.currentTime);
+    stop:function(){ if(!actx) return; running=false; master.gain.cancelScheduledValues(actx.currentTime);
       master.gain.linearRampToValueAtTime(0,actx.currentTime+.5); clearTimeout(timer); timer=null;
-      setTimeout(function(){ if(actx&&!timer) actx.suspend(); },650); }
+      setTimeout(function(){ if(actx&&!running) actx.suspend(); },650); }
   };
 })();
 function setMusic(on){ musicOn=on;
@@ -4206,11 +4207,13 @@ function setMusic(on){ musicOn=on;
   if(on&&playing) music.start(); else music.stop(); }
 btnSound.onclick=(e)=>{ e.stopPropagation(); setMusic(!musicOn); };
 setMusic(true);    // autoplay: music on by default, starts the instant the browser allows audio
-// browsers block audio until the first user gesture — resume the moment one happens
-['pointerdown','keydown','touchstart'].forEach(ev=>addEventListener(ev,function unlock(){
-  ['pointerdown','keydown','touchstart'].forEach(e2=>removeEventListener(e2,unlock));
+// browsers block audio until the first user gesture — resume the moment one happens.
+// one shared handler so removeEventListener clears all three (the scheduler is singleton-guarded anyway)
+function unlockAudio(){
+  ['pointerdown','keydown','touchstart'].forEach(ev=>removeEventListener(ev,unlockAudio));
   if(musicOn&&playing) music.start();
-}));
+}
+['pointerdown','keydown','touchstart'].forEach(ev=>addEventListener(ev,unlockAudio));
 
 // transport shows only while the screen is hovered (Ray-film behaviour): reveal on
 // pointer movement, hide when the pointer leaves the window or after a short idle
