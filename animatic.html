@@ -4144,46 +4144,57 @@ const music=(function(){
     {root:87.31,tones:[349.23,440.00,523.25,698.46]}, // F
     {root:65.41,tones:[261.63,329.63,392.00,523.25]}  // C
   ];
-  const BEAT=60/88, BAR=BEAT*4;
+  const BEAT=60/124, BAR=BEAT*4;                    // upbeat, driving
   function ensure(){ if(actx) return; const AC=window.AudioContext||window.webkitAudioContext; actx=new AC();
     master=actx.createGain(); master.gain.value=0; const comp=actx.createDynamicsCompressor();
     master.connect(comp); comp.connect(actx.destination);
     noiseBuf=actx.createBuffer(1,Math.floor(actx.sampleRate*.3),actx.sampleRate);
     const d=noiseBuf.getChannelData(0); for(let i=0;i<d.length;i++) d[i]=Math.random()*2-1; }
-  function kick(t){ const o=actx.createOscillator(),g=actx.createGain(); o.type='sine';   // soft, rounded
-    o.frequency.setValueAtTime(120,t); o.frequency.exponentialRampToValueAtTime(45,t+.12);
-    g.gain.setValueAtTime(.12,t); g.gain.exponentialRampToValueAtTime(.0001,t+.22);
-    o.connect(g); g.connect(master); o.start(t); o.stop(t+.26); }
-  function shaker(t,vol){ const s=actx.createBufferSource(),g=actx.createGain(),hp=actx.createBiquadFilter();
-    s.buffer=noiseBuf; hp.type='highpass'; hp.frequency.value=6000;
-    g.gain.setValueAtTime(vol,t); g.gain.exponentialRampToValueAtTime(.0001,t+.07);
-    s.connect(hp); hp.connect(g); g.connect(master); s.start(t); s.stop(t+.08); }
+  function kick(t){ const o=actx.createOscillator(),g=actx.createGain(); o.type='sine';   // punchy
+    o.frequency.setValueAtTime(142,t); o.frequency.exponentialRampToValueAtTime(46,t+.09);
+    g.gain.setValueAtTime(.16,t); g.gain.exponentialRampToValueAtTime(.0001,t+.17);
+    o.connect(g); g.connect(master); o.start(t); o.stop(t+.2); }
+  function hat(t,vol){ const s=actx.createBufferSource(),g=actx.createGain(),hp=actx.createBiquadFilter();
+    s.buffer=noiseBuf; hp.type='highpass'; hp.frequency.value=8200;
+    g.gain.setValueAtTime(vol,t); g.gain.exponentialRampToValueAtTime(.0001,t+.04);
+    s.connect(hp); hp.connect(g); g.connect(master); s.start(t); s.stop(t+.05); }
+  function clap(t,vol){ const s=actx.createBufferSource(),g=actx.createGain(),bp=actx.createBiquadFilter();
+    s.buffer=noiseBuf; bp.type='bandpass'; bp.frequency.value=1800; bp.Q.value=1.1;        // backbeat
+    g.gain.setValueAtTime(vol,t); g.gain.exponentialRampToValueAtTime(.0001,t+.13);
+    s.connect(bp); bp.connect(g); g.connect(master); s.start(t); s.stop(t+.15); }
   function bassNote(f,t,dur){ const o=actx.createOscillator(),g=actx.createGain(),lp=actx.createBiquadFilter();
-    o.type='sine'; o.frequency.value=f; lp.type='lowpass'; lp.frequency.value=300;        // warm round bass
+    o.type='sine'; o.frequency.value=f; lp.type='lowpass'; lp.frequency.value=380;         // round, driving
     g.gain.setValueAtTime(.12,t); g.gain.exponentialRampToValueAtTime(.0001,t+dur);
     o.connect(lp); lp.connect(g); g.connect(master); o.start(t); o.stop(t+dur+.05); }
   function pluck(f,t,vol,bright){ const o=actx.createOscillator(),g=actx.createGain(),lp=actx.createBiquadFilter();
-    o.type='triangle'; o.frequency.value=f; lp.type='lowpass'; lp.frequency.value=bright;  // bell-like, gentle
-    g.gain.setValueAtTime(0,t); g.gain.linearRampToValueAtTime(vol,t+.015); g.gain.exponentialRampToValueAtTime(.0001,t+.6);
-    const dl=actx.createDelay(),dg=actx.createGain(); dl.delayTime.value=BEAT*.5; dg.gain.value=.26;
+    o.type='triangle'; o.frequency.value=f; lp.type='lowpass'; lp.frequency.value=bright;  // brighter, snappier
+    g.gain.setValueAtTime(0,t); g.gain.linearRampToValueAtTime(vol,t+.008); g.gain.exponentialRampToValueAtTime(.0001,t+.45);
+    const dl=actx.createDelay(),dg=actx.createGain(); dl.delayTime.value=BEAT*.5; dg.gain.value=.24;
     o.connect(g); g.connect(lp); lp.connect(master); lp.connect(dl); dl.connect(dg); dg.connect(master);
-    o.start(t); o.stop(t+.75); }
+    o.start(t); o.stop(t+.6); }
   function pad(tones,t,dur){ tones.forEach(function(f){ const o=actx.createOscillator(),g=actx.createGain(),lp=actx.createBiquadFilter();
-    o.type='sine'; o.frequency.value=f/2; lp.type='lowpass'; lp.frequency.value=900;       // soft warm pad
-    g.gain.setValueAtTime(0,t); g.gain.linearRampToValueAtTime(.016,t+.4); g.gain.linearRampToValueAtTime(.0001,t+dur);
+    o.type='sine'; o.frequency.value=f/2; lp.type='lowpass'; lp.frequency.value=1000;
+    g.gain.setValueAtTime(0,t); g.gain.linearRampToValueAtTime(.013,t+.3); g.gain.linearRampToValueAtTime(.0001,t+dur);
     o.connect(g); g.connect(lp); lp.connect(master); o.start(t); o.stop(t+dur+.1); }); }
   function bar(){ const t=actx.currentTime+.06; const ch=chords[barIdx%chords.length];
-    const lift=Math.min(1,.45+Math.max(0,cur-1)*.05);      // energy builds through the film
-    pad(ch.tones,t,BAR+.3);
-    kick(t); kick(t+2*BEAT);                                // half-time, unhurried
-    bassNote(ch.root*2,t,BEAT*1.7); bassNote(ch.root*2,t+2*BEAT,BEAT*1.7);
-    for(let b=0;b<4;b++){ if(lift>.5) shaker(t+b*BEAT+BEAT/2,.02+.02*lift); }
-    const steps=lift>.7?6:4;                                // gentle rising arpeggio
-    for(let i=0;i<steps;i++){ pluck(ch.tones[(i+barIdx)%ch.tones.length],t+i*(BAR/steps),.045+.02*lift,1300+900*lift); }
+    const lift=Math.min(1,.62+Math.max(0,cur-1)*.045);     // starts energetic, builds through the film
+    pad(ch.tones,t,BAR+.25);
+    for(let b=0;b<4;b++){ const bt=t+b*BEAT;
+      kick(bt);                                             // four-on-the-floor
+      hat(bt+BEAT/2,.05+.03*lift);                          // offbeat hats
+      if(lift>.7){ hat(bt+BEAT/4,.022); hat(bt+3*BEAT/4,.022); }  // sixteenths when it lifts
+      if(b===1||b===3) clap(bt,.11);                        // backbeat clap on 2 & 4
+      bassNote(ch.root*2,bt,BEAT*.5); bassNote(ch.root*2,bt+BEAT/2,BEAT*.45); // driving eighth-note bass
+    }
+    const steps=lift>.7?8:6;                                // busier rising arpeggio
+    for(let i=0;i<steps;i++){ pluck(ch.tones[(i+barIdx)%ch.tones.length],t+i*(BAR/steps),.045+.02*lift,1800+1200*lift); }
     barIdx++; timer=setTimeout(bar,BAR*1000); }
   return {
-    start:function(){ ensure(); actx.resume(); master.gain.cancelScheduledValues(actx.currentTime);
-      master.gain.linearRampToValueAtTime(1,actx.currentTime+1.2); if(!timer) bar(); },
+    start:function(){ ensure();
+      const begin=()=>{ if(actx.state!=='running') return;   // only run the scheduler on a live clock
+        master.gain.cancelScheduledValues(actx.currentTime); master.gain.setValueAtTime(master.gain.value,actx.currentTime);
+        master.gain.linearRampToValueAtTime(1,actx.currentTime+1.2); if(!timer) bar(); };
+      actx.resume().then(begin).catch(()=>{}); begin(); },
     stop:function(){ if(!actx) return; master.gain.cancelScheduledValues(actx.currentTime);
       master.gain.linearRampToValueAtTime(0,actx.currentTime+.5); clearTimeout(timer); timer=null;
       setTimeout(function(){ if(actx&&!timer) actx.suspend(); },650); }
@@ -4194,7 +4205,12 @@ function setMusic(on){ musicOn=on;
   btnSound.setAttribute('aria-label',on?'Mute music':'Play music');
   if(on&&playing) music.start(); else music.stop(); }
 btnSound.onclick=(e)=>{ e.stopPropagation(); setMusic(!musicOn); };
-setMusic(false);   // default off, like the Ray film (a click starts it — satisfies autoplay policy)
+setMusic(true);    // autoplay: music on by default, starts the instant the browser allows audio
+// browsers block audio until the first user gesture — resume the moment one happens
+['pointerdown','keydown','touchstart'].forEach(ev=>addEventListener(ev,function unlock(){
+  ['pointerdown','keydown','touchstart'].forEach(e2=>removeEventListener(e2,unlock));
+  if(musicOn&&playing) music.start();
+}));
 
 // transport shows only while the screen is hovered (Ray-film behaviour): reveal on
 // pointer movement, hide when the pointer leaves the window or after a short idle
