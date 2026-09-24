@@ -4193,7 +4193,7 @@ const music=(function(){
     start:function(){ ensure();
       const begin=()=>{ if(actx.state!=='running') return;   // only run the scheduler on a live clock
         master.gain.cancelScheduledValues(actx.currentTime); master.gain.setValueAtTime(master.gain.value,actx.currentTime);
-        master.gain.linearRampToValueAtTime(1,actx.currentTime+1.2); if(!timer) bar(); };
+        master.gain.linearRampToValueAtTime(.5,actx.currentTime+1.2); if(!timer) bar(); };  // half volume
       actx.resume().then(begin).catch(()=>{}); begin(); },
     stop:function(){ if(!actx) return; master.gain.cancelScheduledValues(actx.currentTime);
       master.gain.linearRampToValueAtTime(0,actx.currentTime+.5); clearTimeout(timer); timer=null;
