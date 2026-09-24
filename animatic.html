@@ -399,6 +399,8 @@ html,body{background:#000}
 .mk.tl:after{background:var(--teal);color:#fff}
 /* Scene 1 Gmail-style client. Google greys, never brand teal. */
 .gm{color:#202124;font-size:14px}
+.mailrow{display:flex;gap:16px;align-items:flex-start;width:100%}
+.mailrow .mailcol{flex:1;min-width:0;margin-inline:0}
 .gm svg{width:17px;height:17px;fill:none;stroke:#5F6368;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;flex:none}
 .gm .gm-search{display:flex;align-items:center;gap:11px;background:#F1F3F4;border-radius:8px;
   padding:9px 14px;margin-bottom:13px;font-size:13px;color:#80868B}
@@ -880,51 +882,26 @@ html,body{background:#000}
       <h2 class="hl" style="--d:0.096s">No reply. No status.<br><em>No idea.</em></h2>
       <p class="supp fx" style="--d:0.204s">Buried in email threads, neither side knows where the quote stands.</p>
     </div>
-    <div class="screen"><div class="stagebox">
-      <div class="win" style="--d:0.24s"><div class="win-bar"><span></span><span></span><span></span><u></u></div>
-        <div class="win-body gm">
-          <div class="gm-search"><svg viewBox="0 0 20 20"><circle cx="8.5" cy="8.5" r="5.5"/><path d="M12.5 12.5l4.5 4.5"/></svg><span>Search mail</span></div>
-          <div class="gm-subj">RE: RE: FW: Velocity Link Hwy Extension Request for Quotation
-            <span class="gm-lbl">Inbox</span></div>
-          <div class="mstat mk" data-mark="No status" style="--d:1.86s">no status anywhere in this thread</div>
-
-          <div class="gm-msg">
-            <div class="gm-av">A</div>
-            <div class="gm-b">
-              <div class="gm-top"><span class="gm-name">Andrew Williams</span>
-                <span class="gm-addr">&lt;a.williams@tenderfycivil.com.au&gt;</span>
-                <span class="gm-right"><span class="gm-date">1 Mar, 9:31 am</span><svg viewBox="0 0 20 20"><path d="M10 3l2.2 4.5 5 .7-3.6 3.5.9 5-4.5-2.4L5.5 16.7l.9-5L2.8 8.2l5-.7z"/></svg><svg viewBox="0 0 20 20"><path d="M8 5L3 9.5 8 14M3 9.5h7a6 6 0 016 6"/></svg></span></div>
-              <div class="gm-to">to me</div>
-              <div class="gm-text">Please include your itemised schedule of rates with the quote.</div>
-            </div>
-          </div>
-
-          <div class="gm-msg">
-            <div class="gm-av me">W</div>
-            <div class="gm-b">
-              <div class="gm-top"><span class="gm-name">me</span>
-                <span class="gm-right"><span class="gm-date">2 Mar, 6:52 am</span><svg viewBox="0 0 20 20"><path d="M10 3l2.2 4.5 5 .7-3.6 3.5.9 5-4.5-2.4L5.5 16.7l.9-5L2.8 8.2l5-.7z"/></svg><svg viewBox="0 0 20 20"><path d="M8 5L3 9.5 8 14M3 9.5h7a6 6 0 016 6"/></svg></span></div>
-              <div class="gm-to">to Andrew</div>
-              <div class="gm-text">Do your rates include the compliance costs?</div>
-              <div class="gm-dots">&middot;&middot;&middot;</div>
-            </div>
-          </div>
-
-          <div class="mgap mk" data-mark="No reply" style="--d:1.32s">no reply &middot; 19 days</div>
-
-          <div class="gm-msg mk" data-mark="No idea" style="--d:2.4s">
-            <div class="gm-av">A</div>
-            <div class="gm-b">
-              <div class="gm-top"><span class="gm-name">Andrew Williams</span>
-                <span class="gm-right"><span class="gm-date">09:41 (2 hours ago)</span><svg viewBox="0 0 20 20"><path d="M10 3l2.2 4.5 5 .7-3.6 3.5.9 5-4.5-2.4L5.5 16.7l.9-5L2.8 8.2l5-.7z"/></svg><svg viewBox="0 0 20 20"><path d="M8 5L3 9.5 8 14M3 9.5h7a6 6 0 016 6"/></svg></span></div>
-              <div class="gm-to">to me</div>
-              <div class="gm-text">Any update on that price mate?</div>
-              <span class="gm-unread">unread &middot; 2 missed calls</span>
-            </div>
-          </div>
-
-          <div class="gm-actions"><span class="gm-btn"><svg viewBox="0 0 20 20"><path d="M8 5L3 9.5 8 14M3 9.5h7a6 6 0 016 6"/></svg>Reply</span><span class="gm-btn"><svg viewBox="0 0 20 20"><path d="M12 5l5 4.5-5 4.5M17 9.5h-7a6 6 0 00-6 6"/></svg>Forward</span></div>
-        </div></div>
+    <div class="screen"><div class="stagebox" style="width:1200px">
+      <div class="mailrow">
+        <div class="win mailcol" style="--d:0.24s"><div class="win-bar"><span></span><span></span><span></span><u></u></div>
+          <div class="win-body gm">
+            <div class="gm-subj">FW: Velocity Link Hwy &middot; RFQ<span class="gm-lbl">Inbox</span></div>
+            <div class="mstat mk" data-mark="No status" style="--d:0.6s">no status on this thread</div>
+            <div class="gm-msg"><div class="gm-av">A</div><div class="gm-b"><div class="gm-top"><span class="gm-name">Andrew Williams</span><span class="gm-right"><span class="gm-date">1 Mar</span></span></div><div class="gm-to">to me</div><div class="gm-text">Please include your itemised schedule of rates with the quote.</div></div></div>
+          </div></div>
+        <div class="win mailcol" style="--d:0.42s"><div class="win-bar"><span></span><span></span><span></span><u></u></div>
+          <div class="win-body gm">
+            <div class="gm-subj">RE: Rates &amp; compliance<span class="gm-lbl">Sent</span></div>
+            <div class="gm-msg"><div class="gm-av me">W</div><div class="gm-b"><div class="gm-top"><span class="gm-name">me</span><span class="gm-right"><span class="gm-date">2 Mar</span></span></div><div class="gm-to">to Andrew</div><div class="gm-text">Do your rates include the compliance costs?</div><div class="gm-dots">&middot;&middot;&middot;</div></div></div>
+            <div class="mgap mk" data-mark="No reply" style="--d:1.0s">no reply &middot; 19 days</div>
+          </div></div>
+        <div class="win mailcol" style="--d:0.6s"><div class="win-bar"><span></span><span></span><span></span><u></u></div>
+          <div class="win-body gm">
+            <div class="gm-subj">Quote follow-up (3)<span class="gm-lbl">Inbox</span></div>
+            <div class="gm-msg mk" data-mark="No idea" style="--d:1.4s;margin-top:20px"><div class="gm-av">A</div><div class="gm-b"><div class="gm-top"><span class="gm-name">Andrew Williams</span><span class="gm-right"><span class="gm-date">2h ago</span></span></div><div class="gm-to">to me</div><div class="gm-text">Any update on that price mate?</div><span class="gm-unread">unread &middot; 2 missed calls</span></div></div>
+          </div></div>
+      </div>
     </div></div>
   </div>
 </section>
