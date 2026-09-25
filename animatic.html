@@ -3420,36 +3420,7 @@ function renderRecipients(){
     <span class="scchip"><span class="av" style="background:\${r.color||'#90A4AE'}">\${r.av||initials(r.name)}</span>\${esc(r.name)}\${r.on===false?'<span class="inv">INVITE</span>':''}<span class="ms x" onclick="removeRecipient(\${i})">close</span></span>\`).join('');
 }
 function cqToggle(id){ document.getElementById(id).classList.toggle('collapsed'); }
-// --- Tender Pack live preview: render the real PDF page with pdf.js ---
-let pdfDoc = null, pdfCache = {};
-async function pdfInit(){
-  const src = (FILES.find(f=>f.pdf)||{}).pdf; if(!src) return;
-  try{
-    const pdfjs = await import('https://cdn.jsdelivr.net/npm/pdfjs-dist@4.6.82/build/pdf.min.mjs');
-    pdfjs.GlobalWorkerOptions.workerSrc = 'https://cdn.jsdelivr.net/npm/pdfjs-dist@4.6.82/build/pdf.worker.min.mjs';
-    pdfDoc = await pdfjs.getDocument(src).promise;
-    const f = FILES.find(x=>x.id===focusId);
-    if(f && f.pdf) renderPreview();               // swap placeholder for the real page
-  }catch(e){ /* offline / CDN blocked → keep the icon placeholder */ }
-}
-async function renderPdfPage(f, n){
-  if(!pdfDoc) return;
-  if(pdfCache[n]){ pdfShow(f, n, pdfCache[n]); return; }
-  try{
-    const pg = await pdfDoc.getPage(n);
-    const vp = pg.getViewport({scale:2.0});
-    const c = document.createElement('canvas'); c.width = vp.width; c.height = vp.height;
-    await pg.render({canvasContext:c.getContext('2d'), viewport:vp}).promise;
-    const url = c.toDataURL('image/jpeg', 0.82);
-    pdfCache[n] = url; pdfShow(f, n, url);
-  }catch(e){}
-}
-function pdfShow(f, n, url){
-  if(focusId !== f.id || pageNo !== n) return;    // page moved on before render finished
-  const pv = document.getElementById('cqPv');
-  if(pv) pv.innerHTML = '<img alt="Page '+n+'" src="'+url+'">';
-}
-
+// --- Tender Pack live preview: synthetic mock pages only (pdf.js removed) ---
 // ---- Realistic mock document pages for the preview ----
 const DOC_CONTENT = {
   'Request for Tender.pdf':{kind:'doc',mono:'TMR',org:'Dept of Transport & Main Roads',addr:'1 William St, Brisbane QLD 4000',ref:'TMR ICT 22076',date:'Issued 3 Mar 2026',title:'Request for Tender',docsub:'Velocity Link Highway Extension',sections:[
@@ -3570,13 +3541,8 @@ function renderPreview(){
   if(!f){ document.getElementById('cqPvName').textContent='—'; pv.innerHTML='<span>No file selected</span>'; document.getElementById('cqPager').textContent=''; area.innerHTML=''; return; }
   if(pageNo>f.pages) pageNo=1;
   document.getElementById('cqPvName').textContent=f.name;
-  if(f.pdf){
-    if(pdfCache[pageNo]) pv.innerHTML = '<img alt="Page '+pageNo+'" src="'+pdfCache[pageNo]+'">';
-    else { pv.innerHTML = '<div class="pdfload"><span class="sp"></span>Rendering page '+pageNo+'&hellip;</div>'; renderPdfPage(f, pageNo); }
-  } else {
-    pv.innerHTML = renderMockPage(f, pageNo);
+  pv.innerHTML = renderMockPage(f, pageNo);
     fitMockPage();
-  }
   document.getElementById('cqPager').textContent='Page '+pageNo+' of '+f.pages;
   if(f.mode==='snippet'){
     const pill = n => \`<span class="pgpill \${f.snip.includes(n)?'on':''}\${rayHits&&rayHits.has(n)?' hit':''}" onclick="togglePage(\${f.id},\${n})">\${n}</span>\`;
@@ -3744,7 +3710,6 @@ function cqSend(){
 // Send To is prefilled only when this request is started from a Sub-contractor details screen.
 if(cqSub){ recipients = [{name:cqSub, av:initials(cqSub), color:'#38988A', on:true}]; }
 renderAll();
-pdfInit();   // load the Tender Pack PDF and render its pages into the preview
 // Populate the prefill dropdown; auto-prefill task details when opened from a tender.
 (function(){
   const sel=document.getElementById('cqPrefill');
